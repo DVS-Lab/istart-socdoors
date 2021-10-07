@@ -127,3 +127,24 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# autosave files and other system files
+*~
+.DS_Store
+
+# potentially private
+.heudiconv
+
+# imaging output
+bids/**/*.nii.gz
+derivatives/fsl
+derivatives/fmriprep/**/*.nii.gz
+derivatives/fmriprep/*/anat
+derivatives/fmriprep/*/figures
+derivatives/fmriprep/*/log
+derivatives/fmriprep/*/func/*desc-MELODIC_mixing.tsv
+derivatives/fmriprep/*/func/*AROMAnoiseICs.csv
+derivatives/fmriprep/*/func/*_mask.json
+derivatives/fmriprep/*/func/*_bold.json
+sub-*.html
+*.asv
