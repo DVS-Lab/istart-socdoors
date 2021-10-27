@@ -21,7 +21,7 @@ run=$2
 ppi=$3 # 0 for activation, otherwise seed region or network
 
 
-# set inputs and general outputs (should not need to chage across studies in Smith Lab)
+# set inputs and general outputs (should not need to change across studies in Smith Lab)
 MAINOUTPUT=${maindir}/derivatives/fsl/sub-${sub}
 mkdir -p $MAINOUTPUT
 DATA=${maindir}/derivatives/fmriprep/sub-${sub}/func/sub-${sub}_task-${TASK}_run-${run}_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz
@@ -37,7 +37,8 @@ EVDIR=${maindir}/derivatives/fsl/EVfiles/sub-${sub}/${TASK}/run-0${run} #change 
 if [ "$ppi" == "ecn" -o  "$ppi" == "dmn" ]; then
 
 	# check for output and skip existing
-	OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-2_type-nppi-${ppi}_run-${run}_sm-${sm}
+	TYPE=act
+	OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-2_type-${TYPE}_run-${run}_sm-${sm}
 	if [ -e ${OUTPUT}.feat/cluster_mask_zstat1.nii.gz ]; then
 		echo "not re-doing output"		
 		exit
