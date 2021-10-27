@@ -1,4 +1,4 @@
-# ISTART-sharedreward: Shared Reward Task Data and Analyses
+# ISTART-socdoors: Social Doors Task Data and Analyses
 This repository contains code related to our in prep project related to shared reward and aging. All hypotheses and analysis plans were pre-registered on AsPredicted in fall semester 2019 and data collection commenced on shortly thereafter. Imaging data will be shared via [OpenNeuro][openneuro] when the manuscript is posted on bioRxiv.
 
 
@@ -22,8 +22,8 @@ This repository contains code related to our in prep project related to shared r
 ## Basic commands to reproduce our analyses
 ```
 # get code and data (two options for data)
-git clone https://github.com/DVS-Lab/ istart-sharedreward
-cd  istart-sharedreward
+git clone https://github.com/DVS-Lab/istart-socdoors
+cd  istart-socdoors
 
 rm -rf bids # remove bids subdirectory since it will be replaced below
 # can this be made into a sym link?
