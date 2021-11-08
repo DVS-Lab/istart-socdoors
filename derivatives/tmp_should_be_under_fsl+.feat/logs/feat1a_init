@@ -1,0 +1,6 @@
+</pre><hr>Initialisation<br><pre>
+
+/usr/share/fsl/6.0.4/bin/fslmaths /data/projects/istart-data/bids/sub-1240/func/sub-1240_task-doors_run-01_bold prefiltered_func_data -odt float
+Total original volumes = 293
+
+/usr/share/fsl/6.0.4/bin/fslroi prefiltered_func_data example_func 146 1

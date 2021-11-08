@@ -12,9 +12,10 @@
 # ensure paths are correct irrespective from where user runs the script
 scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 maindir="$(dirname "$scriptdir")"
+istartdatadir=/data/projects/istart-data
 
 # study-specific inputs
-TASK=doors
+TASK=socialdoors
 sm=6
 sub=$1
 run=$2
@@ -24,31 +25,55 @@ ppi=$3 # 0 for activation, otherwise seed region or network
 # set inputs and general outputs (should not need to change across studies in Smith Lab)
 MAINOUTPUT=${maindir}/derivatives/fsl/sub-${sub}
 mkdir -p $MAINOUTPUT
-DATA=${maindir}/derivatives/fmriprep/sub-${sub}/func/sub-${sub}_task-${TASK}_run-${run}_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz
+DATA=${istartdatadir}/derivatives/fmriprep/sub-${sub}/func/sub-${sub}_task-${TASK}_run-${run}_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz
 NVOLUMES=`fslnvols $DATA`
-CONFOUNDEVS=${maindir}/derivatives/fsl/confounds/sub-${sub}/sub-${sub}_task-${TASK}_run-${run}_desc-fslConfounds.tsv
+CONFOUNDEVS=${istartdatadir}/derivatives/fsl/confounds/sub-${sub}/sub-${sub}_task-${TASK}_run-${run}_desc-fslConfounds.tsv
 if [ ! -e $CONFOUNDEVS ]; then
 	echo "missing confounds: $CONFOUNDEVS " >> ${maindir}/re-runL1.log
 	exit # exiting to ensure nothing gets run without confounds
 fi
-EVDIR=${maindir}/derivatives/fsl/EVfiles/sub-${sub}/${TASK}/run-0${run} #change to maindir TO FIX: no zero pad
+EVDIR=${istartdatadir}/derivatives/fsl/EVfiles/sub-${sub}/${TASK}/run-${run} #change to maindir TO FIX: no zero pad
+
+# empty EVs (specific to this study)
+EV_MISSED_TRIAL=${EVDIR}_missed_trial.txt
+if [ -e $EV_MISSED_TRIAL ]; then
+	SHAPE_MISSED_TRIAL=3
+else
+	SHAPE_MISSED_TRIAL=10
+fi
+EV_COMPN=${EVDIR}_event_computer_neutral.txt
+if [ -e $EV_COMPN ]; then
+	SHAPE_COMPN=3
+else
+	SHAPE_COMPN=10
+fi
+EV_STRANGERN=${EVDIR}_event_stranger_neutral.txt
+if [ -e $EV_STRANGERN ]; then
+	SHAPE_STRANGERN=3
+else
+	SHAPE_STRANGERN=10
+fi
+EV_FRIENDN=${EVDIR}_event_friend_neutral.txt
+if [ -e $EV_FRIENDN ]; then
+	SHAPE_FRIENDN=3
+else
+	SHAPE_FRIENDN=10
+fi
 
 # if network (ecn or dmn), do nppi; otherwise, do activation or seed-based ppi
 if [ "$ppi" == "ecn" -o  "$ppi" == "dmn" ]; then
 
 	# check for output and skip existing
-	TYPE=act
-	OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-2_type-${TYPE}_run-${run}_sm-${sm}
+	OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-0_type-nppi-${ppi}_run-${run}_sm-${sm}
 	if [ -e ${OUTPUT}.feat/cluster_mask_zstat1.nii.gz ]; then
-		echo "not re-doing output"		
 		exit
 	else
-		echo "missing feat output: $OUTPUT " >> ${maindir}/re-runL1.log
+		echo "missing feat output 1: $OUTPUT " >> ${maindir}/re-runL1.log
 		rm -rf ${OUTPUT}.feat
 	fi
 
 	# network extraction. need to ensure you have run Level 1 activation
-	MASK=${MAINOUTPUT}/L1_task-${TASK}_model-2_type-act_run-${run}_sm-${sm}.feat/mask
+	MASK=${MAINOUTPUT}/L1_task-${TASK}_model-0_type-act_run-${run}_sm-${sm}.feat/mask
 	if [ ! -e ${MASK}.nii.gz ]; then
 		echo "cannot run nPPI because you're missing $MASK"
 		exit
@@ -72,8 +97,8 @@ if [ "$ppi" == "ecn" -o  "$ppi" == "dmn" ]; then
 	fi
 
 	# create template and run analyses
-	ITEMPLATE=${maindir}/templates/L1_task-${TASK}_model-2_type-nppi.fsf
-	OTEMPLATE=${MAINOUTPUT}/L1_task-${TASK}_model-2_seed-${ppi}_run-${run}.fsf
+	ITEMPLATE=${maindir}/templates/L1_task-${TASK}_model-0_type-nppi.fsf
+	OTEMPLATE=${MAINOUTPUT}/L1_task-${TASK}_model-0_seed-${ppi}_run-${run}.fsf
 	sed -e 's@OUTPUT@'$OUTPUT'@g' \
 	-e 's@DATA@'$DATA'@g' \
 	-e 's@EVDIR@'$EVDIR'@g' \
@@ -105,23 +130,23 @@ else # otherwise, do activation and seed-based ppi
 	# set output based in whether it is activation or ppi
 	if [ "$ppi" == "0" ]; then
 		TYPE=act
-		OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-2_type-${TYPE}_run-${run}_sm-${sm}
+		OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-0_type-${TYPE}_run-${run}_sm-${sm}
 	else
 		TYPE=ppi
-		OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-2_type-${TYPE}_seed-${ppi}_run-${run}_sm-${sm}
+		OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-0_type-${TYPE}_seed-${ppi}_run-${run}_sm-${sm}
 	fi
 
 	# check for output and skip existing
 	if [ -e ${OUTPUT}.feat/cluster_mask_zstat1.nii.gz ]; then
 		exit
 	else
-		echo "missing feat output: $OUTPUT " >> ${maindir}/re-runL1.log
+		echo "missing feat output 2: $OUTPUT " >> ${maindir}/re-runL1.log
 		rm -rf ${OUTPUT}.feat
 	fi
 
 	# create template and run analyses
-	ITEMPLATE=${maindir}/templates/L1_task-doors_model-0.fsf
-	OTEMPLATE=${MAINOUTPUT}/L1_sub-${sub}_task-${TASK}_model-2_seed-${ppi}_run-${run}.fsf
+	ITEMPLATE=${maindir}/templates/L1_task-${TASK}_model-0_type-${TYPE}.fsf
+	OTEMPLATE=${MAINOUTPUT}/L1_sub-${sub}_task-${TASK}_model-0_seed-${ppi}_run-${run}.fsf
 	if [ "$ppi" == "0" ]; then
 		sed -e 's@OUTPUT@'$OUTPUT'@g' \
 		-e 's@DATA@'$DATA'@g' \

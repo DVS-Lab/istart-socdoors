@@ -1,0 +1,34 @@
+</pre><hr>Preprocessing:Stage 1<br><pre>
+</pre><hr>Preprocessing:Stage 2<br><pre>
+
+/usr/share/fsl/6.0.4/bin/fslmaths prefiltered_func_data -Tmean mean_func
+
+/usr/share/fsl/6.0.4/bin/bet2 mean_func mask -f 0.3 -n -m; /usr/share/fsl/6.0.4/bin/immv mask_mask mask
+
+/usr/share/fsl/6.0.4/bin/fslmaths prefiltered_func_data -mas mask prefiltered_func_data_bet
+
+/usr/share/fsl/6.0.4/bin/fslstats prefiltered_func_data_bet -p 2 -p 98
+0.000000 13949.000000 
+
+/usr/share/fsl/6.0.4/bin/fslmaths prefiltered_func_data_bet -thr 1394.9 -Tmin -bin mask -odt char
+
+/usr/share/fsl/6.0.4/bin/fslstats prefiltered_func_data -k mask -p 50
+12076.000000 
+
+/usr/share/fsl/6.0.4/bin/fslmaths mask -dilF mask
+
+/usr/share/fsl/6.0.4/bin/fslmaths prefiltered_func_data -mas mask prefiltered_func_data_thresh
+
+/usr/share/fsl/6.0.4/bin/fslmaths prefiltered_func_data_thresh -Tmean mean_func
+
+/usr/share/fsl/6.0.4/bin/susan prefiltered_func_data_thresh 9057.0 2.12314225053 3 1 1 mean_func 9057.0 prefiltered_func_data_smooth
+
+/usr/share/fsl/6.0.4/bin/fslmaths prefiltered_func_data_smooth -mas mask prefiltered_func_data_smooth
+
+/usr/share/fsl/6.0.4/bin/fslmaths prefiltered_func_data_smooth -mul 0.828088771116 prefiltered_func_data_intnorm
+
+/usr/share/fsl/6.0.4/bin/fslmaths prefiltered_func_data_intnorm filtered_func_data
+
+/usr/share/fsl/6.0.4/bin/fslmaths filtered_func_data -Tmean mean_func
+
+/bin/rm -rf prefiltered_func_data*

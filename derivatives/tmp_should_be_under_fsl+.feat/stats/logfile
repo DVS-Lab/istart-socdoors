@@ -1,0 +1,3 @@
+/usr/share/fsl/6.0.4/bin/film_gls --in=filtered_func_data --rn=stats --pd=design.mat --thr=1000.0 --sa --ms=5 --con=design.con 
+---------------------------------------------
+

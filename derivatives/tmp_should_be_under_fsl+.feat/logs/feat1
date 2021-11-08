@@ -1,0 +1,21 @@
+
+/bin/cp /tmp/feat_QgALLd.fsf design.fsf
+
+/usr/share/fsl/6.0.4/bin/feat_model design
+
+mkdir .files;cp /usr/share/fsl/6.0.4/doc/fsl.css .files;cp -r /usr/share/fsl/6.0.4/doc/images .files/images
+
+/usr/share/fsl/6.0.4/bin/fsl_sub -T 10 -l logs -N feat0_init   /usr/share/fsl/6.0.4/bin/feat /data/projects/istart-socdoors/derivatives/tmp_should_be_under_fsl+.feat/design.fsf -D /data/projects/istart-socdoors/derivatives/tmp_should_be_under_fsl+.feat -I 1 -init
+33288
+
+/usr/share/fsl/6.0.4/bin/fsl_sub -T 97 -l logs -N feat2_pre -j 33288  /usr/share/fsl/6.0.4/bin/feat /data/projects/istart-socdoors/derivatives/tmp_should_be_under_fsl+.feat/design.fsf -D /data/projects/istart-socdoors/derivatives/tmp_should_be_under_fsl+.feat -I 1 -prestats
+33750
+
+/usr/share/fsl/6.0.4/bin/fsl_sub -T 66 -l logs -N feat3_film -j 33750  /usr/share/fsl/6.0.4/bin/feat /data/projects/istart-socdoors/derivatives/tmp_should_be_under_fsl+.feat/design.fsf -D /data/projects/istart-socdoors/derivatives/tmp_should_be_under_fsl+.feat -I 1 -stats
+36144
+
+/usr/share/fsl/6.0.4/bin/fsl_sub -T 119 -l logs -N feat4_post -j 36144  /usr/share/fsl/6.0.4/bin/feat /data/projects/istart-socdoors/derivatives/tmp_should_be_under_fsl+.feat/design.fsf -D /data/projects/istart-socdoors/derivatives/tmp_should_be_under_fsl+.feat -poststats 0 
+39864
+
+/usr/share/fsl/6.0.4/bin/fsl_sub -T 1 -l logs -N feat5_stop -j 33750,36144,39864  /usr/share/fsl/6.0.4/bin/feat /data/projects/istart-socdoors/derivatives/tmp_should_be_under_fsl+.feat/design.fsf -D /data/projects/istart-socdoors/derivatives/tmp_should_be_under_fsl+.feat -stop
+41449
