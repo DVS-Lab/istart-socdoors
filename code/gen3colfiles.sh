@@ -24,11 +24,11 @@ sub=$1
 
 
 for run in 1 2; do
-  input=${datadir}/bids/sub-${sub}/func/sub-${sub}_task-istart-socialdoors_run-0${run}_events.tsv
-  output=${baseout}/sub-${sub}/socialdoors
+  input=${datadir}/bids/sub-${sub}/func/sub-${sub}_task-doors_run-${run}_events.tsv
+  output=${baseout}/sub-${sub}/doors
   mkdir -p $output
   if [ -e $input ]; then # sub-3176/sharedreward/run-01_event_computer_punish.txt
-    bash /data/tools/bidsutils/BIDSto3col/BIDSto3col.sh $input ${output}/run-0${run}
+    bash /data/tools/bidsutils/BIDSto3col/BIDSto3col.sh $input ${output}/run-${run}
   else
     echo "PATH ERROR: cannot locate ${input}."
     exit
