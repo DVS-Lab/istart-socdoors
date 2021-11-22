@@ -15,12 +15,11 @@ maindir="$(dirname "$scriptdir")"
 istartdatadir=/data/projects/istart-data
 
 # study-specific inputs
-TASK=doors
 sm=6
 sub=$1
 run=$2
 ppi=$3 # 0 for activation, otherwise seed region or network
-
+TASK=$4
 
 # set inputs and general outputs (should not need to change across studies in Smith Lab)
 MAINOUTPUT=${maindir}/derivatives/fsl/sub-${sub}
@@ -41,12 +40,11 @@ if [ -e $EV_MISSED_TRIAL ]; then
 else
 	SHAPE_MISSED_TRIAL=10
 fi
-
 # if network (ecn or dmn), do nppi; otherwise, do activation or seed-based ppi
 if [ "$ppi" == "ecn" -o  "$ppi" == "dmn" ]; then
 
 	# check for output and skip existing
-	OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-2_type-nppi-${ppi}_run-${run}_sm-${sm}
+	OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-1_type-nppi-${ppi}_run-${run}_sm-${sm}
 	if [ -e ${OUTPUT}.feat/cluster_mask_zstat1.nii.gz ]; then
 		exit
 	else
@@ -55,7 +53,7 @@ if [ "$ppi" == "ecn" -o  "$ppi" == "dmn" ]; then
 	fi
 
 	# network extraction. need to ensure you have run Level 1 activation
-	MASK=${MAINOUTPUT}/L1_task-${TASK}_model-2_type-act_run-${run}_sm-${sm}.feat/mask
+	MASK=${MAINOUTPUT}/L1_task-${TASK}_model-1_type-act_run-${run}_sm-${sm}.feat/mask
 	if [ ! -e ${MASK}.nii.gz ]; then
 		echo "cannot run nPPI because you're missing $MASK"
 		exit
@@ -79,8 +77,8 @@ if [ "$ppi" == "ecn" -o  "$ppi" == "dmn" ]; then
 	fi
 
 	# create template and run analyses
-	ITEMPLATE=${maindir}/templates/L1_task-${TASK}_model-2_type-nppi.fsf
-	OTEMPLATE=${MAINOUTPUT}/L1_task-${TASK}_model-2_seed-${ppi}_run-${run}.fsf
+	ITEMPLATE=${maindir}/templates/L1_task-${TASK}_model-1_type-nppi.fsf
+	OTEMPLATE=${MAINOUTPUT}/L1_task-${TASK}_model-1_seed-${ppi}_run-${run}.fsf
 	sed -e 's@OUTPUT@'$OUTPUT'@g' \
 	-e 's@DATA@'$DATA'@g' \
 	-e 's@EVDIR@'$EVDIR'@g' \
@@ -106,10 +104,10 @@ else # otherwise, do activation and seed-based ppi
 	# set output based in whether it is activation or ppi
 	if [ "$ppi" == "0" ]; then
 		TYPE=act
-		OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-2_type-${TYPE}_run-${run}_sm-${sm}
+		OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-1_type-${TYPE}_run-${run}_sm-${sm}
 	else
 		TYPE=ppi
-		OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-2_type-${TYPE}_seed-${ppi}_run-${run}_sm-${sm}
+		OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-1_type-${TYPE}_seed-${ppi}_run-${run}_sm-${sm}
 	fi
 
 	# check for output and skip existing
@@ -121,45 +119,46 @@ else # otherwise, do activation and seed-based ppi
 	fi
 
 	# create template and run analyses
-	ITEMPLATE=${maindir}/templates/L1_task-${TASK}_model-2_type-${TYPE}.fsf
-	OTEMPLATE=${MAINOUTPUT}/L1_sub-${sub}_task-${TASK}_model-2_seed-${ppi}_run-${run}.fsf
+	ITEMPLATE=${maindir}/templates/L1_task-${TASK}_model-1_type-${TYPE}.fsf
+	OTEMPLATE=${MAINOUTPUT}/L1_sub-${sub}_task-${TASK}_model-1_seed-${ppi}_run-${run}.fsf
 	if [ "$ppi" == "0" ]; then
-		sed -e 's@OUTPUT@'$OUTPUT'@g' \
-		-e 's@DATA@'$DATA'@g' \
-		-e 's@EVDIR@'$EVDIR'@g' \
-		-e 's@EV_MISSED_TRIAL@'$EV_MISSED_TRIAL'@g' \
-		-e 's@SHAPE_MISSED_TRIAL@'$SHAPE_MISSED_TRIAL'@g' \
-		-e 's@SMOOTH@'$sm'@g' \
-		-e 's@CONFOUNDEVS@'$CONFOUNDEVS'@g' \
-		-e 's@NVOLUMES@'$NVOLUMES'@g' \
-		<$ITEMPLATE> $OTEMPLATE
-	else
-		PHYS=${MAINOUTPUT}/ts_task-${TASK}_mask-${ppi}_run-${run}.txt
-		MASK=${maindir}/masks/seed-${ppi}.nii.gz
-		fslmeants -i $DATA -o $PHYS -m $MASK
-		sed -e 's@OUTPUT@'$OUTPUT'@g' \
-		-e 's@DATA@'$DATA'@g' \
-		-e 's@EVDIR@'$EVDIR'@g' \
-		-e 's@EV_MISSED_TRIAL@'$EV_MISSED_TRIAL'@g' \
-		-e 's@SHAPE_MISSED_TRIAL@'$SHAPE_MISSED_TRIAL'@g' \
-		-e 's@PHYS@'$PHYS'@g' \
-		-e 's@SMOOTH@'$sm'@g' \
-		-e 's@CONFOUNDEVS@'$CONFOUNDEVS'@g' \
-		-e 's@NVOLUMES@'$NVOLUMES'@g' \
-		<$ITEMPLATE> $OTEMPLATE
+			sed -e 's@OUTPUT@'$OUTPUT'@g' \
+			-e 's@DATA@'$DATA'@g' \
+			-e 's@EVDIR@'$EVDIR'@g' \
+			-e 's@EV_MISSED_TRIAL@'$EV_MISSED_TRIAL'@g' \
+			-e 's@SHAPE_MISSED_TRIAL@'$SHAPE_MISSED_TRIAL'@g' \
+			-e 's@SMOOTH@'$sm'@g' \
+			-e 's@CONFOUNDEVS@'$CONFOUNDEVS'@g' \
+			-e 's@NVOLUMES@'$NVOLUMES'@g' \
+			<$ITEMPLATE> $OTEMPLATE
+		else
+			PHYS=${MAINOUTPUT}/ts_task-${TASK}_mask-${ppi}_run-${run}.txt
+			MASK=${maindir}/masks/seed-${ppi}.nii.gz
+			fslmeants -i $DATA -o $PHYS -m $MASK
+			sed -e 's@OUTPUT@'$OUTPUT'@g' \
+			-e 's@DATA@'$DATA'@g' \
+			-e 's@EVDIR@'$EVDIR'@g' \
+			-e 's@EV_MISSED_TRIAL@'$EV_MISSED_TRIAL'@g' \
+			-e 's@SHAPE_MISSED_TRIAL@'$SHAPE_MISSED_TRIAL'@g' \
+			-e 's@PHYS@'$PHYS'@g' \
+			-e 's@SMOOTH@'$sm'@g' \
+			-e 's@CONFOUNDEVS@'$CONFOUNDEVS'@g' \
+			-e 's@NVOLUMES@'$NVOLUMES'@g' \
+			<$ITEMPLATE> $OTEMPLATE
+		fi
+		feat $OTEMPLATE
 	fi
-	feat $OTEMPLATE
-fi
 
-# fix registration as per NeuroStars post:
-# https://neurostars.org/t/performing-full-glm-analysis-with-fsl-on-the-bold-images-preprocessed-by-fmriprep-without-re-registering-the-data-to-the-mni-space/784/3
-mkdir -p ${OUTPUT}.feat/reg
-ln -s $FSLDIR/etc/flirtsch/ident.mat ${OUTPUT}.feat/reg/example_func2standard.mat
-ln -s $FSLDIR/etc/flirtsch/ident.mat ${OUTPUT}.feat/reg/standard2example_func.mat
-ln -s ${OUTPUT}.feat/mean_func.nii.gz ${OUTPUT}.feat/reg/standard.nii.gz
+	# fix registration as per NeuroStars post:
+	# https://neurostars.org/t/performing-full-glm-analysis-with-fsl-on-the-bold-images-preprocessed-by-fmriprep-without-re-registering-the-data-to-the-mni-space/784/3
+	mkdir -p ${OUTPUT}.feat/reg
+	ln -s $FSLDIR/etc/flirtsch/ident.mat ${OUTPUT}.feat/reg/example_func2standard.mat
+	ln -s $FSLDIR/etc/flirtsch/ident.mat ${OUTPUT}.feat/reg/standard2example_func.mat
+	ln -s ${OUTPUT}.feat/mean_func.nii.gz ${OUTPUT}.feat/reg/standard.nii.gz
 
-# delete unused files
-rm -rf ${OUTPUT}.feat/stats/res4d.nii.gz
-rm -rf ${OUTPUT}.feat/stats/corrections.nii.gz
-rm -rf ${OUTPUT}.feat/stats/threshac1.nii.gz
-rm -rf ${OUTPUT}.feat/filtered_func_data.nii.gz
+	# delete unused files
+	rm -rf ${OUTPUT}.feat/stats/res4d.nii.gz
+	rm -rf ${OUTPUT}.feat/stats/corrections.nii.gz
+	rm -rf ${OUTPUT}.feat/stats/threshac1.nii.gz
+	rm -rf ${OUTPUT}.feat/filtered_func_data.nii.gz
+done
