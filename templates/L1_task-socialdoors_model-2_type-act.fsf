@@ -33,7 +33,7 @@ set fmri(sscleanup_yn) 0
 set fmri(outputdir) "OUTPUT"
 
 # TR(s)
-set fmri(tr) 1.750000 
+set fmri(tr) 1.750000
 
 # Total volumes
 set fmri(npts) 293
@@ -70,7 +70,7 @@ set fmri(noisear) 0.34
 # Motion correction
 # 0 : None
 # 1 : MCFLIRT
-set fmri(mc) 1
+set fmri(mc) 0
 
 # Spin-history (currently obsolete)
 set fmri(sh_yn) 0
@@ -362,9 +362,6 @@ set fmri(tempfilt_yn2) 0
 
 # Add temporal derivative (EV 2)
 set fmri(deriv_yn2) 0
-
-# Custom EV file (EV 2)
-set fmri(custom2) "EV_MISSED_TRIAL"
 
 # Orthogonalise EV 2 wrt EV 0
 set fmri(ortho2.0) 0
