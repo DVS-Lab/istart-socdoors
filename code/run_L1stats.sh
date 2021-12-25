@@ -5,8 +5,8 @@ scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 basedir="$(dirname "$scriptdir")"
 nruns=1
 
-for task in socialdoors; do
-for ppi in NAcc; do # putting 0 first will indicate "activation"
+for task in doors socialdoors; do
+for ppi in 0; do # putting 0 first will indicate "activation"
 	for sub in `cat ${basedir}/code/newsubs.txt`; do
 	  for run in `seq $nruns`; do
 
