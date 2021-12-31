@@ -6,13 +6,13 @@ basedir="$(dirname "$scriptdir")"
 nruns=1
 
 for task in doors socialdoors; do
-for ppi in 0; do # putting 0 first will indicate "activation"
+for ppi in amygdala-anat dmpfc NAcc-act_n46 occFusiformGyrus-anat postCingulate-anat vmpfc; do # putting 0 first will indicate "activation"
 	for sub in `cat ${basedir}/code/newsubs.txt`; do
 	  for run in `seq $nruns`; do
 
 	  	# Manages the number of jobs and cores
 	  	SCRIPTNAME=${basedir}/code/L1stats.sh
-	  	NCORES=15
+	  	NCORES=20
 	  	while [ $(ps -ef | grep -v grep | grep $SCRIPTNAME | wc -l) -ge $NCORES ]; do
 	    		sleep 5s
 	  	done
