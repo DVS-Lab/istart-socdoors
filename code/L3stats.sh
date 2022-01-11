@@ -18,12 +18,13 @@ scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 maindir="$(dirname "$scriptdir")"
 
 # study-specific inputs and general output folder
-N=50
+N=100
 copenum=$1
 copenum_thresh_randomise=99 # actual contrasts start here. no need to do randomise main effects (e.g., reward > nothing/fixation/baseline)
 copename=$2
 REPLACEME=$3 # this defines the parts of the path that differ across analyses
 TASK=$4
+COV=$5
 MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-1_task-${TASK}_n${N}_flame1+2
 mkdir -p $MAINOUTPUT
 
@@ -45,14 +46,14 @@ else # try to run feat and clean up previous effort with partial output
 	rm -rf ${OUTPUT}.gfeat
 
 	# create template and run FEAT analyses
-	# ITEMPLATE=${maindir}/templates/L3_template_n${N}_${TASK}_twogroup.fsf # TO DO: change to reward sensitivity covariate
-	# OTEMPLATE=${MAINOUTPUT}/L3_task-${TASK}_${REPLACEME}_copenum-${copenum}_twogroup.fsf
-	# sed -e 's@OUTPUT@'$OUTPUT'@g' \
-	# -e 's@COPENUM@'$copenum'@g' \
-	# -e 's@REPLACEME@'$REPLACEME'@g' \
-	# -e 's@BASEDIR@'$maindir'@g' \
-	# <$ITEMPLATE> $OTEMPLATE
-	# feat $OTEMPLATE
+	 ITEMPLATE=${maindir}/templates/L3_template_n${N}_${TASK}_twogroup.fsf # TO DO: change to reward sensitivity covariate
+	 OTEMPLATE=${MAINOUTPUT}/L3_task-${TASK}_${REPLACEME}_copenum-${copenum}_twogroup.fsf
+	 sed -e 's@OUTPUT@'$OUTPUT'@g' \
+	 -e 's@COPENUM@'$copenum'@g' \
+	 -e 's@REPLACEME@'$REPLACEME'@g' \
+	 -e 's@BASEDIR@'$maindir'@g' \
+	 <$ITEMPLATE> $OTEMPLATE
+	 feat $OTEMPLATE
 
 	# delete unused files
 	rm -rf ${OUTPUT}.gfeat/cope${cope}.feat/stats/res4d.nii.gz
@@ -81,7 +82,7 @@ else # try to run feat and clean up previous effort with partial output
 	rm -rf ${OUTPUT}.gfeat
 
 	# create template and run FEAT analyses
-	# ITEMPLATE=${maindir}/templates/L3_template_n${N}_${task}_twogroup_wCovs.fsf # TO DO: change to reward sensitivity covariate
+	# ITEMPLATE=${maindir}/templates/L3_template_n${N}_${TASK}_twogroup_wCovs.fsf # TO DO: change to reward sensitivity covariate
 	# OTEMPLATE=${MAINOUTPUT}/L3_task-${TASK}_${REPLACEME}_copenum-${copenum}_twogroup_wCovs.fsf
 	# sed -e 's@OUTPUT@'$OUTPUT'@g' \
 	# -e 's@COPENUM@'$copenum'@g' \
@@ -103,7 +104,7 @@ fi
 
 ### --- One group ------------------------------
 # set outputs and check for existing
-OUTPUT=${MAINOUTPUT}/L3_task-${TASK}_${REPLACEME}_cnum-${copenum}_cname-${copename}_onegroup
+OUTPUT=${MAINOUTPUT}/L3_task-${TASK}_${REPLACEME}_cnum-${copenum}_cname-${copename}_onegroup_cov-${COV}
 if [ -e ${OUTPUT}.gfeat/cope1.feat/cluster_mask_zstat1.nii.gz ]; then
 
 	# run randomise if output doesn't exist and the contrasts (copes) are valid
@@ -118,15 +119,15 @@ else # try to run feat and clean up previous effort with partial output
 	rm -rf ${OUTPUT}.gfeat
 
 	# create template and run FEAT analyses
-	ITEMPLATE=${maindir}/templates/L3_template_n${N}.fsf
-	OTEMPLATE=${MAINOUTPUT}/L3_task-${TASK}_${REPLACEME}_copenum-${copenum}.fsf
-	sed -e 's@OUTPUT@'$OUTPUT'@g' \
-	-e 's@COPENUM@'$copenum'@g' \
-	-e 's@REPLACEME@'$REPLACEME'@g' \
-	-e 's@BASEDIR@'$maindir'@g' \
-	-e 's@TASK@'$TASK'@g' \
-	<$ITEMPLATE> $OTEMPLATE
-	feat $OTEMPLATE
+	#ITEMPLATE=${maindir}/templates/L3_template_n${N}.fsf
+	#OTEMPLATE=${MAINOUTPUT}/L3_task-${TASK}_${REPLACEME}_copenum-${copenum}_cov-${COV}.fsf
+	#sed -e 's@OUTPUT@'$OUTPUT'@g' \
+	#-e 's@COPENUM@'$copenum'@g' \
+	#-e 's@REPLACEME@'$REPLACEME'@g' \
+	#-e 's@BASEDIR@'$maindir'@g' \
+	#-e 's@TASK@'$TASK'@g' \
+	#<$ITEMPLATE> $OTEMPLATE
+	#feat $OTEMPLATE
 
 fi
 

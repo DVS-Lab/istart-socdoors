@@ -6,7 +6,7 @@ basedir="$(dirname "$scriptdir")"
 nruns=1
 
 for task in doors socialdoors; do
-for ppi in amygdala-anat dmpfc NAcc-act_n46 occFusiformGyrus-anat postCingulate-anat vmpfc; do # putting 0 first will indicate "activation"
+for ppi in FFA_r24 Amyg_r6 VS_r26 vmpfc_r24 PCC_r24; do # putting 0 first will indicate "activation"
 	for sub in `cat ${basedir}/code/newsubs.txt`; do
 	  for run in `seq $nruns`; do
 
