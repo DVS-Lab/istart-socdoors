@@ -1,7 +1,13 @@
 #!/bin/bash
 
 # define atlas
-atlas = /usr/share/data/harvard-oxford-atlases/HarvardOxford/HarvardOxford-sub-maxprob-thr25-2mm.nii.gz
+atlas = /usr/share/fsl/data/atlases/HarvardOxford/HarvardOxford-sub-maxprob-thr25-2mm.nii.gz
 
-fslmaths $atlas -thr 10 -uthr 10 -bin seed-left_amygdala
-fslmaths $atlas -thr 20 -uthr 20 -bin seed-right_amygdala
+# This codes generates a mask in the desired region. 1) Adjust the threshold values based on indices from the atlas variable queried from the path above. 2) Adjust output name. 
+# fslmaths $atlas -thr value -uthr value -bin output_name.
+
+# Reference "Making ROIs" Slab page on DVS page.
+
+fslmaths $atlas -thr 11 -uthr 11 -bin left_accumbens
+fslmaths $atlas -thr 21 -uthr 21 -bin right_accumbens
+fslmaths left_accumbens -add right_accumbens seed-NAcc

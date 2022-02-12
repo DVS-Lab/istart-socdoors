@@ -125,7 +125,7 @@ else # try to run feat and clean up previous effort with partial output
 	#-e 's@COPENUM@'$copenum'@g' \
 	#-e 's@REPLACEME@'$REPLACEME'@g' \
 	#-e 's@BASEDIR@'$maindir'@g' \
-	#-e 's@TASK@'$TASK'@g' \
+	3-e 's@TASK@'$TASK'@g' \
 	#<$ITEMPLATE> $OTEMPLATE
 	#feat $OTEMPLATE
 
