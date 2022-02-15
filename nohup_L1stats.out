@@ -1,0 +1,326 @@
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1001/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1002/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1003/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1004/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1006/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1007/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1009/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1010/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1012/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1013/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1015/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+child process exited abnormally
+    while executing
+"fsl:exec "${FSLDIR}/bin/feat ${fsfroot}.fsf -D $FD -I $session -init" -b 10 -N feat0_init -l logs "
+    (procedure "firstLevelMaster" line 145)
+    invoked from within
+"firstLevelMaster $session"
+    invoked from within
+"if { $done_something == 0 } {
+
+    if { ! $fmri(inmelodic) } {
+       if { $fmri(level) == 1 } {
+	      for { set session 1 } { $session <= $fmri(mult..."
+    (file "/usr/share/fsl/6.0.4/bin/feat" line 390)
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1016/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1019/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1021/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1242/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1243/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1244/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1245/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1247/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1248/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1249/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1251/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1255/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1276/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1286/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1294/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1301/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1302/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1303/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3116/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3122/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3125/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3140/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3143/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3152/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3166/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3167/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3170/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3173/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3175/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3176/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3189/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3190/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3199/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3200/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3206/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3210/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3212/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3218/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3220/L1_task-doors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1001/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1002/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1003/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1006/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1004/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1007/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+child process exited abnormally
+    while executing
+"fsl:exec "${FSLDIR}/bin/feat ${fsfroot}.fsf -D $FD -I $session -init" -b 10 -N feat0_init -l logs "
+    (procedure "firstLevelMaster" line 145)
+    invoked from within
+"firstLevelMaster $session"
+    invoked from within
+"if { $done_something == 0 } {
+
+    if { ! $fmri(inmelodic) } {
+       if { $fmri(level) == 1 } {
+	      for { set session 1 } { $session <= $fmri(mult..."
+    (file "/usr/share/fsl/6.0.4/bin/feat" line 390)
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1009/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1010/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1012/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1013/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1015/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1016/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1019/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1021/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1242/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1243/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1244/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1245/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1247/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1248/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1249/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1251/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1255/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1276/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1286/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1294/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1301/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1302/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-1303/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3116/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3122/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3125/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3140/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3143/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3152/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3166/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3167/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3170/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3173/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3175/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3176/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3189/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3190/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3199/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3200/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3206/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3210/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3212/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3218/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+To view the FEAT progress and final report, point your web browser at /data/projects/istart-socdoors/derivatives/fsl/sub-3220/L1_task-socialdoors_model-1_type-act_run-1_sm-6.feat/report_log.html
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: syntax error near unexpected token `done'
+/data/projects/istart-socdoors/code/L1stats.sh: line 164: `done'
