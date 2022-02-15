@@ -7,7 +7,8 @@ nruns=1
 
 for task in doors socialdoors; do
 for ppi in 0; do # putting 0 first will indicate "activation"
-	for sub in `cat ${basedir}/code/newsubs.txt`; do
+	for sub in 3186; do
+	#for sub in `cat ${basedir}/code/newsubs.txt`; do
 	  for run in `seq $nruns`; do
 
 	  	# Manages the number of jobs and cores

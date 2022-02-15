@@ -12,7 +12,7 @@ maindir="$(dirname "$scriptdir")"
 # this loop defines the different types of analyses that will go into the group comparisons
 for TASK in doors socialdoors; do
 #for COV in alcohol tobacco marijuana; do
-for analysis in ppi_seed-MC_r13; do # act ppi_seed-NAcc-act_n46 ppi_seed-vmpfc nppi-dmn nppi-ecn ppi_seed | type-${type}_run-01
+for analysis in act; do # act ppi_seed-NAcc-act_n46 ppi_seed-vmpfc nppi-dmn nppi-ecn ppi_seed | type-${type}_run-01
 	analysistype=type-${analysis}_run-1
 
 	# these define the cope number (copenum) and cope name (copename)

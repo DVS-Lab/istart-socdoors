@@ -6,7 +6,7 @@ maindir="$(dirname "$scriptdir")"
 
 for sub in `cat ${maindir}/code/newsubs.txt`; do	
 	# ROI name and other path information
-	for ROI in dmpfc FFA-1 vmpfc; do
+	for ROI in VS26; do
 		for TASK in doors socialdoors; do		
 			MASK=${maindir}/masks/seed-${ROI}.nii.gz
 			fslmeants -i /data/projects/istart-data/derivatives/fmriprep/sub-${sub}/func/sub-${sub}_task-${TASK}_run-1_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz -m ${MASK} -o sub-${sub}_task-${TASK}_run-1_${ROI}.txt
