@@ -6,8 +6,8 @@ maindir="$(dirname "$scriptdir")"
 
 # the "type" variable below is setting a path inside the main script
 for type in "act" "ppi_seed-VS_thr5" "nppi-dmn"; do # act nppi-ecn #"ppi_seed-NAcc"
-	#for sub in `cat ${scriptdir}/newsubs.txt`; do
-	for sub in 1004 3143; do
+	for sub in `cat ${scriptdir}/newsubs.txt`; do
+	#for sub in 1004 3143; do
 
 		# Manages the number of jobs and cores
   	SCRIPTNAME=${maindir}/code/L2stats.sh
