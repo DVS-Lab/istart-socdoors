@@ -7,7 +7,7 @@ nruns=1
 
 #for task in socialdoors; do
 for task in doors socialdoors; do
-	for ppi in 0 "seed-VS_thr5" "dmn"; do # 0 "seed_VS_thr5" "dmn"; do # putting 0 first will indicate "activation"
+	for ppi in "VS_thr5"; do # 0 "seed_VS_thr5" "dmn"; do # putting 0 first will indicate "activation"
 		#for sub in 1001; do
 		for sub in `cat ${basedir}/code/newsubs.txt`; do
 	  		for run in `seq $nruns`; do
