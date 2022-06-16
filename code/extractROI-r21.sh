@@ -11,13 +11,13 @@ for TASK in social+doors; do
 	outputdir=${maindir}/derivatives/imaging_plots
 	mkdir -p $outputdir
 	
-	for ROI in mask_model-3_task-social+doors_type-ppi_seed-VS_thr5_thresh_zstat3_post-central-gyrus_bin; do #mask_model-3_type-nppi-dmn_cnum-4_vox_corrp_tstat5_putamen
+	for ROI in mask_model-2_task-social+doors_type-act_thresh_zstat10_precuneus_bin; do #mask_model-3_type-nppi-dmn_cnum-4_vox_corrp_tstat5_putamen
 	#for ROI in hyp-mask_sphere_dmpfc_bin hyp-mask_sphere_amygdala_bin hyp-mask_sphere_pcc_bin hyp-mask_sphere_right-FFA_bin hyp-mask_sphere_vmpfc_bin; do
 		#for MODELNUM in 3; do		
 		#for MODELNUM in 3; do
 
 			MASK=${maindir}/masks/${ROI}.nii.gz
-			for TYPE in ppi_seed-VS_thr5; do #act #ppi_seed-VS_thr5
+			for TYPE in act; do #act #ppi_seed-VS_thr5
 		
 				#for COPEINFO in "1 win" "2 loss"; do 
 				for COPEINFO in "4 win-loss"; do			
