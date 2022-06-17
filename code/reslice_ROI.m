@@ -1,4 +1,8 @@
-addpath('/data/tools/spm12', '-end');
+% Script for reslicing ROIs
+
+clear; close all;
+
+addpath /Users/jameswyngaarden/Applications/spm12/;
 savepath;
 
 spm fmri
