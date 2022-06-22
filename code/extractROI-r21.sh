@@ -7,11 +7,12 @@ maindir="$(dirname "$scriptdir")"
 # base paths
 for TASK in social+doors; do
 #for TASK in socialdoors; do
-	MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-1_task-${TASK}_n46_flame1+2
+	MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-3_task-${TASK}_n46_flame1+2
+	#MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-3_task-${TASK}_n92_flame1+2_randomise
 	outputdir=${maindir}/derivatives/imaging_plots
 	mkdir -p $outputdir
 	
-	for ROI in mask_model-2_task-social+doors_type-act_thresh_zstat10_precuneus_bin; do #mask_model-3_type-nppi-dmn_cnum-4_vox_corrp_tstat5_putamen
+	for ROI in mask_model-3_task-${TASK}_type-ppi_seed-VS_thresh_zstat7_cingulate_bin; do #mask_model-3_type-nppi-dmn_cnum-4_vox_corrp_tstat5_putamen
 	#for ROI in hyp-mask_sphere_dmpfc_bin hyp-mask_sphere_amygdala_bin hyp-mask_sphere_pcc_bin hyp-mask_sphere_right-FFA_bin hyp-mask_sphere_vmpfc_bin; do
 		#for MODELNUM in 3; do		
 		#for MODELNUM in 3; do
@@ -27,7 +28,7 @@ for TASK in social+doors; do
 					COPENAME=$2
 			
 					DATA=`ls -1 ${MAINOUTPUT}/L3_task-${TASK}_type-${TYPE}_cnum-${COPENUM}_cname-${COPENAME}_flame1+2.gfeat/cope1.feat/filtered_func_data.nii.gz`
-					#DATA=`ls -1 ${MAINOUTPUT}/L3_task-${TASK}_type-${TYPE}_cnum-${COPENUM}_cname-${COPENAME}_flame1+2_twogroup.gfeat/cope1.feat/filtered_func_data.nii.gz`			
+					#DATA=`ls -1 ${MAINOUTPUT}/L3_model-3_task-${TASK}_type-${TYPE}_cnum-${COPENUM}_cname-${COPENAME}_randomise/type-act_model-3_randomise_filteredfunc_diff.nii.gz`			
 					fslmeants -i $DATA -o ${outputdir}/${ROI}_task-${TASK}_type-${TYPE}_cope-${COPENUM}.txt -m ${MASK}
 			
 				done			
