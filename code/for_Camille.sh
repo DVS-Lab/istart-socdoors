@@ -10,7 +10,7 @@ for sub in `cat ${scriptdir}/newsubs.txt`; do
 		for type in act ppi_seed-VS_thr5; do
 			for img in cope zstat; do
 				for n in 1 2 3 4; do
-					cp ${maindir}/derivatives/fsl/sub-${sub}/L1_task-${task}_model-1_type-${type}_run-1_sm-6.feat/stats/${img}${n}.nii.gz ${maindir}/derivatives/fsl/forCamille-${type}/sub-${sub}_task-${task}_type-${type}_contrast-${n}_${img}.nii.gz
+					cp ${maindir}/derivatives/fsl/sub-${sub}/L1_task-${task}_model-1_type-${type}_run-1_sm-6.feat/stats/${img}${n}.nii.gz ${maindir}/derivatives/fsl/L1stats_${type}/sub-${sub}_task-${task}_type-${type}_contrast-${n}_${img}.nii.gz
 				done			
 			done
 		done
