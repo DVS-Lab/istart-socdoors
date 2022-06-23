@@ -11,10 +11,10 @@ library("emmeans")
 library("hrbrthemes")
 
 # import data:
-df <- read_excel("~/Desktop/mask_model-3_task-socialdoors_type-nppi-dmn_vox-tstat5_pallidum_bin_task-socialdoors_type-nppi-dmn_cope-4.xlsx")
+df <- read_excel("~/Documents/Github/istart-socdoors/code/istart_covariates_7june2022_simplified.xlsx")
 
 
-p1 <- ggplot(df, aes(x=comp_RS, y=pallidum_nppi_dmn)) +
+p1 <- ggplot(df, aes(x=comp_RS, y=nppi_pallidum)) +
   geom_point() +
   geom_smooth(method="lm", formula=y ~ poly(x, 2), se=TRUE) +
   #geom_smooth(method="lm") +
@@ -24,10 +24,11 @@ p1 <- ggplot(df, aes(x=comp_RS, y=pallidum_nppi_dmn)) +
   ylab("(social win>social loss) > (doors win>doors loss)")
   #theme_ipsum()
 p1
-cor1 <- cor.test(df$comp_RS, df$pallidum_nppi_dmn, method = "pearson")
+cor1 <- cor.test(df$comp_RS, df$nppi_pallidum, method = "pearson")
 cor1
 
-p2 <- ggplot(df, aes(x=comp_RS, y=post_cent_gyrus_ppi)) +
+
+p2 <- ggplot(df, aes(x=comp_RS, y=ppi_pcg)) +
   geom_point() +
   geom_smooth(method="lm", formula=y ~ x, se=TRUE) +
   scale_x_continuous(breaks = seq(-4.5, 4.5, by = 1)) +
@@ -35,10 +36,11 @@ p2 <- ggplot(df, aes(x=comp_RS, y=post_cent_gyrus_ppi)) +
   xlab("Reward Sensitivity") +
   ylab("((social win + doors win)/2) > ((social loss+doors loss)/2)")
 p2
-cor2 <- cor.test(df$comp_RS, df$post_cent_gyrus_ppi, method = "pearson")
+cor2 <- cor.test(df$comp_RS, df$ppi_pcg, method = "pearson")
 cor2
 
-p3 <- ggplot(df, aes(x=comp_substance_use, y=post_cent_gyrus_ppi, color=group_two)) +
+
+p3 <- ggplot(df, aes(x=comp_substance_use, y=act_precuneus, color=group_two)) +
   geom_point() +
   geom_smooth(method="lm", formula=y ~ x, se=TRUE) +
   #scale_x_continuous(breaks = seq(-4.5, 4.5, by = 1)) +
@@ -46,10 +48,67 @@ p3 <- ggplot(df, aes(x=comp_substance_use, y=post_cent_gyrus_ppi, color=group_tw
   xlab("Substance Use") +
   ylab("((social win + doors win)/2) > ((social loss+doors loss)/2)")
 p3
-#cor2 <- cor.test(df$comp_RS, df$post_cent_gyrus_ppi, method = "pearson")
-#cor2
+#cor3 <- cor.test(df$comp_RS, df$act_precuneus, method = "pearson")
+#cor3
 
 
+p4 <- ggplot(df, aes(x=comp_RS, y=act_sma)) +
+  geom_point() +
+  geom_smooth(method="lm", formula=y ~ poly(x, 2), se=TRUE) +
+  #geom_smooth(method="lm") +
+  scale_x_continuous(breaks = seq(-4.5, 4.5, by = 1)) +
+  ggtitle("Act Model 3, SMA Activation") +
+  xlab("Reward Sensitivity") +
+  ylab("(social win>social loss) > (doors win>doors loss)")
+#theme_ipsum()
+p4
+cor4 <- cor.test(df$comp_RS, df$act_sma, method = "pearson")
+cor4
+
+
+p5 <- ggplot(df, aes(x=comp_RS, y=act_midbrain)) +
+  geom_point() +
+  geom_smooth(method="lm", formula=y ~ poly(x, 2), se=TRUE) +
+  #geom_smooth(method="lm") +
+  scale_x_continuous(breaks = seq(-4.5, 4.5, by = 1)) +
+  ggtitle("Act Model 3, MTL Activation") +
+  xlab("Reward Sensitivity") +
+  ylab("(social win>social loss) > (doors win>doors loss)")
+#theme_ipsum()
+p5
+cor5 <- cor.test(df$comp_RS, df$act_midbrain, method = "pearson")
+cor5
+
+
+p6 <- ggplot(df, aes(x=comp_substance_use, y=ppi_cingulate)) +
+  geom_point() +
+  geom_smooth(method="lm", formula=y ~ x, se=TRUE) +
+  #scale_x_continuous(breaks = seq(-4.5, 4.5, by = 1)) +
+  ggtitle("PPI Model 3, Cingulate Connectivity") +
+  xlab("Substance Use") +
+  ylab("(social win>social loss) > (doors win>doors loss)")
+#theme_ipsum()
+p6
+cor6 <- cor.test(df$comp_substance_use, df$ppi_cingulate, method = "pearson")
+cor6
+
+
+p7 <- ggplot(df, aes(x=comp_RS, y=act_pcg)) +
+  geom_point() +
+  geom_smooth(method="lm", formula=y ~ x, se=TRUE) +
+  #scale_x_continuous(breaks = seq(-4.5, 4.5, by = 1)) +
+  ggtitle("Act Model 3, Post Cent. Gyrus Activation") +
+  xlab("Reward Sensitivity") +
+  ylab("(social win>social loss) > (doors win>doors loss)")
+#theme_ipsum()
+p7
+cor7 <- cor.test(df$comp_RS, df$act_pcg, method = "pearson")
+cor7
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # histogram of audit_sum
 comp_RS_square <- df$comp_RS_square
 hist(audit,
