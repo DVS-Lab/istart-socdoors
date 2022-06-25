@@ -66,17 +66,17 @@ cor4 <- cor.test(df$comp_RS, df$act_sma, method = "pearson")
 cor4
 
 
-p5 <- ggplot(df, aes(x=comp_RS, y=act_midbrain)) +
+p5 <- ggplot(df, aes(x=comp_RS, y=act_frontal_operculum)) +
   geom_point() +
   geom_smooth(method="lm", formula=y ~ poly(x, 2), se=TRUE) +
   #geom_smooth(method="lm") +
   scale_x_continuous(breaks = seq(-4.5, 4.5, by = 1)) +
-  ggtitle("Act Model 3, MTL Activation") +
+  ggtitle("Act Model 3, Frontal Operc. Activation") +
   xlab("Reward Sensitivity") +
   ylab("(social win>social loss) > (doors win>doors loss)")
 #theme_ipsum()
 p5
-cor5 <- cor.test(df$comp_RS, df$act_midbrain, method = "pearson")
+cor5 <- cor.test(df$comp_RS, df$act_frontal_operculum, method = "pearson")
 cor5
 
 
