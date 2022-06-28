@@ -105,7 +105,8 @@ p7
 cor7 <- cor.test(df$comp_RS, df$act_pcg, method = "pearson")
 cor7
 
-
+# Testing out residualized values
+print(df)
 
 
 
