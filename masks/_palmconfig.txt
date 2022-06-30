@@ -1,0 +1,11 @@
+# Configuration file for PALM.
+# Version alpha119, running in MATLAB 9.12.0.1884302 (R2022a).
+# 30-Jun-2022 10:54:00
+
+-i /Users/jameswyngaarden/Documents/Github/istart-socdoors/masks/type-act_model-3_randomise_filteredfunc_diff.nii
+-o /Users/jameswyngaarden/Documents/Github/istart-socdoors/masks/
+-d /Users/jameswyngaarden/Documents/Github/istart-socdoors/masks/design.mat
+-t /Users/jameswyngaarden/Documents/Github/istart-socdoors/masks/design1.con
+-T
+-C 3.1
+-pearson
