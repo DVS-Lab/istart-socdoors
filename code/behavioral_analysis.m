@@ -136,8 +136,21 @@ data_mat.Properties.VariableNames(1:5)={'Sub','Doors_Win_RT','Doors_Loss_RT','So
 
 %% Plots
 
-means = [mean(data_mat.Doors_Win_RT);mean(data_mat.Doors_Loss_RT);mean(data_mat.Social_Win_RT);mean(data_mat.Social_Loss_RT)];
-sem1=(std(data_mat.Doors_Win_RT)/sqrt(data_mat.Doors_Win_RT));
+% All four conditions
+figure
+bar([mean(data_mat.Doors_Win_RT);mean(data_mat.Doors_Loss_RT);mean(data_mat.Social_Win_RT);mean(data_mat.Social_Loss_RT)]);
+xticks(1:4);
+xticklabels({'Doors Win', 'Doors Loss', 'Social Win', 'Social Loss'});
+ylabel('RT (sec)');
+xlabel('Condition');
+ylim([1.6 2.1]);
+hold on
+e1=[(std(data_mat.Doors_Win_RT)/sqrt(length(data_mat.Doors_Win_RT))) (std(data_mat.Doors_Loss_RT)/sqrt(length(data_mat.Doors_Loss_RT))) (std(data_mat.Social_Win_RT)/sqrt(length(data_mat.Social_Win_RT))) (std(data_mat.Social_Loss_RT)/sqrt(length(data_mat.Social_Loss_RT))) ];
+errorbar(1:4, [mean(data_mat.Doors_Win_RT);mean(data_mat.Doors_Loss_RT);mean(data_mat.Social_Win_RT);mean(data_mat.Social_Loss_RT)], e1, 'ko');
 
-
+[h,p,ci,stats]=ttest(data_mat.Doors_Win_RT,data_mat.Social_Win_RT);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
 
