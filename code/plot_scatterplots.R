@@ -3,12 +3,15 @@ setwd("~/Desktop")
 maindir <- getwd()
 datadir <- file.path("~/Desktop/")
 
+
 library("readxl")
 library("ggplot2")
 library("ggpubr")
 library("reshape2")
 library("emmeans")
 library("hrbrthemes")
+library("umx")
+library("interactions")
 
 # import data:
 df <- read_excel("~/Documents/Github/istart-socdoors/code/istart_covariates_7june2022_simplified.xlsx")
