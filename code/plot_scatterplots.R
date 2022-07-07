@@ -3,7 +3,7 @@ setwd("~/Desktop")
 maindir <- getwd()
 datadir <- file.path("~/Desktop/")
 
-
+# load packages
 library("readxl")
 library("ggplot2")
 library("ggpubr")
@@ -16,8 +16,17 @@ library("interactions")
 # import data:
 df <- read_excel("~/Documents/Github/istart-socdoors/code/istart_covariates_7june2022_simplified.xlsx")
 
+# residualize measures
+model1 <- lm(comp_RS ~ fd_mean_social * tsnr_social * comp_RS_square * comp_substance_use,
+             data=df)
+summary(model1)
 
-p1 <- ggplot(df, aes(x=comp_RS, y=nppi_pallidum)) +
+# calculate standardized residuals
+res_p1_comp_RS <- rstandard(model1)
+final_df <- cbind(df, res_p1_comp_RS)
+
+# create plots
+p1 <- ggplot(final_df, aes(x=res_p1_comp_RS, y=nppi_pallidum)) +
   geom_point() +
   geom_smooth(method="lm", formula=y ~ poly(x, 2), se=TRUE) +
   #geom_smooth(method="lm") +
@@ -27,7 +36,7 @@ p1 <- ggplot(df, aes(x=comp_RS, y=nppi_pallidum)) +
   ylab("(social win>social loss) > (doors win>doors loss)")
   #theme_ipsum()
 p1
-cor1 <- cor.test(df$comp_RS, df$nppi_pallidum, method = "pearson")
+cor1 <- cor.test(final_df$res_p1_comp_RS, final_df$nppi_pallidum, method = "pearson")
 cor1
 
 
@@ -42,7 +51,6 @@ p2
 cor2 <- cor.test(df$comp_RS, df$ppi_pcg, method = "pearson")
 cor2
 
-
 p3 <- ggplot(df, aes(x=comp_substance_use, y=act_precuneus, color=group_two)) +
   geom_point() +
   geom_smooth(method="lm", formula=y ~ x, se=TRUE) +
@@ -53,7 +61,6 @@ p3 <- ggplot(df, aes(x=comp_substance_use, y=act_precuneus, color=group_two)) +
 p3
 #cor3 <- cor.test(df$comp_RS, df$act_precuneus, method = "pearson")
 #cor3
-
 
 p4 <- ggplot(df, aes(x=comp_RS, y=act_sma)) +
   geom_point() +
@@ -68,7 +75,6 @@ p4
 cor4 <- cor.test(df$comp_RS, df$act_sma, method = "pearson")
 cor4
 
-
 p5 <- ggplot(df, aes(x=comp_RS, y=act_frontal_operculum)) +
   geom_point() +
   geom_smooth(method="lm", formula=y ~ poly(x, 2), se=TRUE) +
@@ -82,7 +88,6 @@ p5
 cor5 <- cor.test(df$comp_RS, df$act_frontal_operculum, method = "pearson")
 cor5
 
-
 p6 <- ggplot(df, aes(x=comp_substance_use, y=ppi_cingulate)) +
   geom_point() +
   geom_smooth(method="lm", formula=y ~ x, se=TRUE) +
@@ -95,7 +100,6 @@ p6
 cor6 <- cor.test(df$comp_substance_use, df$ppi_cingulate, method = "pearson")
 cor6
 
-
 p7 <- ggplot(df, aes(x=comp_RS, y=act_pcg)) +
   geom_point() +
   geom_smooth(method="lm", formula=y ~ x, se=TRUE) +
@@ -107,54 +111,3 @@ p7 <- ggplot(df, aes(x=comp_RS, y=act_pcg)) +
 p7
 cor7 <- cor.test(df$comp_RS, df$act_pcg, method = "pearson")
 cor7
-
-# Testing out residualized values
-print(df)
-
-
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# histogram of audit_sum
-comp_RS_square <- df$comp_RS_square
-hist(audit,
-     main="Distribution of AUDIT Scores",
-     xlab="Total AUDIT Score",
-     col="gray")
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# scatterplots of VS activation with AUDIT
-var1 <- df$pallidum_nppi_dmn_1
-var2 <- df$comp_RS_square_1
-var3 <- df$pallidum_nppi_dmn_2
-var4 <- df$comp_RS_square_2
-var5 <- df$pallidum_nppi_dmn_3
-var6 <- df$comp_RS_square_3
-
-# scatter plot for CB: BOLD * AUDIT for high vs. low RS
-plot(var1, var2, pch=19,
-     main = "nPPI-DMN Model 3, Pallidum Connectivity",
-     xlab = "RS-square",
-     ylab = "(social win>social loss) > (doors win>doors loss)",
-     ylim = c(-50,50),
-     col = "blue")
-abline(lm(var2 ~ var1),col = "blue")
-# add doors losses
-points(var3, var4, pch=19, col = "red")
-abline(lm(var3 ~ var4), col = "red")
-# add doors losses
-points(var5, var6, pch=19, col = "green")
-abline(lm(var5 ~ var6), col = "green")
-# add legend
-legend("topright", legend=c("Low RS-sq", "Med RS-sq", "High RS-sq"), col=c("blue", "red", "green"), lty=1:1)
-# add stats
-cor1 <- cor.test(var1, var2, method = "pearson")
-cor1
-cor2 <- cor.test(var3, var4, method = "pearson")
-cor2
-cor3 <- cor.test(var5, var6, method = "pearson")
-cor3
-
-

@@ -69,7 +69,6 @@ for s = 1:length(subs)
              loss_mat = loss_mat(any(loss_mat,2),:);
              loss_mat(isnan(loss_mat(:,2)),:)=[];             
 
-
              % Find avg. RT and assign to data_mat
              avg_winRT=mean(win_mat(:,2));
              avg_lossRT=mean(loss_mat(:,2));
