@@ -1,0 +1,10 @@
+# Configuration file for PALM.
+# Version alpha119, running in MATLAB 9.12.0.1884302 (R2022a).
+# 08-Jul-2022 00:25:48
+
+-i ~/Documents/GitHub/istart-socdoors/palm-test/type-act_model-3_randomise_filteredfunc_diff.nii
+-o ~/Documents/GitHub/istart-socdoors/palm-test
+-d ~/Documents/GitHub/istart-socdoors/palm-test/design2.csv
+-t ~/Documents/GitHub/istart-socdoors/palm-test/design.con
+-T
+-pearson
