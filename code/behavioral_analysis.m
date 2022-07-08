@@ -133,7 +133,34 @@ end
 data_mat = array2table(data_mat);
 data_mat.Properties.VariableNames(1:5)={'Sub','Doors_Win_RT','Doors_Loss_RT','Social_Win_RT','Social_Loss_RT'};
 
+
+
 %% Plots
+
+% Histogram of conditions
+figure
+
+subplot(2,2,1)
+hist(data_mat.Doors_Win_RT);
+title('Doors Win');
+xlabel('RT');
+
+subplot(2,2,2)
+hist(data_mat.Doors_Loss_RT);
+title('Doors Loss');
+xlabel('RT');
+
+subplot(2,2,3)
+hist(data_mat.Social_Win_RT);
+title('Social Win');
+xlabel('RT');
+
+subplot(2,2,4)
+hist(data_mat.Social_Loss_RT);
+title('Social Loss');
+xlabel('RT');
+
+
 
 % All four conditions -- Plot with groups
 figure

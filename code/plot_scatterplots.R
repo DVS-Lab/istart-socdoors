@@ -16,6 +16,70 @@ library("interactions")
 # import data:
 df <- read_excel("~/Documents/Github/istart-socdoors/code/istart_covariates_7june2022_simplified.xlsx")
 
+# 1. Raw brain data & raw behavioral data ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+p1 <- ggplot(df, aes(x=comp_RS, y=nppi_pallidum)) +
+  geom_point() +
+  geom_smooth(method="lm", formula=y ~ poly(x, 2), se=TRUE) +
+  #geom_smooth(method="lm") +
+  scale_x_continuous(breaks = seq(-4.5, 4.5, by = 1)) +
+  #ggtitle("nPPI-DMN Model 3, Pallidum Connectivity") +
+  ggtitle("1. Raw brain data & raw behavioral data") +
+  xlab("Reward Sensitivity") +
+  ylab("(social win>social loss) > (doors win>doors loss)")
+#theme_ipsum()
+p1
+
+# 2. Raw brain data & adjusted behavioral data (Dave's preference) ~~~~~~~~~~~~~
+model1 <- lm(comp_RS ~ fd_mean_social + tsnr_social + comp_RS_square + comp_substance_use,
+             data=df)
+res_comp_RS <- rstandard(model1)
+final_df <- cbind(df, res_comp_RS)
+
+p2 <- ggplot(final_df, aes(x=res_comp_RS, y=nppi_pallidum)) +
+  geom_point() +
+  geom_smooth(method="lm", formula=y ~ poly(x, 2), se=TRUE) +
+  #geom_smooth(method="lm") +
+  scale_x_continuous(breaks = seq(-4.5, 4.5, by = 1)) +
+  #ggtitle("nPPI-DMN Model 3, Pallidum Connectivity") +
+  ggtitle("2. Raw brain data & adjusted behavioral data") +
+  xlab("Reward Sensitivity") +
+  ylab("(social win>social loss) > (doors win>doors loss)")
+#theme_ipsum()
+p2
+
+# 3. Adjusted brain data & adjusted behavioral data ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+model0 <- lm(nppi_pallidum ~ fd_mean_social + tsnr_social + comp_RS + comp_substance_use,
+             data=df)
+model0
+
+nppi_pallidum_adj <- model0$residuals + (model0$coefficients["comp_RS"] * df$comp_RS)
+final_df <- cbind(df, nppi_pallidum_adj)
+
+p3 <- ggplot(final_df, aes(x=res_comp_RS, y=nppi_pallidum_adj)) +
+  geom_point() +
+  geom_smooth(method="lm", formula=y ~ poly(x, 2), se=TRUE) +
+  #geom_smooth(method="lm") +
+  scale_x_continuous(breaks = seq(-4.5, 4.5, by = 1)) +
+  #ggtitle("nPPI-DMN Model 3, Pallidum Connectivity") +
+  ggtitle("3. Adjusted brain data & adjusted behavioral data") +
+  xlab("Reward Sensitivity") +
+  ylab("(social win>social loss) > (doors win>doors loss)")
+#theme_ipsum()
+p3
+
+# 4. Adjusted brain data & raw behavioral data ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+p4 <- ggplot(final_df, aes(x=comp_RS, y=nppi_pallidum_adj)) +
+  geom_point() +
+  geom_smooth(method="lm", formula=y ~ poly(x, 2), se=TRUE) +
+  #geom_smooth(method="lm") +
+  scale_x_continuous(breaks = seq(-4.5, 4.5, by = 1)) +
+  ggtitle("nPPI-DMN Model 3, Pallidum Connectivity") +
+  xlab("Reward Sensitivity") +
+  ylab("(social win>social loss) > (doors win>doors loss)")
+#theme_ipsum()
+p4
+
+
 ### 1. residualize RS WITHOUT brain:
 model1 <- lm(comp_RS ~ fd_mean_social * tsnr_social * comp_RS_square * comp_substance_use,
              data=df)
