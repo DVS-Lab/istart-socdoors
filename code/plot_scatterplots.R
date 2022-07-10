@@ -12,6 +12,7 @@ library("emmeans")
 library("hrbrthemes")
 library("umx")
 library("interactions")
+library("car")
 
 # import data:
 df <- read_excel("~/Documents/Github/istart-socdoors/code/istart_covariates_7june2022_simplified.xlsx")
@@ -22,6 +23,7 @@ p1 <- ggplot(df, aes(x=comp_RS, y=nppi_pallidum)) +
   geom_smooth(method="lm", formula=y ~ poly(x, 2), se=TRUE) +
   #geom_smooth(method="lm") +
   scale_x_continuous(breaks = seq(-4.5, 4.5, by = 1)) +
+  ylim(-40,70) +
   #ggtitle("nPPI-DMN Model 3, Pallidum Connectivity") +
   ggtitle("1. Raw brain data & raw behavioral data") +
   xlab("Reward Sensitivity") +
@@ -40,12 +42,15 @@ p2 <- ggplot(final_df, aes(x=res_comp_RS, y=nppi_pallidum)) +
   geom_smooth(method="lm", formula=y ~ poly(x, 2), se=TRUE) +
   #geom_smooth(method="lm") +
   scale_x_continuous(breaks = seq(-4.5, 4.5, by = 1)) +
+  ylim(-40,70) +
   #ggtitle("nPPI-DMN Model 3, Pallidum Connectivity") +
   ggtitle("2. Raw brain data & adjusted behavioral data") +
   xlab("Reward Sensitivity") +
   ylab("(social win>social loss) > (doors win>doors loss)")
 #theme_ipsum()
 p2
+
+crPlots(model1)
 
 # 3. Adjusted brain data & adjusted behavioral data ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 model0 <- lm(nppi_pallidum ~ fd_mean_social + tsnr_social + comp_RS + comp_substance_use,
@@ -60,12 +65,25 @@ p3 <- ggplot(final_df, aes(x=res_comp_RS, y=nppi_pallidum_adj)) +
   geom_smooth(method="lm", formula=y ~ poly(x, 2), se=TRUE) +
   #geom_smooth(method="lm") +
   scale_x_continuous(breaks = seq(-4.5, 4.5, by = 1)) +
+  ylim(-40,70) +
   #ggtitle("nPPI-DMN Model 3, Pallidum Connectivity") +
   ggtitle("3. Adjusted brain data & adjusted behavioral data") +
   xlab("Reward Sensitivity") +
   ylab("(social win>social loss) > (doors win>doors loss)")
 #theme_ipsum()
 p3
+
+crPlots(model0)
+
+model1 <- lm(act_frontal_operculum ~ fd_mean_social + tsnr_social + comp_RS + comp_substance_use,
+             data=df)
+model1
+crPlots(model1)
+
+model2 <- lm(ppi_cingulate ~ fd_mean_social + tsnr_social + comp_RS + comp_substance_use,
+             data=df)
+model2
+crPlots(model2)
 
 # 4. Adjusted brain data & raw behavioral data ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 p4 <- ggplot(final_df, aes(x=comp_RS, y=nppi_pallidum_adj)) +
