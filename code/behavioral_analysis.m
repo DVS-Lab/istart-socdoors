@@ -16,9 +16,9 @@ subs = [1001, 1003, 1004, 1006, 1009, 1010, 1012, 1013, 1015, 1016, ...
 
 % Create a framework for data_mat--X columns: sub ID, RT doors after win,
 % RT doors after loss, RT social after win, RT social after loss
-data_mat = zeros(length(subs),5);
+data_mat = zeros(length(subs),9);
 
-%% Read files & calculate avg. RT
+%% Read files & calculate avg. RT & relative change in RT
 
 % Loop through each subject
 for s = 1:length(subs)
@@ -56,29 +56,43 @@ for s = 1:length(subs)
                 if T.trial_type{t} == "win"
                     win_mat(t,1) = t;
                     win_mat(t,2) = str2double(T.rt(t+1));
+                    relative_change_win=(str2double(T.rt(t+1))-str2double(T.rt(t)))/str2double(T.rt(t));
+                    %win_mat(t,3) = str2double((T.rt(t+1)-T.rt(t))/T.rt(t));
                 end
                  if T.trial_type{t} == "loss"
                     loss_mat(t,1) = t;
                     loss_mat(t,2) = str2double(T.rt(t+1));
+                    relative_change_loss=(str2double(T.rt(t+1))-str2double(T.rt(t)))/str2double(T.rt(t));
+                    %loss_mat(t,3) = str2double((T.rt(t+1)-T.rt(t))/T.rt(t));
                  end
              end
             
              % Remove zeros from trial arrays
              win_mat = win_mat(any(win_mat,2),:);
-             win_mat(isnan(win_mat(:,2)),:)=[];             
+             win_mat(isnan(win_mat(:,2)),:)=[];
+%             win_mat = win_mat(any(win_mat,3),:);
+%             win_mat(isnan(win_mat(:,3)),:)=[];  
              loss_mat = loss_mat(any(loss_mat,2),:);
-             loss_mat(isnan(loss_mat(:,2)),:)=[];             
+             loss_mat(isnan(loss_mat(:,2)),:)=[];
+%             loss_mat = loss_mat(any(loss_mat,3),:);
+%             loss_mat(isnan(loss_mat(:,3)),:)=[]; 
 
              % Find avg. RT and assign to data_mat
              avg_winRT=mean(win_mat(:,2));
              avg_lossRT=mean(loss_mat(:,2));
+%             rel_winRT=mean(win_mat(:,3));
+%             rel_lossRT=mean(loss_mat(:,3));
              if f==1
                  data_mat(s,2)=avg_winRT;
                  data_mat(s,3)=avg_lossRT;
+%                 data_mat(s,6)=rel_winRT;
+%                 data_mat(s,7)=rel_lossRT;
              end
              if f==2
                  data_mat(s,4)=avg_winRT;
                  data_mat(s,5)=avg_lossRT;
+ %                data_mat(s,8)=rel_winRT;
+ %               data_mat(s,9)=rel_lossRT;
              end
 
              % If avg. RT = NaN, re-run with no str2double
@@ -88,17 +102,23 @@ for s = 1:length(subs)
                     if T.trial_type{t} == "win"
                         win_mat(t,1) = t;
                         win_mat(t,2) = T.rt(t+1);
+  %                      win_mat(t,3) = ((T.rt(t+1)-T.rt(t))/T.rt(t));
                     end
                 end
                 win_mat = win_mat(any(win_mat,2),:);
                 win_mat(isnan(win_mat(:,2)),:)=[];
+   %             win_mat = win_mat(any(win_mat,3),:);
+   %             win_mat(isnan(win_mat(:,3)),:)=[];
                 
                 avg_winRT=mean(win_mat(:,2));
+    %            rel_winRT=mean(win_mat(:,3));
                 if f==1
                     data_mat(s,2)=avg_winRT;
+   %                 data_mat(s,6)=rel_winRT;
                 end
                 if f==2
                     data_mat(s,4)=avg_winRT;
+    %                data_mat(s,8)=rel_winRT;
                 end
              end
              % losses
@@ -107,17 +127,24 @@ for s = 1:length(subs)
                     if T.trial_type{t} == "loss"
                         loss_mat(t,1) = t;
                         loss_mat(t,2) = T.rt(t+1);
+     %                   loss_mat(t,3) = (T.rt(t+1)-T.rt(t))/T.rt(t);
                     end
                 end
                 loss_mat = loss_mat(any(loss_mat,2),:);
                 loss_mat(isnan(loss_mat(:,2)),:)=[];
+     %           loss_mat = loss_mat(any(loss_mat,3),:);
+     %           loss_mat(isnan(loss_mat(:,3)),:)=[];
                 
                 avg_lossRT=mean(loss_mat(:,2));
+     %           rel_lossRT=mean(loss_mat(:,3));
+
                 if f==1
                     data_mat(s,3)=avg_lossRT;
+     %               data_mat(s,7)=rel_lossRT;
                 end
                 if f==2
                     data_mat(s,5)=avg_lossRT;
+     %               data_mat(s,9)=rel_lossRT;
                 end
              end
 
@@ -131,8 +158,129 @@ for s = 1:length(subs)
 end
 
 data_mat = array2table(data_mat);
-data_mat.Properties.VariableNames(1:5)={'Sub','Doors_Win_RT','Doors_Loss_RT','Social_Win_RT','Social_Loss_RT'};
+data_mat.Properties.VariableNames(1:9)={'Sub','Doors_Win_RT','Doors_Loss_RT','Social_Win_RT','Social_Loss_RT','Doors_Win_relRT','Doors_Loss_relRT','Social_Win_relRT','Social_Loss_relRT'};
 
+% %% Read files & calculate relative change in RT
+% 
+% 
+% % Relative change: C = (x2 - x1)/x1
+% % C = relative change
+% % x1 = initial value (i.e., t0)
+% % x2 = final value (i.e., t1)
+% 
+% 
+% % Loop through each subject
+% for s = 1:length(subs)
+%     %s=1;
+% 
+%     % Assign sub ID to first column of data_mat
+%     data_mat(s,1) = subs(s);
+% 
+%     % Loop through monetary then social domains
+%     task = {'doors', 'socialdoors'};
+%     %task = {'doors'};
+%     for f = 1:length(task)
+%        %f=1;
+%         % Build path for data
+%         sourcedatadir = fullfile(maindir, num2str(subs(s)));
+%         sourcedata = fullfile([sourcedatadir '/sub-' num2str(subs(s)) '_task-' task{f} '_run-1_events.tsv']);
+%         
+%         % Confirm file exists
+%         if isfile(sourcedata)
+%         
+%             % Read file
+%             T = readtable(sourcedata,'FileType','delimitedtext');
+%             
+%             % Isolate wins & losses
+%             wintrials = T.trial_type == "win";
+%             losstrials = T.trial_type == "loss";
+% 
+%             % Create framework for win & loss trials
+%             win_mat = zeros(sum(wintrials),2);
+%             loss_mat = zeros(sum(losstrials),2);
+%             
+%              % Loop through trials
+%              for t = 1:length(T.trial_type)-1 
+%                  %t=2;
+%                 if T.trial_type{t} == "win"
+%                     win_mat(t,1) = t;
+%                     win_mat(t,2) = str2double((T.rt(t+1)-T.rt(t))/T.rt(t));
+%                 end
+%                  if T.trial_type{t} == "loss"
+%                     loss_mat(t,1) = t;
+%                     loss_mat(t,2) = str2double((T.rt(t+1)-T.rt(t))/T.rt(t));
+%                  end
+%              end
+%             
+%              % Remove zeros from trial arrays
+%              win_mat = win_mat(any(win_mat,2),:);
+%              win_mat(isnan(win_mat(:,2)),:)=[];             
+%              loss_mat = loss_mat(any(loss_mat,2),:);
+%              loss_mat(isnan(loss_mat(:,2)),:)=[];             
+% 
+%              % Find avg. RT and assign to data_mat
+%              avg_winRT=mean(win_mat(:,2));
+%              avg_lossRT=mean(loss_mat(:,2));
+%              if f==1
+%                  data_mat(s,2)=avg_winRT;
+%                  data_mat(s,3)=avg_lossRT;
+%              end
+%              if f==2
+%                  data_mat(s,4)=avg_winRT;
+%                  data_mat(s,5)=avg_lossRT;
+%              end
+% 
+%              % If avg. RT = NaN, re-run with no str2double
+%              % wins
+%              if isnan(avg_winRT)==true
+%                 for t = 1:length(T.trial_type)-1 
+%                     if T.trial_type{t} == "win"
+%                         win_mat(t,1) = t;
+%                         win_mat(t,2) = T.rt(t+1);
+%                     end
+%                 end
+%                 win_mat = win_mat(any(win_mat,2),:);
+%                 win_mat(isnan(win_mat(:,2)),:)=[];
+%                 
+%                 avg_winRT=mean(win_mat(:,2));
+%                 if f==1
+%                     data_mat(s,2)=avg_winRT;
+%                 end
+%                 if f==2
+%                     data_mat(s,4)=avg_winRT;
+%                 end
+%              end
+%              % losses
+%              if isnan(avg_lossRT)==true
+%                 for t = 1:length(T.trial_type)-1 
+%                     if T.trial_type{t} == "loss"
+%                         loss_mat(t,1) = t;
+%                         loss_mat(t,2) = T.rt(t+1);
+%                     end
+%                 end
+%                 loss_mat = loss_mat(any(loss_mat,2),:);
+%                 loss_mat(isnan(loss_mat(:,2)),:)=[];
+%                 
+%                 avg_lossRT=mean(loss_mat(:,2));
+%                 if f==1
+%                     data_mat(s,3)=avg_lossRT;
+%                 end
+%                 if f==2
+%                     data_mat(s,5)=avg_lossRT;
+%                 end
+%              end
+% 
+%         else
+% 
+%             % Print message if file is missing
+%             missing_message = ['File not found: ', num2str(subs(s)), ' ', task{f}];
+%             disp(missing_message);
+%         end
+%     end
+% end
+% 
+% data_mat = array2table(data_mat);
+% data_mat.Properties.VariableNames(1:5)={'Sub','Doors_Win_RT','Doors_Loss_RT','Social_Win_RT','Social_Loss_RT'};
 
 
 %% Plots
@@ -159,8 +307,6 @@ subplot(2,2,4)
 hist(data_mat.Social_Loss_RT);
 title('Social Loss');
 xlabel('RT');
-
-
 
 % All four conditions -- Plot with groups
 figure
