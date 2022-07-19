@@ -176,22 +176,84 @@ figure
 
 subplot(2,2,1)
 histogram(data_mat.Doors_Win_RT_t1, 'FaceColor', '#77AC30');
-title('Doors Win');
+title('Doors Win t+1');
 xlabel('RT');
+xlim([0,3]);
+ylim([0,20]);
 
 subplot(2,2,2)
 histogram(data_mat.Doors_Loss_RT_t1, 'FaceColor', '#77AC30');
-title('Doors Loss');
+title('Doors Loss t+1');
 xlabel('RT');
+xlim([0,3]);
+ylim([0,20]);
 
 subplot(2,2,3)
 histogram(data_mat.Social_Win_RT_t1);
-title('Social Win');
+title('Social Win t+1');
 xlabel('RT');
+xlim([0,3]);
+ylim([0,20]);
 
 subplot(2,2,4)
 histogram(data_mat.Social_Loss_RT_t1);
-title('Social Loss');
+title('Social Loss t+1');
+xlabel('RT');
+xlim([0,3]);
+ylim([0,20]);
+
+% Histogram of conditions
+figure
+
+subplot(2,2,1)
+histogram(data_mat.Doors_Win_RT_t2, 'FaceColor', '#77AC30');
+title('Doors Win t+2');
+xlabel('RT');
+xlim([0,3]);
+ylim([0,20]);
+
+subplot(2,2,2)
+histogram(data_mat.Doors_Loss_RT_t2, 'FaceColor', '#77AC30');
+title('Doors Loss t+2');
+xlabel('RT');
+xlim([0,3]);
+ylim([0,20]);
+
+subplot(2,2,3)
+histogram(data_mat.Social_Win_RT_t2);
+title('Social Win t+2');
+xlabel('RT');
+xlim([0,3]);
+ylim([0,20]);
+
+subplot(2,2,4)
+histogram(data_mat.Social_Loss_RT_t2);
+title('Social Loss t+2');
+xlabel('RT');
+xlim([0,3]);
+ylim([0,20]);
+
+% Histogram of conditions
+figure
+
+subplot(2,2,1)
+histogram(data_mat.Doors_Win_Rel_t1, 'FaceColor', '#77AC30');
+title('Doors Win Relative Change');
+xlabel('RT');
+
+subplot(2,2,2)
+histogram(data_mat.Doors_Loss_Rel_t1, 'FaceColor', '#77AC30');
+title('Doors Loss Relative Change');
+xlabel('RT');
+
+subplot(2,2,3)
+histogram(data_mat.Social_Win_Rel_t1);
+title('Social Win Relative Change');
+xlabel('RT');
+
+subplot(2,2,4)
+histogram(data_mat.Social_Loss_Rel_t1);
+title('Social Loss Relative Change');
 xlabel('RT');
 
 % All four conditions -- Plot with groups
