@@ -21,7 +21,7 @@ subs = [1001, 1003, 1004, 1006, 1009, 1010, 1012, 1013, 1015, 1016, ...
 % Create a framework for data_mat--X columns: sub ID, RT doors after win,
 % RT doors after loss, RT social after win, RT social after loss for t+1, 
 % t+2, and t+1 relative change
-data_mat = zeros(length(subs),13);
+data_mat = zeros(length(subs),21);
 
 % Calculate avg RTs & relative change in RT
 for s = 1:length(subs)
@@ -144,6 +144,41 @@ for s = 1:length(subs)
         loss_mat = loss_mat(any(loss_mat,2),:);
         loss_mat(isnan(loss_mat(:,2)),:)=[];
 
+        % Track t+2--is t+2 congruent or incongruent with t?
+        t2_wins1 = zeros(20,1);
+        t2_wins2 = zeros(20,1);
+        t2_losses1 = zeros(20,1);
+        t2_losses2 = zeros(20,1);
+        ww = 1;
+        wl = 1;
+        ll = 1;
+        lw = 1;
+
+        for u = 1:length(win_mat(:,3))
+            if isequal(win_mat(u,3),1)
+                t2_wins1(ww,1) = win_mat(u,5);
+                ww = ww+1;
+            elseif isequal(win_mat(u,3),0)
+                t2_wins2(wl,1) = win_mat(u,5);
+                wl = wl+1;
+            end
+        end
+
+        for u = 1:length(loss_mat(:,3))
+            if isequal(loss_mat(u,3),0)
+                t2_losses1(ll,1) = loss_mat(u,5);
+                ll = ll+1;
+            elseif isequal(loss_mat(u,3),1)
+                t2_losses2(lw,1) = loss_mat(u,5);
+                lw = lw+1;
+            end
+        end
+        
+        t2_wins1 = t2_wins1(any(t2_wins1,2),:);
+        t2_wins2 = t2_wins2(any(t2_wins2,2),:);
+        t2_losses1 = t2_losses1(any(t2_losses1,2),:);
+        t2_losses2 = t2_losses2(any(t2_losses2,2),:);
+
         % Find avg. RT and assign to data_mat
         if f==1
             data_mat(s,2)=nanmean(win_mat(:,4));
@@ -152,6 +187,10 @@ for s = 1:length(subs)
             data_mat(s,7)=nanmean(loss_mat(:,5));
             data_mat(s,10)=nanmean(win_mat(:,6));
             data_mat(s,11)=nanmean(loss_mat(:,6));
+            data_mat(s,14)=nanmean(t2_wins1(:,1));
+            data_mat(s,15)=nanmean(t2_wins2(:,1));
+            data_mat(s,16)=nanmean(t2_losses1(:,1));
+            data_mat(s,17)=nanmean(t2_losses2(:,1));
         elseif f==2
             data_mat(s,4)=nanmean(win_mat(:,4));
             data_mat(s,5)=nanmean(loss_mat(:,4));
@@ -159,6 +198,10 @@ for s = 1:length(subs)
             data_mat(s,9)=nanmean(loss_mat(:,5));
             data_mat(s,12)=nanmean(win_mat(:,6));
             data_mat(s,13)=nanmean(loss_mat(:,6));
+            data_mat(s,18)=nanmean(t2_wins1(:,1));
+            data_mat(s,19)=nanmean(t2_wins2(:,1));
+            data_mat(s,20)=nanmean(t2_losses1(:,1));
+            data_mat(s,21)=nanmean(t2_losses2(:,1));
         end
 
         win_mat = array2table(win_mat);
@@ -171,7 +214,7 @@ for s = 1:length(subs)
 end
 
 data_mat = array2table(data_mat);
-data_mat.Properties.VariableNames(1:13)={'Sub','Doors_Win_RT_t1','Doors_Loss_RT_t1','Social_Win_RT_t1','Social_Loss_RT_t1', 'Doors_Win_RT_t2','Doors_Loss_RT_t2','Social_Win_RT_t2','Social_Loss_RT_t2', 'Doors_Win_Rel_t1','Doors_Loss_Rel_t1','Social_Win_Rel_t1','Social_Loss_Rel_t1'};
+data_mat.Properties.VariableNames(1:21)={'Sub','Doors_Win_RT_t1','Doors_Loss_RT_t1','Social_Win_RT_t1','Social_Loss_RT_t1', 'Doors_Win_RT_t2','Doors_Loss_RT_t2','Social_Win_RT_t2','Social_Loss_RT_t2', 'Doors_Win_Rel_t1','Doors_Loss_Rel_t1','Social_Win_Rel_t1','Social_Loss_Rel_t1', 'Doors_Win_Cong_t2', 'Doors_Win_Incong_t2', 'Doors_Loss_Cong_t2', 'Doors_Loss_Incong_t2', 'Social_Win_Cong_t2', 'Social_Win_Incong_t2', 'Social_Loss_Cong_t2', 'Social_Loss_Incong_t2'};
 
 %% Plots
 
@@ -259,6 +302,65 @@ subplot(2,2,4)
 histogram(data_mat.Social_Loss_Rel_t1);
 title('Social Loss Relative Change');
 xlabel('RT');
+
+% Histogram of conditions, Congruent vs Incongruent, t+2
+figure
+
+subplot(2,4,1)
+histogram(data_mat.Doors_Win_Cong_t2, 'FaceColor', '#77AC30');
+title('Doors Win Congruent t+2');
+xlabel('RT');
+xlim([0,3]);
+ylim([0,25]);
+
+subplot(2,4,2)
+histogram(data_mat.Doors_Win_Incong_t2, 'FaceColor', '#77AC30');
+title('Doors Win Incongruent t+2');
+xlabel('RT');
+xlim([0,3]);
+ylim([0,25]);
+
+subplot(2,4,5)
+histogram(data_mat.Doors_Loss_Cong_t2, 'FaceColor', '#77AC30');
+title('Doors Loss Congruent t+2');
+xlabel('RT');
+xlim([0,3]);
+ylim([0,25]);
+
+subplot(2,4,6)
+histogram(data_mat.Doors_Loss_Incong_t2, 'FaceColor', '#77AC30');
+title('Doors Loss Incongruent t+2');
+xlabel('RT');
+xlim([0,3]);
+ylim([0,25]);
+
+subplot(2,4,3)
+histogram(data_mat.Social_Win_Cong_t2);
+title('Social Win Congruent t+2');
+xlabel('RT');
+xlim([0,3]);
+ylim([0,25]);
+
+subplot(2,4,4)
+histogram(data_mat.Social_Win_Incong_t2);
+title('Social Win Incongruent t+2');
+xlabel('RT');
+xlim([0,3]);
+ylim([0,25]);
+
+subplot(2,4,7)
+histogram(data_mat.Social_Loss_Cong_t2);
+title('Social Loss Congruent t+2');
+xlabel('RT');
+xlim([0,3]);
+ylim([0,25]);
+
+subplot(2,4,8)
+histogram(data_mat.Social_Loss_Incong_t2);
+title('Social Loss Incongruent t+2');
+xlabel('RT');
+xlim([0,3]);
+ylim([0,25]);
 
 % All four t+1 conditions -- Plot with groups
 figure
