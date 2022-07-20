@@ -4,6 +4,8 @@
 % Jimmy Wyngaarden--July 1, 2022
 
 clear; close all;
+
+% Point this to the istart social doors data directory:
 maindir = '/Users/jameswyngaarden/Documents/GitHub/istart/social_reward_c/data';
 warning off all
 
@@ -14,12 +16,14 @@ subs = [1001, 1003, 1004, 1006, 1009, 1010, 1012, 1013, 1015, 1016, ...
     3143, 3152, 3166, 3167, 3170, 3173, 3175, 3176, 3189, 3190, ...
     3199, 3200, 3206, 3212, 3220];
 
+%% No user input required after this line
+
 % Create a framework for data_mat--X columns: sub ID, RT doors after win,
 % RT doors after loss, RT social after win, RT social after loss for t+1, 
 % t+2, and t+1 relative change
 data_mat = zeros(length(subs),13);
 
-%% Calculate avg RTs & relative change in RT
+% Calculate avg RTs & relative change in RT
 for s = 1:length(subs)
     %s=1;
     data_mat(s,1) = subs(s);
@@ -171,7 +175,7 @@ data_mat.Properties.VariableNames(1:13)={'Sub','Doors_Win_RT_t1','Doors_Loss_RT_
 
 %% Plots
 
-% Histogram of conditions
+% Histogram of conditions, t+1
 figure
 
 subplot(2,2,1)
@@ -202,7 +206,7 @@ xlabel('RT');
 xlim([0,3]);
 ylim([0,20]);
 
-% Histogram of conditions
+% Histogram of conditions, t+2
 figure
 
 subplot(2,2,1)
@@ -233,7 +237,7 @@ xlabel('RT');
 xlim([0,3]);
 ylim([0,20]);
 
-% Histogram of conditions
+% Histogram of conditions, Relative change, t+1
 figure
 
 subplot(2,2,1)
@@ -256,7 +260,7 @@ histogram(data_mat.Social_Loss_Rel_t1);
 title('Social Loss Relative Change');
 xlabel('RT');
 
-% All four conditions -- Plot with groups
+% All four t+1 conditions -- Plot with groups
 figure
 x = 1:2;
 bar_data = [mean(data_mat.Doors_Win_RT_t1) mean(data_mat.Social_Win_RT_t1); mean(data_mat.Doors_Loss_RT_t1) mean(data_mat.Social_Loss_RT_t1)];
@@ -313,7 +317,7 @@ disp(p);
 disp(ci);
 disp(stats);
 
-% Combining across domain
+% Combining across domain, t+1
 figure
 x = 1:2;
 data_mat.Doors=(data_mat.Doors_Win_RT_t1+data_mat.Doors_Loss_RT_t1)/2;
@@ -351,7 +355,7 @@ disp(p);
 disp(ci);
 disp(stats);
 
-% Combining across outcomes
+% Combining across outcomes, t+1
 figure
 x = 1:2;
 data_mat.Wins=((data_mat.Doors_Win_RT_t1+data_mat.Social_Win_RT_t1)/2);
