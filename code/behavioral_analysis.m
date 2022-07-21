@@ -218,7 +218,7 @@ data_mat.Properties.VariableNames(1:21)={'Sub','Doors_Win_RT_t1','Doors_Loss_RT_
 
 %% Plots
 
-% Histogram of conditions, t+1
+%% Histogram of conditions, t+1
 figure
 
 subplot(2,2,1)
@@ -249,7 +249,7 @@ xlabel('RT');
 xlim([0,3]);
 ylim([0,20]);
 
-% Histogram of conditions, t+2
+%% Histogram of conditions, t+2
 figure
 
 subplot(2,2,1)
@@ -280,7 +280,7 @@ xlabel('RT');
 xlim([0,3]);
 ylim([0,20]);
 
-% Histogram of conditions, Relative change, t+1
+%% Histogram of conditions, Relative change, t+1
 figure
 
 subplot(2,2,1)
@@ -303,7 +303,7 @@ histogram(data_mat.Social_Loss_Rel_t1);
 title('Social Loss Relative Change');
 xlabel('RT');
 
-% Histogram of conditions, Congruent vs Incongruent, t+2
+%% Histogram of conditions, Congruent vs Incongruent, t+2
 figure
 
 subplot(2,4,1)
@@ -362,12 +362,12 @@ xlabel('RT');
 xlim([0,3]);
 ylim([0,25]);
 
-% All four t+1 conditions -- Plot with groups
+%% All four t+1 conditions -- Plot with groups
 figure
 x = 1:2;
 bar_data = [mean(data_mat.Doors_Win_RT_t1) mean(data_mat.Social_Win_RT_t1); mean(data_mat.Doors_Loss_RT_t1) mean(data_mat.Social_Loss_RT_t1)];
 b=bar(x, bar_data, 'grouped');
-title('RT by task condition');
+title('RT by task condition, t+1');
 xticks(1:2);
 xticklabels({'Wins', 'Losses'});
 ylabel('RT');
@@ -391,35 +391,92 @@ b;
 hold off
 
 % Statistics
-disp('Doors Win ~ Social Win');
+disp('Doors Win ~ Social Win, t+1');
 [h,p,ci,stats]=ttest(data_mat.Doors_Win_RT_t1,data_mat.Social_Win_RT_t1);
 disp(h);
 disp(p);
 disp(ci);
 disp(stats);
 
-disp('Doors Win ~ Doors Loss');
+disp('Doors Win ~ Doors Loss, t+1');
 [h,p,ci,stats]=ttest(data_mat.Doors_Win_RT_t1,data_mat.Doors_Loss_RT_t1);
 disp(h);
 disp(p);
 disp(ci);
 disp(stats);
 
-disp('Social Win ~ Social Loss');
+disp('Social Win ~ Social Loss, t+1');
 [h,p,ci,stats]=ttest(data_mat.Social_Win_RT_t1,data_mat.Social_Loss_RT_t1);
 disp(h);
 disp(p);
 disp(ci);
 disp(stats);
 
-disp('Doors Loss ~ Social Loss');
+disp('Doors Loss ~ Social Loss, t+1');
 [h,p,ci,stats]=ttest(data_mat.Doors_Loss_RT_t1,data_mat.Social_Loss_RT_t1);
 disp(h);
 disp(p);
 disp(ci);
 disp(stats);
 
-% Combining across domain, t+1
+%% All four t+2 conditions -- Plot with groups
+figure
+x = 1:2;
+bar_data = [mean(data_mat.Doors_Win_RT_t2) mean(data_mat.Social_Win_RT_t2); mean(data_mat.Doors_Loss_RT_t2) mean(data_mat.Social_Loss_RT_t2)];
+b=bar(x, bar_data, 'grouped');
+title('RT by task condition, t+2');
+xticks(1:2);
+xticklabels({'Wins', 'Losses'});
+ylabel('RT');
+xlabel('Condition');
+ylim([1.6 2.4]);
+hold on
+%legend('Doors', 'Social');
+[lgd, icons, plots, txt] = legend('show');
+e1=[(std(data_mat.Doors_Win_RT_t2)/sqrt(length(data_mat.Doors_Win_RT_t2))) (std(data_mat.Social_Win_RT_t2)/sqrt(length(data_mat.Social_Win_RT_t2))); (std(data_mat.Doors_Loss_RT_t2)/sqrt(length(data_mat.Doors_Loss_RT_t2))) (std(data_mat.Social_Loss_RT_t2)/sqrt(length(data_mat.Social_Loss_RT_t2))) ];
+ngroups = size(bar_data, 1);
+nbars = size(bar_data, 2);
+% Calculating the width for each bar group
+groupwidth = min(0.8, nbars/(nbars + 1.5));
+for i = 1:nbars
+    x = (1:ngroups) - groupwidth/2 + (2*i-1) * groupwidth / (2*nbars);
+    errorbar(x, bar_data(:,i), e1(:,i), 'ko');
+end
+b(1).FaceColor = '#77AC30';
+b(2).FaceColor = '#0072BD';
+b;
+hold off
+
+% Statistics
+disp('Doors Win ~ Social Win, t+2');
+[h,p,ci,stats]=ttest(data_mat.Doors_Win_RT_t2,data_mat.Social_Win_RT_t2);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
+disp('Doors Win ~ Doors Loss, t+2');
+[h,p,ci,stats]=ttest(data_mat.Doors_Win_RT_t2,data_mat.Doors_Loss_RT_t2);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
+disp('Social Win ~ Social Loss, t+2');
+[h,p,ci,stats]=ttest(data_mat.Social_Win_RT_t2,data_mat.Social_Loss_RT_t2);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
+disp('Doors Loss ~ Social Loss, t+2');
+[h,p,ci,stats]=ttest(data_mat.Doors_Loss_RT_t2,data_mat.Social_Loss_RT_t2);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
+%% Combining across domain, t+1
 figure
 x = 1:2;
 data_mat.Doors=(data_mat.Doors_Win_RT_t1+data_mat.Doors_Loss_RT_t1)/2;
