@@ -476,6 +476,64 @@ disp(p);
 disp(ci);
 disp(stats);
 
+%% All four Relative conditions -- Plot with groups
+figure
+x = 1:2;
+bar_data = [mean(data_mat.Doors_Win_Rel_t1) mean(data_mat.Social_Win_Rel_t1); mean(data_mat.Doors_Loss_Rel_t1) mean(data_mat.Social_Loss_Rel_t1)];
+b=bar(x, bar_data, 'grouped');
+title('RT by task condition, Relative Change');
+xticks(1:2);
+xticklabels({'Wins', 'Losses'});
+ylabel('RT');
+xlabel('Condition');
+ylim([0 .06]);
+hold on
+%legend('Doors', 'Social');
+[lgd, icons, plots, txt] = legend('show');
+%legend('Doors', 'Social'); 
+e1=[(std(data_mat.Doors_Win_Rel_t1)/sqrt(length(data_mat.Doors_Win_Rel_t1))) (std(data_mat.Social_Win_Rel_t1)/sqrt(length(data_mat.Social_Win_Rel_t1))); (std(data_mat.Doors_Loss_Rel_t1)/sqrt(length(data_mat.Doors_Loss_Rel_t1))) (std(data_mat.Social_Loss_Rel_t1)/sqrt(length(data_mat.Social_Loss_Rel_t1))) ];
+ngroups = size(bar_data, 1);
+nbars = size(bar_data, 2);
+% Calculating the width for each bar group
+groupwidth = min(0.8, nbars/(nbars + 1.5));
+for i = 1:nbars
+    x = (1:ngroups) - groupwidth/2 + (2*i-1) * groupwidth / (2*nbars);
+    errorbar(x, bar_data(:,i), e1(:,i), 'ko');
+end
+b(1).FaceColor = '#77AC30';
+b(2).FaceColor = '#0072BD';
+b;
+hold off
+
+% Statistics
+disp('Doors Win ~ Social Win, Rel');
+[h,p,ci,stats]=ttest(data_mat.Doors_Win_Rel_t1,data_mat.Social_Win_Rel_t1);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
+disp('Doors Win ~ Doors Loss, Rel');
+[h,p,ci,stats]=ttest(data_mat.Doors_Win_Rel_t1,data_mat.Doors_Loss_Rel_t1);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
+disp('Social Win ~ Social Loss, Rel');
+[h,p,ci,stats]=ttest(data_mat.Social_Win_Rel_t1,data_mat.Social_Loss_Rel_t1);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
+disp('Doors Loss ~ Social Loss, Rel');
+[h,p,ci,stats]=ttest(data_mat.Doors_Loss_Rel_t1,data_mat.Social_Loss_Rel_t1);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
 %% Combining across domain, t+1
 figure
 x = 1:2;
@@ -514,7 +572,45 @@ disp(p);
 disp(ci);
 disp(stats);
 
-% Combining across outcomes, t+1
+%% Combining across domain, Rel
+figure
+x = 1:2;
+data_mat.Doors=(data_mat.Doors_Win_Rel_t1+data_mat.Doors_Loss_Rel_t1)/2;
+data_mat.Social=(data_mat.Social_Win_Rel_t1+data_mat.Social_Loss_Rel_t1)/2;
+
+bar_data = [mean(data_mat.Doors); mean(data_mat.Social)];
+b=bar(x, bar_data, 'grouped');
+title('RT by domain');
+xticks(1:2);
+xticklabels({'Doors', 'Social'});
+ylabel('RT');
+xlabel('Condition');
+%ylim([1.6 2.4]);
+hold on
+%legend('Doors', 'Social');
+%[lgd, icons, plots, txt] = legend('show');
+e1=[(std(data_mat.Doors)/sqrt(length(data_mat.Doors))); (std(data_mat.Social)/sqrt(length(data_mat.Social)))];
+ngroups = size(bar_data, 1);
+nbars = size(bar_data, 2);
+% Calculating the width for each bar group
+groupwidth = min(0.8, nbars/(nbars + 1.5));
+for i = 1:nbars
+    x = (1:ngroups) - groupwidth/2 + (2*i-1) * groupwidth / (2*nbars);
+    errorbar(x, bar_data(:,i), e1(:,i), 'ko');
+end
+%b(1).FaceColor = '#77AC30';
+%b(2).FaceColor = '#0072BD';
+b;
+hold off
+
+disp('Doors ~ Social');
+[h,p,ci,stats]=ttest(data_mat.Doors,data_mat.Social);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
+%% Combining across outcomes, t+1
 figure
 x = 1:2;
 data_mat.Wins=((data_mat.Doors_Win_RT_t1+data_mat.Social_Win_RT_t1)/2);
@@ -528,6 +624,44 @@ xticklabels({'Wins', 'Losses'});
 ylabel('RT');
 xlabel('Condition');
 ylim([1.6 2.4]);
+hold on
+%legend('Doors', 'Social');
+%[lgd, icons, plots, txt] = legend('show');
+e1=[(std(data_mat.Wins)/sqrt(length(data_mat.Wins))); (std(data_mat.Losses)/sqrt(length(data_mat.Losses)))];
+ngroups = size(bar_data, 1);
+nbars = size(bar_data, 2);
+% Calculating the width for each bar group
+groupwidth = min(0.8, nbars/(nbars + 1.5));
+for i = 1:nbars
+    x = (1:ngroups) - groupwidth/2 + (2*i-1) * groupwidth / (2*nbars);
+    errorbar(x, bar_data(:,i), e1(:,i), 'ko');
+end
+%b(1).FaceColor = '#77AC30';
+%b(2).FaceColor = '#0072BD';
+b;
+hold off
+
+disp('Wins ~ Losses');
+[h,p,ci,stats]=ttest(data_mat.Wins,data_mat.Losses);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
+%% Combining across outcomes, Rel
+figure
+x = 1:2;
+data_mat.Wins=((data_mat.Doors_Win_Rel_t1+data_mat.Social_Win_Rel_t1)/2);
+data_mat.Losses=((data_mat.Doors_Loss_Rel_t1+data_mat.Social_Loss_Rel_t1)/2);
+
+bar_data = [mean(data_mat.Wins); mean(data_mat.Losses)];
+b=bar(x, bar_data, 'grouped');
+title('RT by outcome');
+xticks(1:2);
+xticklabels({'Wins', 'Losses'});
+ylabel('RT');
+xlabel('Condition');
+%ylim([1.6 2.4]);
 hold on
 %legend('Doors', 'Social');
 %[lgd, icons, plots, txt] = legend('show');
