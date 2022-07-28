@@ -21,7 +21,7 @@ subs = [1001, 1003, 1004, 1006, 1009, 1010, 1012, 1013, 1015, 1016, ...
 % Create a framework for data_mat--X columns: sub ID, RT doors after win,
 % RT doors after loss, RT social after win, RT social after loss for t+1, 
 % t+2, and t+1 relative change
-data_mat = zeros(length(subs),21);
+data_mat = zeros(length(subs),25);
 
 % Calculate avg RTs & relative change in RT
 for s = 1:length(subs)
@@ -75,14 +75,14 @@ for s = 1:length(subs)
                 % Record trial number
                 win_mat(w,1) = t;
 
-                % Record current trial type
+                % Record current (t+1) trial type
                 if isequal(T.trial_type(t),{'win'})
                     win_mat(w,2) = 1;
                 else
                     win_mat(w,2) = 0;
                 end
 
-                % Record following trial type
+                % Record following (t+2) trial type
                 if t < (length(T.rt)-2)
                     if isequal(T.trial_type(t+2),{'win'})
                         win_mat(w,3) = 1;
@@ -92,19 +92,26 @@ for s = 1:length(subs)
                 else
                      win_mat(w,3) = NaN;
                 end
+
+                % Record RT at t+0
+                if t > (length(T.rt)+1)
+                    win_mat(w,4) = T.rt(t-1);
+                else
+                    win_mat(w,4) = nan;
+                end
         
                 % Record RT at t+1
-                win_mat(w,4) = T.rt(t+1);
+                win_mat(w,5) = T.rt(t+1);
 
                 % Record RT at t+2
                 if t < (length(T.rt)-2)
-                    win_mat(w,5) = T.rt(t+3);
+                    win_mat(w,6) = T.rt(t+3);
                 else
-                    win_mat(w,5) = nan;
+                    win_mat(w,6) = nan;
                 end
                      
                 % Record relative change in RT at t+1
-                win_mat(w,6)=(T.rt(t+1)-T.rt(t-1))/(T.rt(t-1));
+                win_mat(w,7)=(T.rt(t+1)-T.rt(t-1))/(T.rt(t-1));
 
                 % Add to win_mat count
                 w = w+1;
@@ -127,13 +134,14 @@ for s = 1:length(subs)
                 else
                      loss_mat(w,3) = NaN;
                 end
-                loss_mat(l,4) = T.rt(t+1);
+                loss_mat(l,4) = T.rt(t-1);
+                loss_mat(l,5) = T.rt(t+1);
                 if t < (length(T.rt)-2)
-                    loss_mat(l,5) = T.rt(t+3);
+                    loss_mat(l,6) = T.rt(t+3);
                 else
-                    loss_mat(l,5) = nan;
+                    loss_mat(l,6) = nan;
                 end
-                loss_mat(l,6)=(T.rt(t+1)-T.rt(t-1))/(T.rt(t-1));
+                loss_mat(l,7)=(T.rt(t+1)-T.rt(t-1))/(T.rt(t-1));
                 l = l+1;
             end
         end
@@ -154,22 +162,22 @@ for s = 1:length(subs)
         ll = 1;
         lw = 1;
 
-        for u = 1:length(win_mat(:,3))
-            if isequal(win_mat(u,3),1)
-                t2_wins1(ww,1) = win_mat(u,5);
+        for u = 1:length(win_mat(:,4))
+            if isequal(win_mat(u,4),1)
+                t2_wins1(ww,1) = win_mat(u,6);
                 ww = ww+1;
-            elseif isequal(win_mat(u,3),0)
-                t2_wins2(wl,1) = win_mat(u,5);
+            elseif isequal(win_mat(u,4),0)
+                t2_wins2(wl,1) = win_mat(u,6);
                 wl = wl+1;
             end
         end
 
-        for u = 1:length(loss_mat(:,3))
+        for u = 1:length(loss_mat(:,4))
             if isequal(loss_mat(u,3),0)
-                t2_losses1(ll,1) = loss_mat(u,5);
+                t2_losses1(ll,1) = loss_mat(u,6);
                 ll = ll+1;
-            elseif isequal(loss_mat(u,3),1)
-                t2_losses2(lw,1) = loss_mat(u,5);
+            elseif isequal(loss_mat(u,4),1)
+                t2_losses2(lw,1) = loss_mat(u,6);
                 lw = lw+1;
             end
         end
@@ -181,16 +189,30 @@ for s = 1:length(subs)
 
         % Find avg. RT and assign to data_mat
         if f==1
+            % Doors Win RT t+0
             data_mat(s,2)=nanmean(win_mat(:,4));
+            % Doors Loss RT t+0
             data_mat(s,3)=nanmean(loss_mat(:,4));
+            % Doors Win RT t+1
             data_mat(s,6)=nanmean(win_mat(:,5));
+            % Doors Loss RT t+1
             data_mat(s,7)=nanmean(loss_mat(:,5));
+            % Doors Win RT t+2
             data_mat(s,10)=nanmean(win_mat(:,6));
+            % Doors Loss RT t+2
             data_mat(s,11)=nanmean(loss_mat(:,6));
-            data_mat(s,14)=nanmean(t2_wins1(:,1));
-            data_mat(s,15)=nanmean(t2_wins2(:,1));
-            data_mat(s,16)=nanmean(t2_losses1(:,1));
-            data_mat(s,17)=nanmean(t2_losses2(:,1));
+            % Doors Win Rel Change t+1
+            data_mat(s,14)=nanmean(win_mat(:,7));
+            % Doors Loss Rel Change t+1
+            data_mat(s,15)=nanmean(loss_mat(:,7));
+            % Doors Win Cong t+2
+            data_mat(s,18)=nanmean(t2_wins1(:,1));
+            % Doors Win Incong t+2
+            data_mat(s,19)=nanmean(t2_wins2(:,1));
+            % Doors Loss Cong t+2
+            data_mat(s,20)=nanmean(t2_losses1(:,1));
+            % Doors Loss Incong t+2
+            data_mat(s,21)=nanmean(t2_losses2(:,1));
         elseif f==2
             data_mat(s,4)=nanmean(win_mat(:,4));
             data_mat(s,5)=nanmean(loss_mat(:,4));
@@ -198,23 +220,25 @@ for s = 1:length(subs)
             data_mat(s,9)=nanmean(loss_mat(:,5));
             data_mat(s,12)=nanmean(win_mat(:,6));
             data_mat(s,13)=nanmean(loss_mat(:,6));
-            data_mat(s,18)=nanmean(t2_wins1(:,1));
-            data_mat(s,19)=nanmean(t2_wins2(:,1));
-            data_mat(s,20)=nanmean(t2_losses1(:,1));
-            data_mat(s,21)=nanmean(t2_losses2(:,1));
+            data_mat(s,16)=nanmean(win_mat(:,7));
+            data_mat(s,17)=nanmean(loss_mat(:,7));
+            data_mat(s,22)=nanmean(t2_wins1(:,1));
+            data_mat(s,23)=nanmean(t2_wins2(:,1));
+            data_mat(s,24)=nanmean(t2_losses1(:,1));
+            data_mat(s,25)=nanmean(t2_losses2(:,1));
         end
 
         win_mat = array2table(win_mat);
-        win_mat.Properties.VariableNames(1:6)={'Trial','Trial_Type','Next_Trial_Type','Win_RT_t+1','Win_RT_t+2', 'Relative_Change_t+1'};
+        win_mat.Properties.VariableNames(1:6)={'Trial','Trial_Type','Next_Trial_Type','Win_RT_t+0','Win_RT_t+1','Win_RT_t+2', 'Relative_Change_t+1'};
 
         loss_mat = array2table(loss_mat);
-        loss_mat.Properties.VariableNames(1:6)={'Trial','Trial_Type','Next_Trial_Type','Loss_RT_t+1','Loss_RT_t+2', 'Relative_Change_t+1'};
+        loss_mat.Properties.VariableNames(1:6)={'Trial','Trial_Type','Next_Trial_Type','Loss_RT_t+0','Loss_RT_t+1','Loss_RT_t+2', 'Relative_Change_t+1'};
 
     end
 end
 
 data_mat = array2table(data_mat);
-data_mat.Properties.VariableNames(1:21)={'Sub','Doors_Win_RT_t1','Doors_Loss_RT_t1','Social_Win_RT_t1','Social_Loss_RT_t1', 'Doors_Win_RT_t2','Doors_Loss_RT_t2','Social_Win_RT_t2','Social_Loss_RT_t2', 'Doors_Win_Rel_t1','Doors_Loss_Rel_t1','Social_Win_Rel_t1','Social_Loss_Rel_t1', 'Doors_Win_Cong_t2', 'Doors_Win_Incong_t2', 'Doors_Loss_Cong_t2', 'Doors_Loss_Incong_t2', 'Social_Win_Cong_t2', 'Social_Win_Incong_t2', 'Social_Loss_Cong_t2', 'Social_Loss_Incong_t2'};
+data_mat.Properties.VariableNames(1:25)={'Sub','Doors_Win_RT_t0','Doors_Loss_RT_t0','Social_Win_RT_t0','Social_Loss_RT_t0','Doors_Win_RT_t1','Doors_Loss_RT_t1','Social_Win_RT_t1','Social_Loss_RT_t1','Doors_Win_RT_t2','Doors_Loss_RT_t2','Social_Win_RT_t2','Social_Loss_RT_t2','Doors_Win_Rel_t1','Doors_Loss_Rel_t1','Social_Win_Rel_t1','Social_Loss_Rel_t1','Doors_Win_Cong_t2','Doors_Win_Incong_t2','Doors_Loss_Cong_t2','Doors_Loss_Incong_t2','Social_Win_Cong_t2','Social_Win_Incong_t2','Social_Loss_Cong_t2','Social_Loss_Incong_t2'};
 
 %% Plots
 
