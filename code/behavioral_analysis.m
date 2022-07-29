@@ -6,14 +6,14 @@
 clear; close all;
 
 % Point this to the istart social doors data directory:
-maindir = '/Users/jameswyngaarden/Documents/GitHub/istart/social_reward_c/data';
+maindir = '/Users/jameswyngaarden/Documents/Documents_Air/GitHub/istart/social_reward_c/data';
 warning off all
 
 % Specify subs
 subs = [1001, 1003, 1004, 1006, 1009, 1010, 1012, 1013, 1015, 1016, ... 
-    1019, 1021, 1242, 1243, 1244, 1245, 1247, 1248, 1249, 1251, 1255, 1276, ...
-    1286, 1294, 1301, 1302, 1303, 3116, 3122, 3125, 3140, ...
-    3143, 3152, 3166, 3167, 3170, 3173, 3175, 3176, 3189, 3190, ...
+    1019, 1021, 1242, 1243, 1244, 1245, 1247, 1248, 1249, 1251 ...
+    1255, 1276, 1286, 1294, 1301, 1302, 1303, 3116, 3122, 3125 ...
+    3140, 3143, 3152, 3166, 3167, 3170, 3173, 3175, 3176, 3189, 3190, ...
     3199, 3200, 3206, 3212, 3220];
 
 %% No user input required after this line
@@ -94,11 +94,7 @@ for s = 1:length(subs)
                 end
 
                 % Record RT at t+0
-                if t > (length(T.rt)+1)
-                    win_mat(w,4) = T.rt(t-1);
-                else
-                    win_mat(w,4) = nan;
-                end
+                win_mat(w,4) = T.rt(t-1);
         
                 % Record RT at t+1
                 win_mat(w,5) = T.rt(t+1);
@@ -153,31 +149,35 @@ for s = 1:length(subs)
         loss_mat(isnan(loss_mat(:,2)),:)=[];
 
         % Track t+2--is t+2 congruent or incongruent with t?
-        t2_wins1 = zeros(20,1);
-        t2_wins2 = zeros(20,1);
-        t2_losses1 = zeros(20,1);
-        t2_losses2 = zeros(20,1);
+        t2_wins1 = zeros(20,2);
+        t2_wins2 = zeros(20,2);
+        t2_losses1 = zeros(20,2);
+        t2_losses2 = zeros(20,2);
         ww = 1;
         wl = 1;
         ll = 1;
         lw = 1;
 
-        for u = 1:length(win_mat(:,4))
-            if isequal(win_mat(u,4),1)
-                t2_wins1(ww,1) = win_mat(u,6);
+        for u = 1:length(win_mat(:,2))
+            if isequal(win_mat(u,3),1)
+                t2_wins1(ww,1) = u;
+                t2_wins1(ww,2) = win_mat(u,6);
                 ww = ww+1;
-            elseif isequal(win_mat(u,4),0)
-                t2_wins2(wl,1) = win_mat(u,6);
+            elseif isequal(win_mat(u,3),0)
+                t2_wins2(ww,1) = u;
+                t2_wins2(wl,2) = win_mat(u,6);
                 wl = wl+1;
             end
         end
 
-        for u = 1:length(loss_mat(:,4))
+        for u = 1:length(loss_mat(:,2))
             if isequal(loss_mat(u,3),0)
-                t2_losses1(ll,1) = loss_mat(u,6);
+                t2_losses1(ll,1) = u;
+                t2_losses1(ll,2) = loss_mat(u,6);
                 ll = ll+1;
-            elseif isequal(loss_mat(u,4),1)
-                t2_losses2(lw,1) = loss_mat(u,6);
+            elseif isequal(loss_mat(u,3),1)
+                t2_losses2(ll,1) = u;
+                t2_losses2(lw,2) = loss_mat(u,6);
                 lw = lw+1;
             end
         end
@@ -206,13 +206,13 @@ for s = 1:length(subs)
             % Doors Loss Rel Change t+1
             data_mat(s,15)=nanmean(loss_mat(:,7));
             % Doors Win Cong t+2
-            data_mat(s,18)=nanmean(t2_wins1(:,1));
+            data_mat(s,18)=nanmean(t2_wins1(:,2));
             % Doors Win Incong t+2
-            data_mat(s,19)=nanmean(t2_wins2(:,1));
+            data_mat(s,19)=nanmean(t2_wins2(:,2));
             % Doors Loss Cong t+2
-            data_mat(s,20)=nanmean(t2_losses1(:,1));
+            data_mat(s,20)=nanmean(t2_losses1(:,2));
             % Doors Loss Incong t+2
-            data_mat(s,21)=nanmean(t2_losses2(:,1));
+            data_mat(s,21)=nanmean(t2_losses2(:,2));
         elseif f==2
             data_mat(s,4)=nanmean(win_mat(:,4));
             data_mat(s,5)=nanmean(loss_mat(:,4));
@@ -222,17 +222,17 @@ for s = 1:length(subs)
             data_mat(s,13)=nanmean(loss_mat(:,6));
             data_mat(s,16)=nanmean(win_mat(:,7));
             data_mat(s,17)=nanmean(loss_mat(:,7));
-            data_mat(s,22)=nanmean(t2_wins1(:,1));
-            data_mat(s,23)=nanmean(t2_wins2(:,1));
-            data_mat(s,24)=nanmean(t2_losses1(:,1));
-            data_mat(s,25)=nanmean(t2_losses2(:,1));
+            data_mat(s,22)=nanmean(t2_wins1(:,2));
+            data_mat(s,23)=nanmean(t2_wins2(:,2));
+            data_mat(s,24)=nanmean(t2_losses1(:,2));
+            data_mat(s,25)=nanmean(t2_losses2(:,2));
         end
 
         win_mat = array2table(win_mat);
-        win_mat.Properties.VariableNames(1:6)={'Trial','Trial_Type','Next_Trial_Type','Win_RT_t+0','Win_RT_t+1','Win_RT_t+2', 'Relative_Change_t+1'};
+        win_mat.Properties.VariableNames(1:7)={'Trial','Trial_Type','Next_Trial_Type','Win_RT_t+0','Win_RT_t+1','Win_RT_t+2', 'Relative_Change_t+1'};
 
         loss_mat = array2table(loss_mat);
-        loss_mat.Properties.VariableNames(1:6)={'Trial','Trial_Type','Next_Trial_Type','Loss_RT_t+0','Loss_RT_t+1','Loss_RT_t+2', 'Relative_Change_t+1'};
+        loss_mat.Properties.VariableNames(1:7)={'Trial','Trial_Type','Next_Trial_Type','Loss_RT_t+0','Loss_RT_t+1','Loss_RT_t+2', 'Relative_Change_t+1'};
 
     end
 end
@@ -246,86 +246,156 @@ data_mat.Properties.VariableNames(1:25)={'Sub','Doors_Win_RT_t0','Doors_Loss_RT_
 figure
 
 subplot(2,2,1)
-histogram(data_mat.Doors_Win_RT_t1, 'FaceColor', '#77AC30');
+histogram(data_mat.Doors_Win_RT_t1, 10, 'FaceColor', '#77AC30');
 title('Doors Win t+1');
 xlabel('RT');
-xlim([0,3]);
-ylim([0,20]);
+xlim([1,2.7]);
+ylim([0,10]);
 
 subplot(2,2,2)
-histogram(data_mat.Doors_Loss_RT_t1, 'FaceColor', '#77AC30');
+histogram(data_mat.Doors_Loss_RT_t1, 10, 'FaceColor', '#77AC30');
 title('Doors Loss t+1');
 xlabel('RT');
-xlim([0,3]);
-ylim([0,20]);
+xlim([1,2.7]);
+ylim([0,10]);
 
 subplot(2,2,3)
-histogram(data_mat.Social_Win_RT_t1);
+histogram(data_mat.Social_Win_RT_t1, 10);
 title('Social Win t+1');
 xlabel('RT');
-xlim([0,3]);
-ylim([0,20]);
+xlim([1,2.7]);
+ylim([0,10]);
 
 subplot(2,2,4)
-histogram(data_mat.Social_Loss_RT_t1);
+histogram(data_mat.Social_Loss_RT_t1, 10);
 title('Social Loss t+1');
 xlabel('RT');
-xlim([0,3]);
-ylim([0,20]);
+xlim([1,2.7]);
+ylim([0,10]);
+
+% Replication of the original histograms for replication purposes
+figure
+
+subplot(2,2,1)
+hist(data_mat.Doors_Win_RT_t1);
+title('Doors Win t+1');
+xlabel('RT');
+xlim([1,3]);
+ylim([0,10]);
+
+subplot(2,2,2)
+hist(data_mat.Doors_Loss_RT_t1);
+title('Doors Loss t+1');
+xlabel('RT');
+xlim([1,3]);
+ylim([0,10]);
+
+subplot(2,2,3)
+hist(data_mat.Social_Win_RT_t1);
+title('Social Win t+1');
+xlabel('RT');
+xlim([1,3]);
+ylim([0,10]);
+
+subplot(2,2,4)
+hist(data_mat.Social_Loss_RT_t1);
+title('Social Loss t+1');
+xlabel('RT');
+xlim([1,3]);
+ylim([0,10]);
+
+%% Histogram of conditions, t+0
+figure
+
+subplot(2,2,1)
+histogram(data_mat.Doors_Win_RT_t0, 10, 'FaceColor', '#77AC30');
+title('Doors Win t+0');
+xlabel('RT');
+xlim([1,2.7]);
+ylim([0,10]);
+
+subplot(2,2,2)
+histogram(data_mat.Doors_Loss_RT_t0, 10, 'FaceColor', '#77AC30');
+title('Doors Loss t+0');
+xlabel('RT');
+xlim([1,2.7]);
+ylim([0,10]);
+
+subplot(2,2,3)
+histogram(data_mat.Social_Win_RT_t0, 10);
+title('Social Win t+0');
+xlabel('RT');
+xlim([1,2.7]);
+ylim([0,10]);
+
+subplot(2,2,4)
+histogram(data_mat.Social_Loss_RT_t0, 10);
+title('Social Loss t+0');
+xlabel('RT');
+xlim([1,2.7]);
+ylim([0,10]);
 
 %% Histogram of conditions, t+2
 figure
 
 subplot(2,2,1)
-histogram(data_mat.Doors_Win_RT_t2, 'FaceColor', '#77AC30');
+histogram(data_mat.Doors_Win_RT_t2, 10, 'FaceColor', '#77AC30');
 title('Doors Win t+2');
 xlabel('RT');
-xlim([0,3]);
-ylim([0,20]);
+xlim([1,2.7]);
+ylim([0,10]);
 
 subplot(2,2,2)
-histogram(data_mat.Doors_Loss_RT_t2, 'FaceColor', '#77AC30');
+histogram(data_mat.Doors_Loss_RT_t2, 10, 'FaceColor', '#77AC30');
 title('Doors Loss t+2');
 xlabel('RT');
-xlim([0,3]);
-ylim([0,20]);
+xlim([1,2.7]);
+ylim([0,10]);
 
 subplot(2,2,3)
-histogram(data_mat.Social_Win_RT_t2);
+histogram(data_mat.Social_Win_RT_t2, 10);
 title('Social Win t+2');
 xlabel('RT');
-xlim([0,3]);
-ylim([0,20]);
+xlim([1,2.7]);
+ylim([0,10]);
 
 subplot(2,2,4)
-histogram(data_mat.Social_Loss_RT_t2);
+histogram(data_mat.Social_Loss_RT_t2, 10);
 title('Social Loss t+2');
 xlabel('RT');
-xlim([0,3]);
-ylim([0,20]);
+xlim([1,2.7]);
+ylim([0,10]);
 
 %% Histogram of conditions, Relative change, t+1
 figure
 
 subplot(2,2,1)
-histogram(data_mat.Doors_Win_Rel_t1, 'FaceColor', '#77AC30');
+histogram(data_mat.Doors_Win_Rel_t1, 10, 'FaceColor', '#77AC30');
 title('Doors Win Relative Change');
 xlabel('RT');
+xlim([-.06,.11]);
+ylim([0,10]);
 
 subplot(2,2,2)
-histogram(data_mat.Doors_Loss_Rel_t1, 'FaceColor', '#77AC30');
+histogram(data_mat.Doors_Loss_Rel_t1, 10, 'FaceColor', '#77AC30');
 title('Doors Loss Relative Change');
 xlabel('RT');
+xlim([-.06,.11]);
+ylim([0,10]);
 
 subplot(2,2,3)
-histogram(data_mat.Social_Win_Rel_t1);
+histogram(data_mat.Social_Win_Rel_t1, 10);
 title('Social Win Relative Change');
 xlabel('RT');
+xlim([-.06,.11]);
+ylim([0,10]);
 
 subplot(2,2,4)
-histogram(data_mat.Social_Loss_Rel_t1);
+histogram(data_mat.Social_Loss_Rel_t1, 10);
 title('Social Loss Relative Change');
 xlabel('RT');
+xlim([-.06,.11]);
+ylim([0,10]);
 
 %% Histogram of conditions, Congruent vs Incongruent, t+2
 figure
@@ -389,18 +459,18 @@ ylim([0,25]);
 %% All four t+1 conditions -- Plot with groups
 figure
 x = 1:2;
-bar_data = [mean(data_mat.Doors_Win_RT_t1) mean(data_mat.Social_Win_RT_t1); mean(data_mat.Doors_Loss_RT_t1) mean(data_mat.Social_Loss_RT_t1)];
-b=bar(x, bar_data, 'grouped');
+bar_data = [mean(data_mat.Doors_Win_RT_t1) mean(data_mat.Doors_Loss_RT_t1); mean(data_mat.Social_Win_RT_t1) mean(data_mat.Social_Loss_RT_t1)];
+b=bar(x, bar_data);
 title('RT by task condition, t+1');
 xticks(1:2);
-xticklabels({'Wins', 'Losses'});
+xticklabels({'Doors', 'Social'});
 ylabel('RT');
 xlabel('Condition');
 ylim([1.6 2.4]);
 hold on
 %legend('Doors', 'Social');
-[lgd, icons, plots, txt] = legend('show');
-e1=[(std(data_mat.Doors_Win_RT_t1)/sqrt(length(data_mat.Doors_Win_RT_t1))) (std(data_mat.Social_Win_RT_t1)/sqrt(length(data_mat.Social_Win_RT_t1))); (std(data_mat.Doors_Loss_RT_t1)/sqrt(length(data_mat.Doors_Loss_RT_t1))) (std(data_mat.Social_Loss_RT_t1)/sqrt(length(data_mat.Social_Loss_RT_t1))) ];
+%[lgd, icons, plots, txt] = legend('show');
+e1=[(std(data_mat.Doors_Win_RT_t1)/sqrt(length(data_mat.Doors_Win_RT_t1))) (std(data_mat.Doors_Loss_RT_t1)/sqrt(length(data_mat.Doors_Loss_RT_t1))) ; (std(data_mat.Social_Win_RT_t1)/sqrt(length(data_mat.Social_Win_RT_t1))) (std(data_mat.Social_Loss_RT_t1)/sqrt(length(data_mat.Social_Loss_RT_t1))) ];
 ngroups = size(bar_data, 1);
 nbars = size(bar_data, 2);
 % Calculating the width for each bar group
@@ -409,9 +479,9 @@ for i = 1:nbars
     x = (1:ngroups) - groupwidth/2 + (2*i-1) * groupwidth / (2*nbars);
     errorbar(x, bar_data(:,i), e1(:,i), 'ko');
 end
-b(1).FaceColor = '#77AC30';
-b(2).FaceColor = '#0072BD';
-b;
+% b(1).FaceColor = '#77AC30';
+% b(2).FaceColor = '#0072BD';
+% b;
 hold off
 
 % Statistics
@@ -443,21 +513,21 @@ disp(p);
 disp(ci);
 disp(stats);
 
-%% All four t+2 conditions -- Plot with groups
+%% All four t+0 conditions -- Plot with groups
 figure
 x = 1:2;
-bar_data = [mean(data_mat.Doors_Win_RT_t2) mean(data_mat.Social_Win_RT_t2); mean(data_mat.Doors_Loss_RT_t2) mean(data_mat.Social_Loss_RT_t2)];
+bar_data = [mean(data_mat.Doors_Win_RT_t0) mean(data_mat.Doors_Loss_RT_t0); mean(data_mat.Social_Win_RT_t0) mean(data_mat.Social_Loss_RT_t0)];
 b=bar(x, bar_data, 'grouped');
-title('RT by task condition, t+2');
+title('RT by task condition, t+0');
 xticks(1:2);
-xticklabels({'Wins', 'Losses'});
+xticklabels({'Doors', 'Social'});
 ylabel('RT');
 xlabel('Condition');
 ylim([1.6 2.4]);
 hold on
 %legend('Doors', 'Social');
-[lgd, icons, plots, txt] = legend('show');
-e1=[(std(data_mat.Doors_Win_RT_t2)/sqrt(length(data_mat.Doors_Win_RT_t2))) (std(data_mat.Social_Win_RT_t2)/sqrt(length(data_mat.Social_Win_RT_t2))); (std(data_mat.Doors_Loss_RT_t2)/sqrt(length(data_mat.Doors_Loss_RT_t2))) (std(data_mat.Social_Loss_RT_t2)/sqrt(length(data_mat.Social_Loss_RT_t2))) ];
+%[lgd, icons, plots, txt] = legend('show');
+e1=[(std(data_mat.Doors_Win_RT_t0)/sqrt(length(data_mat.Doors_Win_RT_t0))) (std(data_mat.Doors_Loss_RT_t0)/sqrt(length(data_mat.Doors_Loss_RT_t0))); (std(data_mat.Social_Win_RT_t0)/sqrt(length(data_mat.Social_Win_RT_t0))) (std(data_mat.Social_Loss_RT_t0)/sqrt(length(data_mat.Social_Loss_RT_t0))) ];
 ngroups = size(bar_data, 1);
 nbars = size(bar_data, 2);
 % Calculating the width for each bar group
@@ -466,9 +536,66 @@ for i = 1:nbars
     x = (1:ngroups) - groupwidth/2 + (2*i-1) * groupwidth / (2*nbars);
     errorbar(x, bar_data(:,i), e1(:,i), 'ko');
 end
-b(1).FaceColor = '#77AC30';
-b(2).FaceColor = '#0072BD';
-b;
+% b(1).FaceColor = '#77AC30';
+% b(2).FaceColor = '#0072BD';
+% b;
+hold off
+
+% Statistics
+disp('Doors Win ~ Social Win, t+0');
+[h,p,ci,stats]=ttest(data_mat.Doors_Win_RT_t0,data_mat.Social_Win_RT_t0);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
+disp('Doors Win ~ Doors Loss, t+0');
+[h,p,ci,stats]=ttest(data_mat.Doors_Win_RT_t0,data_mat.Doors_Loss_RT_t0);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
+disp('Social Win ~ Social Loss, t+0');
+[h,p,ci,stats]=ttest(data_mat.Social_Win_RT_t0,data_mat.Social_Loss_RT_t0);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
+disp('Doors Loss ~ Social Loss, t+0');
+[h,p,ci,stats]=ttest(data_mat.Doors_Loss_RT_t0,data_mat.Social_Loss_RT_t0);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
+%% All four t+2 conditions -- Plot with groups
+figure
+x = 1:2;
+bar_data = [mean(data_mat.Doors_Win_RT_t2) mean(data_mat.Doors_Loss_RT_t2); mean(data_mat.Social_Win_RT_t2) mean(data_mat.Social_Loss_RT_t2)];
+b=bar(x, bar_data, 'grouped');
+title('RT by task condition, t+2');
+xticks(1:2);
+xticklabels({'Doors', 'Social'});
+ylabel('RT');
+xlabel('Condition');
+ylim([1.6 2.4]);
+hold on
+%legend('Doors', 'Social');
+[lgd, icons, plots, txt] = legend('show');
+e1=[(std(data_mat.Doors_Win_RT_t2)/sqrt(length(data_mat.Doors_Win_RT_t2))) (std(data_mat.Doors_Loss_RT_t2)/sqrt(length(data_mat.Doors_Loss_RT_t2))); (std(data_mat.Social_Win_RT_t2)/sqrt(length(data_mat.Social_Win_RT_t2))) (std(data_mat.Social_Loss_RT_t2)/sqrt(length(data_mat.Social_Loss_RT_t2))) ];
+ngroups = size(bar_data, 1);
+nbars = size(bar_data, 2);
+% Calculating the width for each bar group
+groupwidth = min(0.8, nbars/(nbars + 1.5));
+for i = 1:nbars
+    x = (1:ngroups) - groupwidth/2 + (2*i-1) * groupwidth / (2*nbars);
+    errorbar(x, bar_data(:,i), e1(:,i), 'ko');
+end
+% b(1).FaceColor = '#77AC30';
+% b(2).FaceColor = '#0072BD';
+% b;
 hold off
 
 % Statistics
