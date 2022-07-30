@@ -13,7 +13,7 @@ warning off all
 subs = [1001, 1003, 1004, 1006, 1009, 1010, 1012, 1013, 1015, 1016, ... 
     1019, 1021, 1242, 1243, 1244, 1245, 1247, 1248, 1249, 1251 ...
     1255, 1276, 1286, 1294, 1301, 1302, 1303, 3116, 3122, 3125 ...
-    3140, 3143, 3152, 3166, 3167, 3170, 3173, 3175, 3176, 3189, 3190, ...
+    3140, 3143, 3166, 3167, 3170, 3173, 3175, 3176, 3189, 3190, ...
     3199, 3200, 3206, 3212, 3220];
 
 %% No user input required after this line
@@ -113,7 +113,7 @@ for s = 1:length(subs)
                 w = w+1;
             end
             
-            % Repeat for loss trials
+            % Repeat previous loop for loss trials
             if T.trial_type{t}=="loss"
                 loss_mat(l,1) = t;
                 if isequal(T.trial_type(t),{'loss'})
@@ -142,7 +142,7 @@ for s = 1:length(subs)
             end
         end
         
-        % Remove zeros from trial arrays
+        % Remove any zeros from trial arrays
         win_mat = win_mat(any(win_mat,2),:);
         win_mat(isnan(win_mat(:,2)),:)=[];
         loss_mat = loss_mat(any(loss_mat,2),:);
@@ -157,7 +157,8 @@ for s = 1:length(subs)
         wl = 1;
         ll = 1;
         lw = 1;
-
+        
+        % Store t+2 in t2_wins1 if it is also a win, t2_wins2 if it a loss
         for u = 1:length(win_mat(:,2))
             if isequal(win_mat(u,3),1)
                 t2_wins1(ww,1) = u;
@@ -169,7 +170,8 @@ for s = 1:length(subs)
                 wl = wl+1;
             end
         end
-
+        
+        % Repeat for t2_losses
         for u = 1:length(loss_mat(:,2))
             if isequal(loss_mat(u,3),0)
                 t2_losses1(ll,1) = u;
@@ -182,12 +184,13 @@ for s = 1:length(subs)
             end
         end
         
+        % Remove any zeroes from t2 trials
         t2_wins1 = t2_wins1(any(t2_wins1,2),:);
         t2_wins2 = t2_wins2(any(t2_wins2,2),:);
         t2_losses1 = t2_losses1(any(t2_losses1,2),:);
         t2_losses2 = t2_losses2(any(t2_losses2,2),:);
 
-        % Find avg. RT and assign to data_mat
+        % Find avg. RT and assign to data_mat for doors trials
         if f==1
             % Doors Win RT t+0
             data_mat(s,2)=nanmean(win_mat(:,4));
@@ -213,6 +216,7 @@ for s = 1:length(subs)
             data_mat(s,20)=nanmean(t2_losses1(:,2));
             % Doors Loss Incong t+2
             data_mat(s,21)=nanmean(t2_losses2(:,2));
+        % Repeat for social trials
         elseif f==2
             data_mat(s,4)=nanmean(win_mat(:,4));
             data_mat(s,5)=nanmean(loss_mat(:,4));
@@ -227,22 +231,21 @@ for s = 1:length(subs)
             data_mat(s,24)=nanmean(t2_losses1(:,2));
             data_mat(s,25)=nanmean(t2_losses2(:,2));
         end
-
+        
+        % Write labels for win_mat & loss_mat dfs
         win_mat = array2table(win_mat);
         win_mat.Properties.VariableNames(1:7)={'Trial','Trial_Type','Next_Trial_Type','Win_RT_t+0','Win_RT_t+1','Win_RT_t+2', 'Relative_Change_t+1'};
-
         loss_mat = array2table(loss_mat);
         loss_mat.Properties.VariableNames(1:7)={'Trial','Trial_Type','Next_Trial_Type','Loss_RT_t+0','Loss_RT_t+1','Loss_RT_t+2', 'Relative_Change_t+1'};
-
     end
 end
 
+% Write labels for data_mat
 data_mat = array2table(data_mat);
 data_mat.Properties.VariableNames(1:25)={'Sub','Doors_Win_RT_t0','Doors_Loss_RT_t0','Social_Win_RT_t0','Social_Loss_RT_t0','Doors_Win_RT_t1','Doors_Loss_RT_t1','Social_Win_RT_t1','Social_Loss_RT_t1','Doors_Win_RT_t2','Doors_Loss_RT_t2','Social_Win_RT_t2','Social_Loss_RT_t2','Doors_Win_Rel_t1','Doors_Loss_Rel_t1','Social_Win_Rel_t1','Social_Loss_Rel_t1','Doors_Win_Cong_t2','Doors_Win_Incong_t2','Doors_Loss_Cong_t2','Doors_Loss_Incong_t2','Social_Win_Cong_t2','Social_Win_Incong_t2','Social_Loss_Cong_t2','Social_Loss_Incong_t2'};
 
-%% Plots
 
-%% Histogram of conditions, t+1
+%% Plots: Histogram of conditions, t+1
 figure
 
 subplot(2,2,1)
