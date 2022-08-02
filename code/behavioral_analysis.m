@@ -840,3 +840,35 @@ disp(p);
 disp(ci);
 disp(stats);
 
+%% Comparisons within tasks, across time points
+
+figure
+x = 1:3;
+bar_data = [mean(data_mat.Doors_Loss_RT_t0); mean(data_mat.Doors_Loss_RT_t1); mean(data_mat.Doors_Loss_RT_t2)];
+b=bar(x, bar_data, 'grouped');
+title('RTs Across Doors Losses');
+xticks(1:3);
+xticklabels({'t+0', 't+1', 't+2'});
+ylabel('RT');
+xlabel('Time Point');
+%ylim([1.6 2.4]);
+hold on
+%legend('Doors', 'Social');
+%[lgd, icons, plots, txt] = legend('show');
+e1=[(std(data_mat.Doors_Loss_RT_t0/sqrt(length(data_mat.Doors_Loss_RT_t0))); (std(data_mat.Doors_Loss_RT_t1)/sqrt(length(data_mat.Doors_Loss_RT_t1))); (std(data_mat.Doors_Loss_RT_t2)/sqrt(length(data_mat.Doors_Loss_RT_t2)))];
+ngroups = size(bar_data, 1);
+nbars = size(bar_data, 2);
+% Calculating the width for each bar group
+groupwidth = min(0.8, nbars/(nbars + 1.5));
+for i = 1:nbars
+    x = (1:ngroups) - groupwidth/2 + (2*i-1) * groupwidth / (2*nbars);
+    errorbar(x, bar_data(:,i), e1(:,i), 'ko');
+end
+
+disp('Doors Losses');
+[h,p,ci,stats]=ttest(data_mat.Wins,data_mat.Losses);
+disp(h);
+disp(p);
+disp(ci);
+disp(stats);
+
