@@ -19,7 +19,7 @@ clc;
 currentdir = pwd;
 output_path = currentdir; % Set output path if you would like.
 
-input = 'istart_covariates_1may22.xlsx'; % input file  %  
+input = 'istart_covariates_1aug22.xlsx'; % input file  %  
 %input = 'istart_covariates_raw_data.xlsx';
 data = readtable(input);
 %Composite_raw = [data.('ID'), data.('BISBAS_BAS'), data.('SPSRWD'), data.('audit_standard_score'), data.('dudit_standard_score')];
@@ -31,13 +31,19 @@ AUDIT_raw = [data.audit_standard_score];
 DUDIT_raw = [data.dudit_standard_score];
 
 composite_substance = zscore(AUDIT_raw)+zscore(DUDIT_raw);
-figure, histogram(composite_substance,50); title('Substance Use Composite')
+%figure, histogram(composite_substance,50); title('Substance Use Composite')
 
 % Composite reward sensitivity
 BAS_raw = [data.BISBAS_BAS];
 SPSRWD_raw = [data.SPSRWD];
 
 compRS = zscore(BAS_raw)+zscore(SPSRWD_raw);
+% compRS_square = zeros(length(compRS),2);
+
+% for i=1:length(compRS_square)
+%     compRS_square(i,1) = compRS(i,1)*compRS(i,1);
+%     compRS_square(i,2) = compRS_square(i,1)-mean(compRS_square(:,1));
+% end
 
 normedRS = zeros(length(compRS),1); % create empty array for storing data
 deciles = prctile(compRS,[10 20 30 40 50 60 70 80 90]); % identify quintiles
