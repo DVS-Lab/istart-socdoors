@@ -21,7 +21,7 @@ subs = [1001, 1003, 1004, 1006, 1009, 1010, 1012, 1013, 1015, 1016, ...
 % Create a framework for data_mat--X columns: sub ID, RT doors after win,
 % RT doors after loss, RT social after win, RT social after loss for t+1, 
 % t+2, and t+1 relative change
-data_mat = zeros(length(subs),25);
+data_mat = zeros(length(subs),27);
 
 % Calculate avg RTs & relative change in RT
 for s = 1:length(subs)
@@ -216,6 +216,7 @@ for s = 1:length(subs)
             data_mat(s,20)=nanmean(t2_losses1(:,2));
             % Doors Loss Incong t+2
             data_mat(s,21)=nanmean(t2_losses2(:,2));
+            data_mat(s,26)=length(T.rt);
         % Repeat for social trials
         elseif f==2
             data_mat(s,4)=nanmean(win_mat(:,4));
@@ -230,6 +231,7 @@ for s = 1:length(subs)
             data_mat(s,23)=nanmean(t2_wins2(:,2));
             data_mat(s,24)=nanmean(t2_losses1(:,2));
             data_mat(s,25)=nanmean(t2_losses2(:,2));
+            data_mat(s,27)=length(T.rt);
         end
         
         % Write labels for win_mat & loss_mat dfs
@@ -242,7 +244,7 @@ end
 
 % Write labels for data_mat
 data_mat = array2table(data_mat);
-data_mat.Properties.VariableNames(1:25)={'Sub','Doors_Win_RT_t0','Doors_Loss_RT_t0','Social_Win_RT_t0','Social_Loss_RT_t0','Doors_Win_RT_t1','Doors_Loss_RT_t1','Social_Win_RT_t1','Social_Loss_RT_t1','Doors_Win_RT_t2','Doors_Loss_RT_t2','Social_Win_RT_t2','Social_Loss_RT_t2','Doors_Win_Rel_t1','Doors_Loss_Rel_t1','Social_Win_Rel_t1','Social_Loss_Rel_t1','Doors_Win_Cong_t2','Doors_Win_Incong_t2','Doors_Loss_Cong_t2','Doors_Loss_Incong_t2','Social_Win_Cong_t2','Social_Win_Incong_t2','Social_Loss_Cong_t2','Social_Loss_Incong_t2'};
+data_mat.Properties.VariableNames(1:27)={'Sub','Doors_Win_RT_t0','Doors_Loss_RT_t0','Social_Win_RT_t0','Social_Loss_RT_t0','Doors_Win_RT_t1','Doors_Loss_RT_t1','Social_Win_RT_t1','Social_Loss_RT_t1','Doors_Win_RT_t2','Doors_Loss_RT_t2','Social_Win_RT_t2','Social_Loss_RT_t2','Doors_Win_Rel_t1','Doors_Loss_Rel_t1','Social_Win_Rel_t1','Social_Loss_Rel_t1','Doors_Win_Cong_t2','Doors_Win_Incong_t2','Doors_Loss_Cong_t2','Doors_Loss_Incong_t2','Social_Win_Cong_t2','Social_Win_Incong_t2','Social_Loss_Cong_t2','Social_Loss_Incong_t2', 'Doors Length', 'Social Length'};
 
 
 %% Plots: Histogram of conditions, t+1
