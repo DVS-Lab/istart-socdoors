@@ -147,4 +147,5 @@ derivatives/fmriprep/*/func/*AROMAnoiseICs.csv
 derivatives/fmriprep/*/func/*_mask.json
 derivatives/fmriprep/*/func/*_bold.json
 sub-*.html
+files/
 *.asv
