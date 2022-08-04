@@ -49,15 +49,15 @@ normedRS = zeros(length(compRS),1); % create empty array for storing data
 deciles = prctile(compRS,[10 20 30 40 50 60 70 80 90]); % identify quintiles
 
 % place data into the appropriate quintiles
-normedRS(compRS < deciles(1),1) = 1;
-normedRS(compRS >= deciles(1) & compRS < deciles(2),1) = 2;
-normedRS(compRS >= deciles(2) & compRS < deciles(3),1) = 3;
-normedRS(compRS >= deciles(3) & compRS < deciles(4),1) = 4;
-normedRS(compRS >= deciles(4) & compRS < deciles(5),1) = 5;
-normedRS(compRS >= deciles(5) & compRS < deciles(6),1) = 6;
-normedRS(compRS >= deciles(6) & compRS < deciles(7),1) = 7;
-normedRS(compRS >= deciles(7) & compRS < deciles(8),1) = 8;
-normedRS(compRS >= deciles(8) & compRS < deciles(9),1) = 9;
+normedRS(compRS <= deciles(1),1) = 1;
+normedRS(compRS > deciles(1) & compRS <= deciles(2),1) = 2;
+normedRS(compRS > deciles(2) & compRS <= deciles(3),1) = 3;
+normedRS(compRS > deciles(3) & compRS <= deciles(4),1) = 4;
+normedRS(compRS > deciles(4) & compRS <= deciles(5),1) = 5;
+normedRS(compRS > deciles(5) & compRS <= deciles(6),1) = 6;
+normedRS(compRS > deciles(6) & compRS <= deciles(7),1) = 7;
+normedRS(compRS > deciles(7) & compRS <= deciles(8),1) = 8;
+normedRS(compRS > deciles(8) & compRS <= deciles(9),1) = 9;
 normedRS(compRS >= deciles(9),1) = 10;
 RS_deciles = [data.ID, normedRS];
 
