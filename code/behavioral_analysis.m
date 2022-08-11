@@ -21,7 +21,7 @@ subs = [1001, 1003, 1004, 1006, 1009, 1010, 1012, 1013, 1015, 1016, ...
 % Create a framework for data_mat--X columns: sub ID, RT doors after win,
 % RT doors after loss, RT social after win, RT social after loss for t+1, 
 % t+2, and t+1 relative change
-data_mat = zeros(length(subs),27);
+data_mat = zeros(length(subs),29);
 
 % Calculate avg RTs & relative change in RT
 for s = 1:length(subs)
@@ -242,10 +242,20 @@ for s = 1:length(subs)
     end
 end
 
+% Calculate percent RT change
+% Percent change = (win(t+1) - loss(t+1)) / win(t+1)
+for k = 1:length(data_mat(:,6))
+    data_mat(k,28) = (data_mat(k,6) - data_mat(k,7))/data_mat(k,6);
+    data_mat(k,29) = (data_mat(k,8) - data_mat(k,9))/data_mat(k,8);
+end
+
+
 % Write labels for data_mat
 data_mat = array2table(data_mat);
-data_mat.Properties.VariableNames(1:27)={'Sub','Doors_Win_RT_t0','Doors_Loss_RT_t0','Social_Win_RT_t0','Social_Loss_RT_t0','Doors_Win_RT_t1','Doors_Loss_RT_t1','Social_Win_RT_t1','Social_Loss_RT_t1','Doors_Win_RT_t2','Doors_Loss_RT_t2','Social_Win_RT_t2','Social_Loss_RT_t2','Doors_Win_Rel_t1','Doors_Loss_Rel_t1','Social_Win_Rel_t1','Social_Loss_Rel_t1','Doors_Win_Cong_t2','Doors_Win_Incong_t2','Doors_Loss_Cong_t2','Doors_Loss_Incong_t2','Social_Win_Cong_t2','Social_Win_Incong_t2','Social_Loss_Cong_t2','Social_Loss_Incong_t2', 'Doors Length', 'Social Length'};
+data_mat.Properties.VariableNames(1:29)={'Sub','Doors_Win_RT_t0','Doors_Loss_RT_t0','Social_Win_RT_t0','Social_Loss_RT_t0','Doors_Win_RT_t1','Doors_Loss_RT_t1','Social_Win_RT_t1','Social_Loss_RT_t1','Doors_Win_RT_t2','Doors_Loss_RT_t2','Social_Win_RT_t2','Social_Loss_RT_t2','Doors_Win_Rel_t1','Doors_Loss_Rel_t1','Social_Win_Rel_t1','Social_Loss_Rel_t1','Doors_Win_Cong_t2','Doors_Win_Incong_t2','Doors_Loss_Cong_t2','Doors_Loss_Incong_t2','Social_Win_Cong_t2','Social_Win_Incong_t2','Social_Loss_Cong_t2','Social_Loss_Incong_t2', 'Doors Length', 'Social Length', 'Percent_Change_Doors', 'Percent_Change_Soc'};
 
+filename = 'RT_data.xlsx';
+writetable(data_mat,filename,'Sheet',1,'Range','D1')
 
 %% Plots: Histogram of conditions, t+1
 figure
