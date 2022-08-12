@@ -8,7 +8,7 @@ MAINDIR=/data/projects/istart-socdoors/derivatives/fsl
 
 robust="no"
 
-for modelnum in 5; do
+for modelnum in 4 5; do
 	#for type in "act"; do	
 	for type in "act" "nppi-dmn" "ppi_seed-VS_thr5"; do
 
