@@ -65,8 +65,12 @@ for s = 1:length(subs)
 
         % Prespecify matrices
         win_mat = zeros(30,6);
+        doors_wint1 = zeros(30,1);
+        social_wint1 = zeros(30,1);
         w = 1;
         loss_mat = zeros(30,6);
+        doors_loss = zeros(30,1);
+        social_loss = zeros(30,1);
         l = 1;
 
         % Loop through individual trials within subs
@@ -98,6 +102,11 @@ for s = 1:length(subs)
         
                 % Record RT at t+1
                 win_mat(w,5) = T.rt(t+1);
+                if f==1
+                    doors_wint1(w,1) = T.rt(t+1);
+                else
+                    social_wint1(w,1) = T.rt(t+1);
+                end
 
                 % Record RT at t+2
                 if t < (length(T.rt)-2)
@@ -132,6 +141,11 @@ for s = 1:length(subs)
                 end
                 loss_mat(l,4) = T.rt(t-1);
                 loss_mat(l,5) = T.rt(t+1);
+                if f==1
+                    doors_loss1(w,1) = T.rt(t+1);
+                else
+                    social_losst1(w,1) = T.rt(t+1);
+                end
                 if t < (length(T.rt)-2)
                     loss_mat(l,6) = T.rt(t+3);
                 else
@@ -244,6 +258,10 @@ end
 
 % Calculate percent RT change
 % Percent change = (win(t+1) - loss(t+1)) / win(t+1)
+
+% Make sure to double that these columns & vars match up correctly; Write
+% these as vars instead of using column index
+
 for k = 1:length(data_mat(:,6))
     data_mat(k,28) = (data_mat(k,6) - data_mat(k,7))/data_mat(k,6);
     data_mat(k,29) = (data_mat(k,8) - data_mat(k,9))/data_mat(k,8);
