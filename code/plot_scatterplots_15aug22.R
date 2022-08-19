@@ -35,7 +35,7 @@ crPlots(model1)
 # Cluster Cerebellum
 model2 <- lm(aug22_task_socialdoors_model_4_type_nppi_dmn_cnum_4_thresh_clustere_corrp_tstat13 ~
                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq + RT, data=socialdoors_model4)
-crPlots(model2)
+crPlots(model2, order=2)
 
 # Vox Cerebellum
 model3 <- lm(aug22_task_socialdoors_model_4_type_act_cnum_4_thresh_vox_corrp_tstat7 ~
