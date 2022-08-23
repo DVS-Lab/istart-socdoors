@@ -7,7 +7,7 @@ maindir="$(dirname "$scriptdir")"
 # base paths
 #for TASK in social+doors social-doors; do
 #for TASK in socialdoors; do
-	MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-3_task-${TASK}_n46_flame1+2
+	#MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-3_task-${TASK}_n46_flame1+2
 	#MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-3_task-${TASK}_n92_flame1+2_randomise
 	outputdir=${maindir}/derivatives/imaging_plots
 	mkdir -p $outputdir
@@ -28,7 +28,7 @@ maindir="$(dirname "$scriptdir")"
 					COPENUM=$1
 					COPENAME=$2
 			
-					DATA=`ls -1 ${MAINOUTPUT}/L3_task-${TASK}_type-${TYPE}_cnum-${COPENUM}_cname-${COPENAME}_flame1+2_robust.gfeat/cope1.feat/stats/tstat7.nii.gz`
+					#DATA=`ls -1 ${MAINOUTPUT}/L3_task-${TASK}_type-${TYPE}_cnum-${COPENUM}_cname-${COPENAME}_flame1+2_robust.gfeat/cope1.feat/stats/tstat7.nii.gz`
 					#DATA=`ls -1 ${MAINOUTPUT}/L3_model-3_task-${TASK}_type-${TYPE}_cnum-${COPENUM}_cname-${COPENAME}_randomise/type-act_model-3_randomise_filteredfunc_diff.nii.gz`			
 					#DATA=`ls -1 ${MAINOUTPUT}/L3_model-3_task-${TASK}_type-${TYPE}_cnum-${COPENUM}_cname-${COPENAME}_randomise/_tstat5.nii.gz`			
 					fslmeants -i $DATA -o ${outputdir}/${ROI}_task-${TASK}_type-${TYPE}_cope-${COPENUM}.txt -m ${MASK}
