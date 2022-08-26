@@ -18,9 +18,12 @@ library("car")
 df <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/code/correlations_istart-covars_full.xlsx")
 head(df)
 
+df2 <- read_excel("~/Desktop/ISTART-ALL-Combined-042122_2.xlsx")
+head(df2)
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Correlation Heat Maps
-cormat <- round(cor(df),2)
+cormat <- round(cor(df2),2)
 head(cormat)
 
 melted_cormat <- melt(cormat)
