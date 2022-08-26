@@ -15,12 +15,14 @@ library("interactions")
 library("car")
 
 # import data:
-df <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/code/correlations_istart-covars_full.xlsx")
-head(df)
+#df <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/code/correlations_istart-covars_full.xlsx")
+#head(df)
 
 df2 <- read_excel("~/Desktop/ISTART-ALL-Combined-042122_2.xlsx")
 head(df2)
+socialdoors_model4 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/imaging_plots/istart_covariates_socialdoors_4.xlsx")
 
+model1 <- socialdoors_model4
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Correlation Heat Maps
 cormat <- round(cor(df2),2)

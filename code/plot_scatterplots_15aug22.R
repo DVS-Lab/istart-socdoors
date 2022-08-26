@@ -28,7 +28,10 @@ socialanddoors_model2 <- read_excel("~/Documents/Documents_Air/Github/istart-soc
 # Cluster tstat 8 (SU-neg) Lateral Occipital Cortex
 model1 <- lm(aug22_task_socialdoors_model_2_type_act_cnum_4_thresh_clustere_corrp_tstat8 ~
                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=socialdoors_model2)
-crPlots(model1, smooth=FALSE)
+summary(model1)
+
+crModel <- crPlots(model1, smooth=FALSE)
+summary(crModel)
 
 # Socialdoors Model 4 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
