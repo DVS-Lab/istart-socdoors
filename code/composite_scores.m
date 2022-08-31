@@ -19,7 +19,7 @@ clc;
 currentdir = pwd;
 output_path = currentdir; % Set output path if you would like.
 
-input = 'istart_covariates_1aug22.xlsx'; % input file  %  
+input = 'istart_covariates_composites_raw_30aug22.xlsx'; % input file  %  
 %input = 'istart_covariates_raw_data.xlsx';
 data = readtable(input);
 %Composite_raw = [data.('ID'), data.('BISBAS_BAS'), data.('SPSRWD'), data.('audit_standard_score'), data.('dudit_standard_score')];
@@ -30,7 +30,8 @@ data = readtable(input);
 AUDIT_raw = [data.audit_standard_score];
 DUDIT_raw = [data.dudit_standard_score];
 
-composite_substance = zscore(AUDIT_raw)+zscore(DUDIT_raw);
+%composite_substance = zscore(AUDIT_raw)+zscore(DUDIT_raw);
+composite_audit = zscore(AUDIT_raw);
 %figure, histogram(composite_substance,50); title('Substance Use Composite')
 
 % Composite reward sensitivity
