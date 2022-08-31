@@ -21,11 +21,18 @@ library("car")
 df2 <- read_excel("~/Desktop/ISTART-ALL-Combined-042122_2.xlsx")
 head(df2)
 socialdoors_model4 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/imaging_plots/istart_covariates_socialdoors_4.xlsx")
+socialdoors_model4 <- socialdoors_model4[-c(15,21),]
 
-model1 <- socialdoors_model4
+model1 <- data.frame(socialdoors_model4$tsnr, socialdoors_model4$fd_mean, df2$score_susd_mania, df2$score_susd_depress)
+model2 <- data.frame(socialdoors_model4$tsnr, socialdoors_model4$fd_mean, df2$audit_standard_score)
+model3 <- data.frame(socialdoors_model4$tsnr, socialdoors_model4$fd_mean, socialdoors_model4$RS, socialdoors_model4$RS_square, df2$audit_standard_score, df2$score_susd_mania, df2$score_susd_depress)
+
+hist(df2$score_susd_mania)
+hist(df2$score_susd_depress)
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Correlation Heat Maps
-cormat <- round(cor(df2),2)
+cormat <- round(cor(model3),2)
 head(cormat)
 
 melted_cormat <- melt(cormat)
