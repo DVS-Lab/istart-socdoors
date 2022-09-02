@@ -19,7 +19,8 @@ clc;
 currentdir = pwd;
 output_path = currentdir; % Set output path if you would like.
 
-input = 'istart_covariates_composites_raw_30aug22.xlsx'; % input file  %  
+input = 'ISTART-ALL-Combined-042122.xlsx';
+%input = 'istart_covariates_composites_raw_30aug22.xlsx'; % input file  %  
 %input = 'istart_covariates_raw_data.xlsx';
 data = readtable(input);
 %Composite_raw = [data.('ID'), data.('BISBAS_BAS'), data.('SPSRWD'), data.('audit_standard_score'), data.('dudit_standard_score')];
@@ -29,6 +30,12 @@ data = readtable(input);
 % Composite substance use score
 AUDIT_raw = [data.audit_standard_score];
 DUDIT_raw = [data.dudit_standard_score];
+
+mania_raw = [data.score_susd_mania];
+depress_raw = [data.score_susd_depress];
+
+composite_susd = zscore(mania_raw)+zscore(depress_raw);
+figure, histogram(composite_susd,50); title('Composite SUSD')
 
 %composite_substance = zscore(AUDIT_raw)+zscore(DUDIT_raw);
 composite_audit = zscore(AUDIT_raw);
