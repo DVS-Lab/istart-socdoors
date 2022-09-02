@@ -9,7 +9,7 @@ scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 maindir="$(dirname "$scriptdir")"
 outputdir=${maindir}/derivatives/imaging_plots
 
-for model in 2 3 4 5; do
+for model in 6 7 8 9 10; do
 	for type in "act" "nppi-dmn" "ppi_seed-VS_thr5"; do
 		
 		# Specify number of contrasts to evaluate based on model number
@@ -25,6 +25,21 @@ for model in 2 3 4 5; do
 		if [ $model -eq 5 ]; then
 			cnum=(3 4 5 6 7 8 9 10)
 		fi		
+		if [ $model -eq 6 ]; then
+			cnum=(3 4 5 6 7 8 9 10)
+		fi	
+		if [ $model -eq 7 ]; then
+			cnum=(3 4 5 6 7 8)
+		fi	
+		if [ $model -eq 8 ]; then
+			cnum=(3 4 5 6 7 8)
+		fi	
+		if [ $model -eq 9 ]; then
+			cnum=(3 4 5 6 7 8 9 10 11 12)
+		fi
+		if [ $model -eq 10 ]; then
+			cnum=(3 4 5 6 7 8 9 10 11 12)
+		fi				
 		
 		# Print the model number as a reference when reading through output
 		echo "~~~~~~Model ${model}, type ${type}~~~~~~"
@@ -33,20 +48,20 @@ for model in 2 3 4 5; do
 		for num in ${cnum[@]}; do			
 
 			# For randomise models	
-			task="social+doors"
-			n="46"
+			task="socialdoors"
+			n="92"
 			for img in "clustere" "tfce" "vox"; do 
-				for tfile in ${maindir}/derivatives/fsl/L3_model-${model}_task-${task}_n${n}_flame1+2_randomise2/L3_model-${model}_task-${task}_type-${type}_cnum-4_cname-win-loss_randomise/_${img}_corrp_tstat${num}.nii.gz; do
-					fslmaths ${tfile} -thr .95 ${maindir}/derivatives/fsl/L3_model-${model}_task-${task}_n${n}_flame1+2_randomise2/L3_model-${model}_task-${task}_type-${type}_cnum-4_cname-win-loss_randomise/thresh_${img}_corrp_tstat${num}.nii.gz
-					var=$(fslstats ${maindir}/derivatives/fsl/L3_model-${model}_task-${task}_n${n}_flame1+2_randomise2/L3_model-${model}_task-${task}_type-${type}_cnum-4_cname-win-loss_randomise/thresh_${img}_corrp_tstat${num}.nii.gz -R)
+				for tfile in ${maindir}/derivatives/fsl/L3_model-${model}_task-${task}_n${n}_flame1+2_randomise/L3_model-${model}_task-${task}_type-${type}_cnum-4_cname-win-loss_randomise/_${img}_corrp_tstat${num}.nii.gz; do
+					fslmaths ${tfile} -thr .95 ${maindir}/derivatives/fsl/L3_model-${model}_task-${task}_n${n}_flame1+2_randomise/L3_model-${model}_task-${task}_type-${type}_cnum-4_cname-win-loss_randomise/thresh_${img}_corrp_tstat${num}.nii.gz
+					var=$(fslstats ${maindir}/derivatives/fsl/L3_model-${model}_task-${task}_n${n}_flame1+2_randomise/L3_model-${model}_task-${task}_type-${type}_cnum-4_cname-win-loss_randomise/thresh_${img}_corrp_tstat${num}.nii.gz -R)
 					yvar=$(echo ${var} | awk '{print $2}')
 					if [ $yvar == "0.000000" ]; then
 #						echo "No significant results for L3_model-${model}_task-socialdoors_type-${type}_cnum-4_cname-win-loss_randomise/thresh_${img}_corrp_tstat${num}.nii.gz"
-						rm ${maindir}/derivatives/fsl/L3_model-${model}_task-${task}_n${n}_flame1+2_randomise2/L3_model-${model}_task-${task}_type-${type}_cnum-4_cname-win-loss_randomise/thresh_${img}_corrp_tstat${num}.nii.gz
+						rm ${maindir}/derivatives/fsl/L3_model-${model}_task-${task}_n${n}_flame1+2_randomise/L3_model-${model}_task-${task}_type-${type}_cnum-4_cname-win-loss_randomise/thresh_${img}_corrp_tstat${num}.nii.gz
 					fi
 					if [ $yvar != "0.000000" ]; then
-						#fslmaths ${maindir}/derivatives/fsl/L3_model-${model}_task-${task}_n${n}_flame1+2_randomise2/L3_model-${model}_task-${task}_type-${type}_cnum-4_cname-win-loss_randomise/thresh_${img}_corrp_tstat${num}.nii.gz -bin ${maindir}/masks/15aug22_socialdoors_model-${model}_type-${type}_cnum-4_thresh_${img}_corrp_tstat${num}.nii.gz
-						#fslmeants -i ${maindir}/derivatives/fsl/L3_model-${model}_task-${task}_n${n}_flame1+2_randomise2/L3_model-${model}_task-${task}_type-${type}_cnum-4_cname-win-loss_randomise/type-${type}_model-${model}_randomise_filteredfunc_diff.nii.gz -o ${outputdir}/15aug22_task-${task}_model-${model}_type-${type}_cnum-4_thresh_${img}_corrp_tstat${num}.txt -m ${maindir}/masks/15aug22_${task}_model-${model}_type-${type}_cnum-4_thresh_${img}_corrp_tstat${num}.nii.gz
+						fslmaths ${maindir}/derivatives/fsl/L3_model-${model}_task-${task}_n${n}_flame1+2_randomise/L3_model-${model}_task-${task}_type-${type}_cnum-4_cname-win-loss_randomise/thresh_${img}_corrp_tstat${num}.nii.gz -bin ${maindir}/masks/2sept22_socialdoors_model-${model}_type-${type}_cnum-4_thresh_${img}_corrp_tstat${num}.nii.gz
+						fslmeants -i ${maindir}/derivatives/fsl/L3_model-${model}_task-${task}_n${n}_flame1+2_randomise/L3_model-${model}_task-${task}_type-${type}_cnum-4_cname-win-loss_randomise/type-${type}_model-${model}_randomise_filteredfunc_diff.nii.gz -o ${outputdir}/2sept22_task-${task}_model-${model}_type-${type}_cnum-4_thresh_${img}_corrp_tstat${num}.txt -m ${maindir}/masks/2sept22_${task}_model-${model}_type-${type}_cnum-4_thresh_${img}_corrp_tstat${num}.nii.gz
 						echo "Significant cluster(s) found for thresh_${tfile}"					
 					fi
 				done
