@@ -70,6 +70,9 @@ ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
                                    size = 12, hjust = 1))+
   coord_fixed()
 
+plot(x=df2$score_susd_mania, y=df2$score_susd_depress)+
+  abline(lm(df2$score_susd_mania~df2$score_susd_depress), col="blue") # regression line (y~x)
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ANOVA models
 
