@@ -13,26 +13,32 @@ library("hrbrthemes")
 library("umx")
 library("interactions")
 library("car")
+library("ggscatter")
 
 # import data:
-#df <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/code/correlations_istart-covars_full.xlsx")
-#head(df)
+df <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/code/correlations_istart-covars_full.xlsx")
+head(df)
 
-df2 <- read_excel("~/Desktop/ISTART-ALL-Combined-042122_2.xlsx")
-head(df2)
-socialdoors_model4 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/imaging_plots/istart_covariates_socialdoors_4.xlsx")
-socialdoors_model4 <- socialdoors_model4[-c(15,21),]
+#df2 <- read_excel("~/Desktop/ISTART-ALL-Combined-042122_2.xlsx")
+#head(df2)
+#socialdoors_model4 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/imaging_plots/istart_covariates_socialdoors_4.xlsx")
+#socialdoors_model4 <- socialdoors_model4[-c(15,21),]
 
-model1 <- data.frame(socialdoors_model4$tsnr, socialdoors_model4$fd_mean, df2$score_susd_mania, df2$score_susd_depress)
-model2 <- data.frame(socialdoors_model4$tsnr, socialdoors_model4$fd_mean, df2$audit_standard_score)
-model3 <- data.frame(socialdoors_model4$tsnr, socialdoors_model4$fd_mean, socialdoors_model4$RS, socialdoors_model4$RS_square, df2$audit_standard_score, df2$score_susd_mania, df2$score_susd_depress)
+rtdf <- read_excel("~/Desktop/manuscript_draft_istart/RT_data.xlsx")
 
-hist(df2$score_susd_mania)
-hist(df2$score_susd_depress)
+#model1 <- data.frame(socialdoors_model4$tsnr, socialdoors_model4$fd_mean, df2$score_susd_mania, df2$score_susd_depress)
+#model2 <- data.frame(socialdoors_model4$tsnr, socialdoors_model4$fd_mean, df2$audit_standard_score)
+#model3 <- data.frame(socialdoors_model4$tsnr, socialdoors_model4$fd_mean, socialdoors_model4$RS, socialdoors_model4$RS_square, df2$audit_standard_score, df2$score_susd_mania, df2$score_susd_depress)
+
+model <- data.frame(df$RS, df$RS_square, df$SU, rtdf$Percent_Change_Doors, rtdf$Percent_Change_Soc, rtdf$RT_soc_minus_doors)
+model
+
+#hist(df2$score_susd_mania)
+#hist(df2$score_susd_depress)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Correlation Heat Maps
-cormat <- round(cor(model3),2)
+cormat <- round(cor(model),2)
 head(cormat)
 
 melted_cormat <- melt(cormat)
@@ -70,8 +76,36 @@ ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
                                    size = 12, hjust = 1))+
   coord_fixed()
 
-plot(x=df2$score_susd_mania, y=df2$score_susd_depress)+
-  abline(lm(df2$score_susd_mania~df2$score_susd_depress), col="blue") # regression line (y~x)
+
+# Scatterplots
+
+sp <- ggscatter(model, x = "df.RS", y = "rtdf.RT_soc_minus_doors",
+                add = "reg.line",
+                add.params = list(color = "blue", fill = "lightgray"),
+                conf.int=TRUE,
+                ylab="RT (social>monetary)",
+                xlab="RS (linear)"
+                )
+sp + stat_cor(method = "pearson")
+
+sp <- ggscatter(model, x = "df.RS_square", y = "rtdf.RT_soc_minus_doors",
+                add = "reg.line",
+                add.params = list(color = "blue", fill = "lightgray"),
+                conf.int=TRUE,
+                ylab="RT (social>monetary)",
+                xlab="RS (quadratic)"
+)
+sp + stat_cor(method = "pearson")
+
+sp <- ggscatter(model, x = "df.SU", y = "rtdf.RT_soc_minus_doors",
+                add = "reg.line",
+                add.params = list(color = "blue", fill = "lightgray"),
+                conf.int=TRUE,
+                ylab="RT (social>monetary)",
+                xlab="Substance"
+)
+sp + stat_cor(method = "pearson")
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ANOVA models

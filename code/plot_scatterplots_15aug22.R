@@ -22,13 +22,17 @@ socialanddoors_model4 <- read_excel("~/Documents/Documents_Air/Github/istart-soc
 socialanddoors_model3 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/imaging_plots/istart_covariates_social+doors_3.xlsx")
 socialanddoors_model2 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/imaging_plots/istart_covariates_social+doors_2.xlsx")
 
-all_istart <- read_excel("~/Desktop/ISTART-ALL-Combined-042122.xlsx")
+all_istart <- read_excel("~/Desktop/manuscript_draft_istart/ISTART-ALL-Combined-042122.xlsx")
 
 hist(all_istart$score_susd_mania, ylim=c(0,25), xlim=c(0,20))
 hist(all_istart$score_susd_depress, ylim=c(0,25), xlim=c(0,20))
 
 socialdoors_model10 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/code/istart_covariates_2sept22_model-10.xlsx")
 socialdoors_model9 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/code/istart_covariates_2sept22_model-9.xlsx")
+
+# Correlations with RT:
+# RT & RS or Substance Use? Any other relevant measures? Anything in the brain?
+# Send this to Camille too
 
 # Socialdoors Model 10
 model1 <- lm(sept22_task_socialdoors_model_10_type_act_cnum_4_thresh_tfce_corrp_tstat7 ~
