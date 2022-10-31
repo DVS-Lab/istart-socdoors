@@ -16,6 +16,8 @@ subs = [1001, 1003, 1004, 1006, 1009, 1010, 1012, 1013, 1015, 1016, ...
     3140, 3143, 3166, 3167, 3170, 3173, 3175, 3176, 3189, 3190, ...
     3200, 3206, 3212, 3220];
 
+
+
 %% No user input required after this line
 
 % Create a framework for data_mat--X columns: sub ID, RT doors after win,
