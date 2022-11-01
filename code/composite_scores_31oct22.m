@@ -25,6 +25,10 @@ Composite_raw = [data.('ID'), data.('BISBAS_BAS'), data.('SPSRWD')];
 AUDIT_raw = [data.('ID'), data.('audit_standard_score')];
 DUDIT_raw = [data.('ID'), data.('dudit_standard_score')];
 
+figure,histogram(data.('BISBAS_BAS'),50);title('BAS')
+figure,histogram(data.('SPSRWD'),50);title('SPSRWD')
+
+
 subjects = [1001, 1003, 1004, 1006, 1009, 1010, 1012, 1013, 1015, 1016, 1019, 1021, 1242, 1243, 1244, 1245, 1247, 1248, 1249, 1251, 1255, 1276, 1286, 1294, 1301, 1302, 1303, 3116, 3122, 3125, 3140, 3143, 3166, 3167, 3170, 3173, 3175, 3176, 3189, 3190, 3200, 3206, 3212, 3220];
 
 % Missing: 1002 1007 (AUDIT)
@@ -90,8 +94,8 @@ end
 
 compRS = zscore(Composite_final(:,2)) + zscore(Composite_final(:,3)); % combine measures for your final data
 
-figure, hist(compRS,50); title('Composite') % look at your data
-figure, hist(compRS.^2,50); title('Composite Squared') % look at your data squared
+figure, histogram(compRS,50); title('Composite') % look at your data
+figure, histogram(compRS.^2,50); title('Composite Squared') % look at your data squared
 
 normedRS = zeros(length(compRS),1); % create empty array for storing data
 deciles = prctile(compRS,[10 20 30 40 50 60 70 80 90]); % identify quintiles
@@ -127,7 +131,15 @@ name = ('Composite_Reward.xlsx');
 fileoutput = [output_path, name];
 writetable(Composite_final_output, fileoutput); % Save as csv file
 
+% visualizing results: normed to composites
+figure, scatter(compRS, normedRS); title('1st Order RS'); xlabel('comp RS'); ylabel('normed RS')
+compRS_square = compRS.^2;
+compRS_square = compRS_square-mean(compRS_square);
+figure, scatter(compRS_square, normedRS_square); title('2nd Order RS'); xlabel('comp RS square'); ylabel('normed RS square')
 
+% visualizing: 2nd order to 1st order
+figure, scatter(compRS, compRS_square); title('Composites'); xlabel('comp RS'); ylabel('comp RS square')
+figure, scatter(normedRS, normedRS_square); title('Normed'); xlabel('normed RS'); ylabel('normed RS square')
 
 %end
 
@@ -171,7 +183,7 @@ end
 comp_SU = zscore(AUDIT_final(:,2)) + zscore(DUDIT_final(:,2)); % combine measures for your final data
 
 figure, hist(comp_SU,50); title('Composite') % look at your data
-figure, hist(comp_SU.^2,50); title('Composite Squared') % look at your data squared
+%figure, hist(comp_SU.^2,50); title('Composite Squared') % look at your data squared
 
 % normed_comp_SU = zeros(length(compRS),1); % create empty array for storing data
 % deciles = prctile(compRS,[10 20 30 40 50 60 70 80 90]); % identify quintiles
@@ -188,6 +200,9 @@ figure, hist(comp_SU.^2,50); title('Composite Squared') % look at your data squa
 % normed_comp_SU(comp_SU >= deciles(8) & comp_SU < deciles(9),1) = 9;
 % normed_comp_SU(comp_SU >= deciles(9),1) = 10;
 %% 
+
+figure, histogram(AUDIT_final(:,2),50);title('AUDIT')
+figure, histogram(DUDIT_final(:,2),50);title('DUDIT')
 
 % figure, hist(normed_comp_SU,50); title('Normed Composite') % look at your data
 % figure, hist(normed_comp_SU.^2,50); title('Normed Composite Squared') % look at your data squared
