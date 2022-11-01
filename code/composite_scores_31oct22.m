@@ -118,13 +118,16 @@ normedRS = normedRS-mean(normedRS);
 normedRS_square = normedRS.^2;
 normedRS_square = normedRS_square-mean(normedRS_square);
 figure, hist(normedRS,50); title('Normed Composite') % look at your data
-figure, hist(normedRS.^2,50); title('Normed Composite Squared') % look at your data squared
+%figure, hist(normedRS.^2,50); title('Normed Composite Squared') % look at your data squared
+figure, hist(normedRS_square,50); title('Normed Composite Squared')
 Combined_reward = [Composite_final(:,1), normedRS, normedRS.^2]; % Pairs subject numbers with RS scores. 
 Composite_final_output = array2table(Combined_reward(1:end,:),'VariableNames', {'Subject', 'Composite_Reward', 'Composite_Reward_Squared'});
 
 name = ('Composite_Reward.xlsx');
 fileoutput = [output_path, name];
 writetable(Composite_final_output, fileoutput); % Save as csv file
+
+
 
 %end
 
