@@ -17,12 +17,36 @@ library("car")
 # import data
 socialdoors_model4 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/imaging_plots/istart_covariates_socialdoors_4.xlsx")
 socialdoors_model2 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/imaging_plots/istart_covariates_socialdoors_2.xlsx")
+
+# Socialdoors Model 2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Cluster tstat 8 (SU-neg) Lateral Occipital Cortex
+model1 <- lm(aug22_task_socialdoors_model_2_type_act_cnum_4_thresh_clustere_corrp_tstat8 ~
+               tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=socialdoors_model2)
+summary(model1)
+
+# Partial Residual Plot
+crModel <- crPlots(model1, 
+                   smooth=FALSE, 
+                   col=carPalette()[8], 
+                   col.lines=carPalette()[8],
+                   pch=16,
+                   lwd=1,
+                   grid=FALSE
+                   )
+
+summary(crModel)
+
+#hist(socialdoors_model2$SU)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 socialanddoors_model5 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/imaging_plots/istart_covariates_social+doors_5.xlsx")
 socialanddoors_model4 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/imaging_plots/istart_covariates_social+doors_4.xlsx")
 socialanddoors_model3 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/imaging_plots/istart_covariates_social+doors_3.xlsx")
 socialanddoors_model2 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/imaging_plots/istart_covariates_social+doors_2.xlsx")
 
-all_istart <- read_excel("~/Desktop/manuscript_draft_istart/ISTART-ALL-Combined-042122.xlsx")
+#all_istart <- read_excel("~/Desktop/manuscript_draft_istart/ISTART-ALL-Combined-042122.xlsx")
 
 hist(all_istart$score_susd_mania, ylim=c(0,25), xlim=c(0,20))
 hist(all_istart$score_susd_depress, ylim=c(0,25), xlim=c(0,20))
@@ -43,17 +67,7 @@ hist(socialdoors_model10$composite_susd)
 
 crPlots(model1, smooth=FALSE)
 
-# Socialdoors Model 2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Cluster tstat 8 (SU-neg) Lateral Occipital Cortex
-model1 <- lm(aug22_task_socialdoors_model_2_type_act_cnum_4_thresh_clustere_corrp_tstat8 ~
-               tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=socialdoors_model2)
-summary(model1)
-
-crModel <- crPlots(model1, smooth=FALSE)
-summary(crModel)
-
-hist(socialdoors_model2$SU)
 
 # Socialdoors Model 4 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

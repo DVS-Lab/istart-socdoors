@@ -47,12 +47,10 @@ BAS_raw = [data.BISBAS_BAS];
 SPSRWD_raw = [data.SPSRWD];
 
 compRS = zscore(BAS_raw)+zscore(SPSRWD_raw);
-compRS_square = zeros(length(compRS),2);
+%compRS_square = zeros(length(compRS),2);
 
-for i=1:length(compRS_square)
-    compRS_square(i,1) = compRS(i,1)*compRS(i,1);
-    compRS_square(i,2) = compRS_square(i,1)-mean(compRS_square(:,1));
-end
+figure, histogram(compRS,50); title('Composite');
+figure, histogram(compRS.^2,50); title('Composite Squared');
 
 normedRS = zeros(length(compRS),1); % create empty array for storing data
 deciles = prctile(compRS,[10 20 30 40 50 60 70 80 90]); % identify deciles
@@ -70,29 +68,40 @@ normedRS(compRS > deciles(8) & compRS <= deciles(9),1) = 9;
 normedRS(compRS >= deciles(9),1) = 10;
 RS_deciles = [data.ID, normedRS];
 
-normedRS_square = zeros(length(compRS_square(:,2)),1); % create empty array for storing data
-deciles_square = prctile(compRS_square(:,2),[10 20 30 40 50 60 70 80 90]); % identify deciles
 
-% place 2nd order data into appropriate deciles
-normedRS_square(compRS_square(:,2) <= deciles_square(1),1) = 1;
-normedRS_square(compRS_square(:,2) > deciles_square(1) & compRS_square(:,2) <= deciles_square(2),1) = 2;
-normedRS_square(compRS_square(:,2) > deciles_square(2) & compRS_square(:,2) <= deciles_square(3),1) = 3;
-normedRS_square(compRS_square(:,2) > deciles_square(3) & compRS_square(:,2) <= deciles_square(4),1) = 4;
-normedRS_square(compRS_square(:,2) > deciles_square(4) & compRS_square(:,2) <= deciles_square(5),1) = 5;
-normedRS_square(compRS_square(:,2) > deciles_square(5) & compRS_square(:,2) <= deciles_square(6),1) = 6;
-normedRS_square(compRS_square(:,2) > deciles_square(6) & compRS_square(:,2) <= deciles_square(7),1) = 7;
-normedRS_square(compRS_square(:,2) > deciles_square(7) & compRS_square(:,2) <= deciles_square(8),1) = 8;
-normedRS_square(compRS_square(:,2) > deciles_square(8) & compRS_square(:,2) <= deciles_square(9),1) = 9;
-normedRS_square(compRS_square(:,2) >= deciles_square(9),1) = 10;
-RS_deciles_square = [data.ID, normedRS_square];
+
+%for i=1:length(compRS_square)
+%    compRS_square(i,1) = compRS(i,1)*compRS(i,1);
+%    compRS_square(i,2) = compRS_square(i,1)-mean(compRS_square(:,1));
+%end
+
+%normedRS_square = zeros(length(compRS_square(:,2)),1); % create empty array for storing data
+%deciles_square = prctile(compRS_square(:,2),[10 20 30 40 50 60 70 80 90]); % identify deciles
+
+% % place 2nd order data into appropriate deciles
+% normedRS_square(compRS_square(:,2) <= deciles_square(1),1) = 1;
+% normedRS_square(compRS_square(:,2) > deciles_square(1) & compRS_square(:,2) <= deciles_square(2),1) = 2;
+% normedRS_square(compRS_square(:,2) > deciles_square(2) & compRS_square(:,2) <= deciles_square(3),1) = 3;
+% normedRS_square(compRS_square(:,2) > deciles_square(3) & compRS_square(:,2) <= deciles_square(4),1) = 4;
+% normedRS_square(compRS_square(:,2) > deciles_square(4) & compRS_square(:,2) <= deciles_square(5),1) = 5;
+% normedRS_square(compRS_square(:,2) > deciles_square(5) & compRS_square(:,2) <= deciles_square(6),1) = 6;
+% normedRS_square(compRS_square(:,2) > deciles_square(6) & compRS_square(:,2) <= deciles_square(7),1) = 7;
+% normedRS_square(compRS_square(:,2) > deciles_square(7) & compRS_square(:,2) <= deciles_square(8),1) = 8;
+% normedRS_square(compRS_square(:,2) > deciles_square(8) & compRS_square(:,2) <= deciles_square(9),1) = 9;
+% normedRS_square(compRS_square(:,2) >= deciles_square(9),1) = 10;
+% RS_deciles_square = [data.ID, normedRS_square];
 
 % Plot RS
+normedRS = normedRS - mean(normedRS);
 figure, histogram(normedRS,50); title('Normed Composite RS') % look at your data
-figure, histogram(compRS,50); title('Composite RS')
-figure, histogram(normedRS_square,50); title('Normed Composite RS Squared') % look at your data squared
-figure, histogram(compRS_square(:,1),50); title('Composite RS_square')
+%figure, histogram(compRS,50); title('Composite RS')
+%figure, histogram(normedRS_square,50); title('Normed Composite RS Squared') % look at your data squared
+figure, histogram(normedRS.^2,50); title('Composite RS_square')
 
 %Output results.
+normedRS = normedRS - mean(normedRS);
+normedRS_square = normedRS.^2;
+normedRS_square = normedRS_square - mean(normedRS_square);
 %Combined = [Composite_final(:,1), normedRS, normedRS.^2]; % Pairs subject numbers with RS scores. 
 %Composite_final_output = array2table(Combined(1:end,:),'VariableNames', {'Subject', 'Composite_Reward', 'Composite_Reward_Squared'});
 
