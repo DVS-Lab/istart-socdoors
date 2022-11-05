@@ -1,0 +1,9 @@
+# Configuration file for PALM.
+# Version alpha119, running in MATLAB 9.12.0.2039608 (R2022a) Update 5.
+# 05-Nov-2022 17:12:31
+
+-i act_model_1.csv
+-d design_average.mat
+-t design.con
+-o act_model_1_output/act_model_1_output
+-corrcon
