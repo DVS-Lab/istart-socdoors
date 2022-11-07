@@ -1,0 +1,8 @@
+# For act model 3 VS with no -logp option
+/data/tools/palm-alpha119/palm -i data/act_model_3_VS.csv -d design_contrast.mat -t design.con -o act_VS_model_1_output/act_VS_model_1 -corrcon
+
+# For act model 3 VS with -logp option
+/data/tools/palm-alpha119/palm -i data/act_model_3_VS.csv -d design_contrast.mat -t design.con -o act_VSlogp_model_1_output/act_VSlogp_model_1 -corrcon -logp
+
+# For ppi ROIs
+/data/tools/palm-alpha119/palm -i data/act_model_1.csv -d design_average.mat -t design.con -o act_ROI_model_1_output/act_ROI_model_1 -corrcon
