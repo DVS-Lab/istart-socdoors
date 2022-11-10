@@ -1,0 +1,10 @@
+# Configuration file for PALM.
+# Version alpha119, running in MATLAB 9.12.0.2039608 (R2022a) Update 5.
+# 10-Nov-2022 13:19:41
+
+-i data/ppi_domain.csv
+-d design_contrast.mat
+-t design.con
+-o ppi_domain_output/ppi_domain
+-corrcon
+-ise
