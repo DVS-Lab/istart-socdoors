@@ -1,0 +1,10 @@
+# Configuration file for PALM.
+# Version alpha119, running in MATLAB 9.12.0.2039608 (R2022a) Update 5.
+# 08-Nov-2022 16:22:08
+
+-i data/act_VS3_model_1.csv
+-d design_average.mat
+-t design.con
+-o act_VS3_twotail_model_1_output/act_VS3_twotail_model_1
+-corrcon
+-twotail
