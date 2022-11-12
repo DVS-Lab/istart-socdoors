@@ -1,0 +1,11 @@
+# Configuration file for PALM.
+# Version alpha119, running in MATLAB 9.12.0.2039608 (R2022a) Update 5.
+# 11-Nov-2022 16:47:57
+
+-i data/ppi_outcome.csv
+-d design_average.mat
+-t design.con
+-o test_ppi_outcome_output_ee/ppi_outcome_ee
+-corrcon
+-ise
+-ee
