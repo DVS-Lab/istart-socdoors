@@ -1,0 +1,11 @@
+# Configuration file for PALM.
+# Version alpha119, running in MATLAB 9.12.0.2039608 (R2022a) Update 5.
+# 13-Nov-2022 12:51:02
+
+-i data/act_domain.csv
+-d design_contrast.mat
+-t design.con
+-o test_act_domain_ee_output/act_domain_ee
+-corrcon
+-ise
+-ee
