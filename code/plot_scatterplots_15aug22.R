@@ -28,14 +28,16 @@ summary(model1)
 # Partial Residual Plot
 crModel <- crPlots(model1, 
                    smooth=FALSE, 
-                   col=carPalette()[8], 
-                   col.lines=carPalette()[8],
+                   col=carPalette()[6], 
+                   col.lines=carPalette()[6],
                    pch=16,
                    lwd=1,
                    grid=FALSE
                    )
 
 summary(crModel)
+
+carPalette()
 
 #hist(socialdoors_model2$SU)
 

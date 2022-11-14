@@ -1,0 +1,59 @@
+act_outcome_ee_dat_tstat_c1.csv,13.5344,,"Act: Outcome (corrcon, ise, ee)",,,,
+act_outcome_ee_dat_tstat_uncp_c1.csv,0.0002,,contrast,tstat,uncp,fwep,cfwep
+act_outcome_ee_dat_tstat_fwep_c1.csv,0.0002,,c1: pos,13.5344,0.0002***,0.0002***,0.0002
+act_outcome_ee_dat_tstat_cfwep_c1.csv,0.0002,,c2: neg,-13.5344,0.9999,0.9999,1
+,,,c3: RS-pos,1.542,0.0619,0.0619,0.532
+act_outcome_ee_dat_tstat_c2.csv,-13.5344,,c4: RS-neg,-1.542,0.9382,0.9382,1
+act_outcome_ee_dat_tstat_uncp_c2.csv,0.9999,,c5: RS_square-pos,0.3478,0.3601,0.3601,0.9991
+act_outcome_ee_dat_tstat_fwep_c2.csv,0.9999,,c6: RS_square-neg,-0.3478,0.64,0.64,1
+act_outcome_ee_dat_tstat_cfwep_c2.csv,1,,c7: SU-pos,-1.1312,0.8693,0.8693,1
+,,,c8: SU-neg,1.1312,0.1308,0.1308,0.8096
+act_outcome_ee_dat_tstat_c3.csv,1.542,,c9: SU*RS-pos,-0.2062,0.5794,0.5794,1
+act_outcome_ee_dat_tstat_uncp_c3.csv,0.0619,,c10: SU*RS-neg,0.2062,0.4207,0.4207,1
+act_outcome_ee_dat_tstat_fwep_c3.csv,0.0619,,c11: SU*RS_sq-pos,-2.198,0.9817,0.9817,1
+act_outcome_ee_dat_tstat_cfwep_c3.csv,0.532,,c12: SU*RS_sq-neg,2.198,0.0184*,0.0184*,0.1757
+,,,,,,,
+act_outcome_ee_dat_tstat_c4.csv,-1.542,,,,,,
+act_outcome_ee_dat_tstat_uncp_c4.csv,0.9382,,,,,,
+act_outcome_ee_dat_tstat_fwep_c4.csv,0.9382,,,,,,
+act_outcome_ee_dat_tstat_cfwep_c4.csv,1,,,,,,
+,,,,,,,
+act_outcome_ee_dat_tstat_c5.csv,0.3478,,,,,,
+act_outcome_ee_dat_tstat_uncp_c5.csv,0.3601,,,,,,
+act_outcome_ee_dat_tstat_fwep_c5.csv,0.3601,,,,,,
+act_outcome_ee_dat_tstat_cfwep_c5.csv,0.9991,,,,,,
+,,,,,,,
+act_outcome_ee_dat_tstat_c6.csv,-0.3478,,,,,,
+act_outcome_ee_dat_tstat_uncp_c6.csv,0.64,,,,,,
+act_outcome_ee_dat_tstat_fwep_c6.csv,0.64,,,,,,
+act_outcome_ee_dat_tstat_cfwep_c6.csv,1,,,,,,
+,,,,,,,
+act_outcome_ee_dat_tstat_c7.csv,-1.1312,,,,,,
+act_outcome_ee_dat_tstat_uncp_c7.csv,0.8693,,,,,,
+act_outcome_ee_dat_tstat_fwep_c7.csv,0.8693,,,,,,
+act_outcome_ee_dat_tstat_cfwep_c7.csv,1,,,,,,
+,,,,,,,
+act_outcome_ee_dat_tstat_c8.csv,1.1312,,,,,,
+act_outcome_ee_dat_tstat_uncp_c8.csv,0.1308,,,,,,
+act_outcome_ee_dat_tstat_fwep_c8.csv,0.1308,,,,,,
+act_outcome_ee_dat_tstat_cfwep_c8.csv,0.8096,,,,,,
+,,,,,,,
+act_outcome_ee_dat_tstat_c9.csv,-0.2062,,,,,,
+act_outcome_ee_dat_tstat_uncp_c9.csv,0.5794,,,,,,
+act_outcome_ee_dat_tstat_fwep_c9.csv,0.5794,,,,,,
+act_outcome_ee_dat_tstat_cfwep_c9.csv,1,,,,,,
+,,,,,,,
+act_outcome_ee_dat_tstat_c10.csv,0.2062,,,,,,
+act_outcome_ee_dat_tstat_uncp_c10.csv,0.4207,,,,,,
+act_outcome_ee_dat_tstat_fwep_c10.csv,0.4207,,,,,,
+act_outcome_ee_dat_tstat_cfwep_c10.csv,1,,,,,,
+,,,,,,,
+act_outcome_ee_dat_tstat_c11.csv,-2.198,,,,,,
+act_outcome_ee_dat_tstat_uncp_c11.csv,0.9817,,,,,,
+act_outcome_ee_dat_tstat_fwep_c11.csv,0.9817,,,,,,
+act_outcome_ee_dat_tstat_cfwep_c11.csv,1,,,,,,
+,,,,,,,
+act_outcome_ee_dat_tstat_c12.csv,2.198,,,,,,
+act_outcome_ee_dat_tstat_uncp_c12.csv,0.0184,,,,,,
+act_outcome_ee_dat_tstat_fwep_c12.csv,0.0184,,,,,,
+act_outcome_ee_dat_tstat_cfwep_c12.csv,0.1757,,,,,,
