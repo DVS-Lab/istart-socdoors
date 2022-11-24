@@ -57,6 +57,7 @@ fslmaths target-vmpfc -bin target-vmpfc_bin
 
 
 ## Acknowledgments
-This work was supported, in part, by grants from the National Institutes of Health (R03-DA046733 to DVS and R15-MH122927 to DSF). DVS was a Research Fellow of the Public Policy Lab at Temple University during the preparation of the manuscript (2019-2020 academic year).
+This work was supported, in part, by grants from the *National Institutes of Health (R03-DA046733 to DVS and R15-MH122927 to DSF)
+*. DVS was a Research Fellow of the Public Policy Lab at Temple University during the preparation of the manuscript (2019-2020 academic year).
 
 [openneuro]: https://openneuro.org/
