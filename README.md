@@ -1,5 +1,5 @@
 # ISTART-socdoors: Social Doors Task Data and Analyses
-This repository contains code related to our in prep project related to shared reward and aging. All hypotheses and analysis plans were pre-registered on AsPredicted in fall semester 2019 and data collection commenced on shortly thereafter. Imaging data will be shared via [OpenNeuro][openneuro] when the manuscript is posted on bioRxiv.
+This repository contains code related to our in prep project related to neural responses to social and monetary rewards. All hypotheses and analysis plans were pre-registered on AsPredicted in fall semester 2019 (https://aspredicted.org/blind.php?x=JNH_EGK) and data collection commenced on shortly thereafter. Imaging data will be shared via [OpenNeuro][openneuro] when the manuscript is posted on bioRxiv.
 
 
 ## A few prerequisites and recommendations
@@ -15,7 +15,6 @@ This repository contains code related to our in prep project related to shared r
   - `code`: analysis code
   - `templates`: fsf template files used for FSL analyses
   - `masks`: images used as masks, networks, and seed regions in analyses
-  - `stimuli`: psychopy scripts and matlab scripts for delivering stimuli and organizing output
   - `derivatives`: derivatives from analysis scripts, but only text files (re-run script to regenerate larger outputs)
 
 
@@ -42,10 +41,23 @@ bash code/run_gen3colfiles.sh
 bash code/run_L1stats.sh
 bash code/run_L2stats.sh
 bash code/run_L3stats.sh
+
+# generate hypothetical target ROIs for H2 (example for vmPFC)
+
+# create a point at the peak voxel
+fslmaths thresh_zstat1.nii.gz -mul 0 -add 1 -roi 33 1 61 1 19 1 0 1 point-vmpfc -odt float
+# specify a sphere around that point
+fslmaths point-vmpfc -kernel sphere 5 -fmean target-vmpfc -odt float
+# binarize the sphere
+fslmaths target-vmpfc -bin target-vmpfc_bin
+
+# run permutation analysis for linear model
+/data/tools/palm-alpha119/palm -i [CSV FILE WITH DATA] -d [DESIGN.MAT] -t [DESIGN.CON] -o [OUTPUT FILE] -corrcon -pearson -demean
 ```
 
 
 ## Acknowledgments
-This work was supported, in part, by grants from the National Institutes of Health (R03-DA046733 to DVS and R15-MH122927 to DSF). DVS was a Research Fellow of the Public Policy Lab at Temple University during the preparation of the manuscript (2019-2020 academic year).
+This work was supported, in part, by grants from the *National Institutes of Health (R03-DA046733 to DVS and R15-MH122927 to DSF)
+*. DVS was a Research Fellow of the Public Policy Lab at Temple University during the preparation of the manuscript (2019-2020 academic year).
 
 [openneuro]: https://openneuro.org/
