@@ -34,7 +34,7 @@ design_average <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/d
 socialdoors_model2 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/imaging_plots/istart_covariates_socialdoors_2.xlsx")
 ```
 
-Fig. 3. Aberrant reward sensitivity blunts the relationship between substance use and striatal activation during receipt of rewards
+**Fig. 3. Aberrant reward sensitivity blunts the relationship between substance use and striatal activation during receipt of rewards**
 ```{r}
 # Activation, Outcome, c12: SU*RS_sq-neg
 model1 <- lm(data_act$VS ~
@@ -54,7 +54,7 @@ scatter + scale_color_grey() + theme(panel.grid.major = element_blank(), panel.g
 # https://r-graph-gallery.com/ggplot2-color.html
 ```
 
-Figure 4. Substance use is associated with blunted TPJ responses to social vs. monetary reward
+**Figure 4. Substance use is associated with blunted TPJ responses to social vs. monetary reward**
 ```{r}
 # Cluster tstat 8 (SU-neg) TPJ
 model1 <- lm(aug22_task_socialdoors_model_2_type_act_cnum_4_thresh_clustere_corrp_tstat8 ~
@@ -73,9 +73,9 @@ crModel <- crPlots(model1,
 )
 ```
 
-Fig. 5. Substance use is associated with decreased VS-dmPFC connectivity for social vs. monetary reward
+**Fig. 5. Substance use is associated with decreased VS-dmPFC connectivity for social vs. monetary reward**
 ```{r}
-# ppi_VS-dmPFC, domain * outcome, c3: RS-pos
+# ppi_VS-dmPFC, domain * outcome, c8: SU-neg
 model1 <- lm(data_ppi$dmPFC ~
                design_contrast$tsnr + design_contrast$fd_mean + design_contrast$RS + design_contrast$RS_square + design_contrast$SU + design_contrast$SUxRS + design_contrast$SUxRS_sq)
 summary(model1)
@@ -91,7 +91,7 @@ crModel <- crPlots(model1,
 )
 ```
 
-Fig. 6. Reward sensitivity is associated with increased VS-vmPFC connectivity for social vs. monetary reward
+**Fig. 6. Reward sensitivity is associated with increased VS-vmPFC connectivity for social vs. monetary reward**
 ```{r}
 # ppi_VS-vmPFC, domain * outcome, c3: RS-pos
 model1 <- lm(data_ppi$vmPFC ~
