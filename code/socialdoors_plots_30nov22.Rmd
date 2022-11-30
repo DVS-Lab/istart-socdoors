@@ -35,7 +35,7 @@ socialdoors_model2 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoo
 ```
 
 Fig. 3. Aberrant reward sensitivity blunts the relationship between substance use and striatal activation during receipt of rewards
-```{r, echo=FALSE}
+```{r}
 # Activation, Outcome, c12: SU*RS_sq-neg
 model1 <- lm(data_act$VS ~
                design_average$tsnr_avg + design_average$fd_mean_avg + design_average$RS + design_average$RS_square + design_average$SU + design_average$SUxRS + design_average$SUxRS_sq)
@@ -55,7 +55,7 @@ scatter + scale_color_grey() + theme(panel.grid.major = element_blank(), panel.g
 ```
 
 Figure 4. Substance use is associated with blunted TPJ responses to social vs. monetary reward
-```{r, echo=FALSE}
+```{r}
 # Cluster tstat 8 (SU-neg) TPJ
 model1 <- lm(aug22_task_socialdoors_model_2_type_act_cnum_4_thresh_clustere_corrp_tstat8 ~
                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=socialdoors_model2)
@@ -74,7 +74,7 @@ crModel <- crPlots(model1,
 ```
 
 Fig. 5. Substance use is associated with decreased VS-dmPFC connectivity for social vs. monetary reward
-```{r, echo=FALSE}
+```{r}
 # ppi_VS-dmPFC, domain * outcome, c3: RS-pos
 model1 <- lm(data_ppi$dmPFC ~
                design_contrast$tsnr + design_contrast$fd_mean + design_contrast$RS + design_contrast$RS_square + design_contrast$SU + design_contrast$SUxRS + design_contrast$SUxRS_sq)
@@ -82,7 +82,7 @@ summary(model1)
 # Partial Residual Plot
 crModel <- crPlots(model1, 
                    smooth=FALSE, 
-                   col="pink", # 5=orange, 6=gray (dmPFC is supposed to be yellow, w/e)
+                   col="pink", 
                    bg="pink",
                    col.lines="black",
                    pch=21,
@@ -92,7 +92,7 @@ crModel <- crPlots(model1,
 ```
 
 Fig. 6. Reward sensitivity is associated with increased VS-vmPFC connectivity for social vs. monetary reward
-```{r, echo=FALSE}
+```{r}
 # ppi_VS-vmPFC, domain * outcome, c3: RS-pos
 model1 <- lm(data_ppi$vmPFC ~
                design_contrast$tsnr + design_contrast$fd_mean + design_contrast$RS + design_contrast$RS_square + design_contrast$SU + design_contrast$SUxRS + design_contrast$SUxRS_sq)
@@ -100,7 +100,7 @@ summary(model1)
 # Partial Residual Plot
 crModel <- crPlots(model1, 
                    smooth=FALSE, 
-                   col="orange", # 5=orange, 6=gray (dmPFC is supposed to be yellow, w/e)
+                   col="orange",
                    bg="orange",
                    col.lines="black",
                    pch=21,
