@@ -1,0 +1,61 @@
+,,,,"Act: Domain (corrcon, ise, ee)",,,,
+,,,,contrast,tstat,uncp,fwep,cfwep
+act_domain_ee_dat_tstat_c1.csv,0.6244,,,c1: pos,0.6244,0.257,0.257,0.983
+act_domain_ee_dat_tstat_uncp_c1.csv,0.257,,,c2: neg,-0.6244,0.7431,0.7431,1
+act_domain_ee_dat_tstat_fwep_c1.csv,0.257,,,c3: RS-pos,0.5333,0.2985,0.2985,0.992
+act_domain_ee_dat_tstat_cfwep_c1.csv,0.983,,,c4: RS-neg,-0.5333,0.7016,0.7016,1
+,,,,c5: RS_square-pos,0.0187,0.4916,0.4916,1
+act_domain_ee_dat_tstat_c2.csv,-0.6244,,,c6: RS_square-neg,-0.0187,0.5085,0.5085,1
+act_domain_ee_dat_tstat_uncp_c2.csv,0.7431,,,c7: SU-pos,0.3464,0.3596,0.3596,0.9994
+act_domain_ee_dat_tstat_fwep_c2.csv,0.7431,,,c8: SU-neg,-0.3464,0.6405,0.6405,1
+act_domain_ee_dat_tstat_cfwep_c2.csv,1,,,c9: SU*RS-pos,-0.0643,0.5298,0.5298,1
+,,,,c10: SU*RS-neg,0.0643,0.4703,0.4703,1
+act_domain_ee_dat_tstat_c3.csv,0.5333,,,c11: SU*RS_sq-pos,-0.611,0.7281,0.7281,1
+act_domain_ee_dat_tstat_uncp_c3.csv,0.2985,,,c12: SU*RS_sq-neg,0.611,0.272,0.272,0.9845
+act_domain_ee_dat_tstat_fwep_c3.csv,0.2985,,,,,,,
+act_domain_ee_dat_tstat_cfwep_c3.csv,0.992,,,,,,,
+,,,,,,,,
+act_domain_ee_dat_tstat_c4.csv,-0.5333,,,,,,,
+act_domain_ee_dat_tstat_uncp_c4.csv,0.7016,,,,,,,
+act_domain_ee_dat_tstat_fwep_c4.csv,0.7016,,,,,,,
+act_domain_ee_dat_tstat_cfwep_c4.csv,1,,,,,,,
+,,,,,,,,
+act_domain_ee_dat_tstat_c5.csv,0.0187,,,,,,,
+act_domain_ee_dat_tstat_uncp_c5.csv,0.4916,,,,,,,
+act_domain_ee_dat_tstat_fwep_c5.csv,0.4916,,,,,,,
+act_domain_ee_dat_tstat_cfwep_c5.csv,1,,,,,,,
+,,,,,,,,
+act_domain_ee_dat_tstat_c6.csv,-0.0187,,,,,,,
+act_domain_ee_dat_tstat_uncp_c6.csv,0.5085,,,,,,,
+act_domain_ee_dat_tstat_fwep_c6.csv,0.5085,,,,,,,
+act_domain_ee_dat_tstat_cfwep_c6.csv,1,,,,,,,
+,,,,,,,,
+act_domain_ee_dat_tstat_c7.csv,0.3464,,,,,,,
+act_domain_ee_dat_tstat_uncp_c7.csv,0.3596,,,,,,,
+act_domain_ee_dat_tstat_fwep_c7.csv,0.3596,,,,,,,
+act_domain_ee_dat_tstat_cfwep_c7.csv,0.9994,,,,,,,
+,,,,,,,,
+act_domain_ee_dat_tstat_c8.csv,-0.3464,,,,,,,
+act_domain_ee_dat_tstat_uncp_c8.csv,0.6405,,,,,,,
+act_domain_ee_dat_tstat_fwep_c8.csv,0.6405,,,,,,,
+act_domain_ee_dat_tstat_cfwep_c8.csv,1,,,,,,,
+,,,,,,,,
+act_domain_ee_dat_tstat_c9.csv,-0.0643,,,,,,,
+act_domain_ee_dat_tstat_uncp_c9.csv,0.5298,,,,,,,
+act_domain_ee_dat_tstat_fwep_c9.csv,0.5298,,,,,,,
+act_domain_ee_dat_tstat_cfwep_c9.csv,1,,,,,,,
+,,,,,,,,
+act_domain_ee_dat_tstat_c10.csv,0.0643,,,,,,,
+act_domain_ee_dat_tstat_uncp_c10.csv,0.4703,,,,,,,
+act_domain_ee_dat_tstat_fwep_c10.csv,0.4703,,,,,,,
+act_domain_ee_dat_tstat_cfwep_c10.csv,1,,,,,,,
+,,,,,,,,
+act_domain_ee_dat_tstat_c11.csv,-0.611,,,,,,,
+act_domain_ee_dat_tstat_uncp_c11.csv,0.7281,,,,,,,
+act_domain_ee_dat_tstat_fwep_c11.csv,0.7281,,,,,,,
+act_domain_ee_dat_tstat_cfwep_c11.csv,1,,,,,,,
+,,,,,,,,
+act_domain_ee_dat_tstat_c12.csv,0.611,,,,,,,
+act_domain_ee_dat_tstat_uncp_c12.csv,0.272,,,,,,,
+act_domain_ee_dat_tstat_fwep_c12.csv,0.272,,,,,,,
+act_domain_ee_dat_tstat_cfwep_c12.csv,0.9845,,,,,,,
