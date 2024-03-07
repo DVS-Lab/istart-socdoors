@@ -1,0 +1,3 @@
+# From one dir up:
+
+/ZPOOL/data/tools/palm-alpha119/palm -i data/act_outcome-dec.csv -d design_average.mat -t design_average.con -o fig3/ -corrcon
