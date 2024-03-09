@@ -21,17 +21,6 @@ data_act <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivat
 design_average <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/palm_data/design_average.xlsx")
 socialdoors_model2 <- read_excel("~/Documents/Documents_Air/Github/istart-socdoors/derivatives/imaging_plots/istart_covariates_socialdoors_2.xlsx")
 
-# Remove deception subs
-data_act <- data_act[!((data_act$sub==1012) | (data_act$sub==1019) | (data_act$sub==1247) | (data_act$sub==1251) | (data_act$sub==1303) | (data_act$sub==3116) | (data_act$sub==3143) | (data_act$sub==3176)), ]
-
-design_average <- design_average[!((design_average$sub==1012) | (design_average$sub==1019) | (design_average$sub==1247) | (design_average$sub==1251) | (design_average$sub==1303) | (design_average$sub==3116) | (design_average$sub==3143) | (design_average$sub==3176)), ]
-
-socialdoors_model2 <- socialdoors_model2[!((socialdoors_model2$sub==1012) | (socialdoors_model2$sub==1019) | (socialdoors_model2$sub==1247) | (socialdoors_model2$sub==1251) | (socialdoors_model2$sub==1303) | (socialdoors_model2$sub==3116) | (socialdoors_model2$sub==3143) | (socialdoors_model2$sub==3176)), ]
-
-data_ppi <- data_ppi[!((data_ppi$sub==1012) | (data_ppi$sub==1019) | (data_ppi$sub==1247) | (data_ppi$sub==1251) | (data_ppi$sub==1303) | (data_ppi$sub==3116) | (data_ppi$sub==3143) | (data_ppi$sub==3176)), ]
-
-design_contrast <- design_contrast[!((design_contrast$sub==1012) | (design_contrast$sub==1019) | (design_contrast$sub==1247) | (design_contrast$sub==1251) | (design_contrast$sub==1303) | (design_contrast$sub==3116) | (design_contrast$sub==3143) | (design_contrast$sub==3176)), ]
-
 # **Fig. 3. Aberrant reward sensitivity blunts the relationship between substance use and striatal activation during receipt of #rewards**
 # Activation, Outcome, c12: SU*RS_sq-neg
 model1 <- lm(data_act$VS ~
