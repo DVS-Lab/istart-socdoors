@@ -15,7 +15,8 @@ for TASK in doors socialdoors; do
 			
 			DATA=`ls -1 ${maindir}/derivatives/fsl/L3_model-1_task-${TASK}_n46_flame1+2/L3_task-${TASK}_type-${TYPE}_cnum-${COPENUM}_cname-${COPENAME}_flame1+2.gfeat/cope1.feat/filtered_func_data.nii.gz`
 			
-			fslmeants -i $DATA -o ${outputdir}/L3_task-${TASK}_type-${TYPE}_cnum-${COPENUM}_cname-${COPENAME}_flame1+2_3mar24.txt
+			echo "Extracting ${TASK} ${TYPE} cope ${COPENUM}"
+			fslmeants -i $DATA -o ${outputdir}/L3_task-${TASK}_type-${TYPE}_cnum-${COPENUM}_cname-${COPENAME}_VS_flame1+2_3mar24.txt -m ${maindir}/masks/seed-VS_thr5.nii.gz
 		done
 	done
 done
